@@ -1,16 +1,14 @@
 import numpy as np
 import scipy as sp
 
-def approx1(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=1000):
+
+def approx_simp(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=1000):
     """
-    Returns the solution of equation
+    Returns the min(1, n)-th order approximation of the equation
     $$
     \cfrac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\cfrac{\partial\lambda}{\partial\chi})^n
     $$
-    using difference scheme:
-    $$
-    L_i^{j+1} = L_i^j + d\tau\cdot\nu(i\cdot d\chi, j\cdot d\tau) + d\tau\cdot(\cfrac{L_i^j - L_{i-1}^j}{d\chi})^n
-    $$
+    using unstable difference scheme
     
     Parameters:
     -----------
@@ -65,19 +63,12 @@ def approx1(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=100
     return sols, taus, chis
 
 
-
-
 def approx1nonlinear(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=1000, 
                      method=sp.optimize.fsolve, use_fprime=True, bar=None):
     """
-    Returns the solution of equation
+    Returns the 1st order approximation of the equation
     $$
     \cfrac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\cfrac{\partial\lambda}{\partial\chi})^n
-    $$
-    using difference scheme:
-    $$
-    \cfrac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{s} = \nu^{j+1}_{k+1} - (
-    \cfrac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{h})^n
     $$
     
     Parameters:
@@ -138,9 +129,14 @@ def approx1nonlinear(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200,
     
     for j in range(ntau - 1):
         for k in range(nchi - 1):
-            f = lambda sol: sol - sols[j, k+1] + dtau*((sol - sols[j+1, k])/dchi)**n - dtau*nu((j+1)*dtau, (k+1)*dchi)
+            nu_val = nu((j+1)*dtau, (k+1)*dchi)
+            if n >= 1:
+                f = lambda sol: sol - sols[j, k+1] + dtau*((sol - sols[j+1, k])/dchi)**n - dtau*nu_val
+                fprime = lambda sol: 1 - n*(dtau/dchi)*((sol - sols[j+1, k])/dchi)**(n - 1)
+            else:
+                f = lambda sol: sol - sols[j+1, k] - dchi*(nu_val - (sol - sols[j, k+1])/dtau)**(1/n)
+                fprime = lambda sol: 1 - dchi/(n*dtau)*(nu_val - (sol - sols[j, k+1])/dtau)**(1/n - 1)
             if use_fprime:
-                fprime = lambda sol: 1 - (dtau/dchi)*((sol - sols[j+1, k])/dchi)**(n - 1)
                 sols[j+1, k+1] = method(f, x0=sols[j, k], fprime=fprime)
             else:
                 sols[j+1, k+1] = method(f, x0=sols[j, k]) 
@@ -149,21 +145,12 @@ def approx1nonlinear(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200,
     return sols, taus, chis
 
 
-
-
 def approx2nonlinear(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=1000, 
                      method=sp.optimize.fsolve, use_fprime=True, bar=None):
     """
-    Returns the solution of equation
+    Returns the 2nd order approximation of the equation
     $$
     \cfrac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\cfrac{\partial\lambda}{\partial\chi})^n
-    $$
-    using difference scheme:
-    $$
-    \cfrac{1}{2s}(\lambda_{k+1}^{j+1} + \lambda_{k}^{j+1} - \lambda_{k}^{j+1} - \lambda_k^j) = 
-    \nu((j+0.5)s, (k+0.5)h) - 
-    (\cfrac{1}{2h}(\lambda_{k+1}^{j+1} - \lambda_{k}^{j+1} + \lambda_{k}^{j+1} - \lambda_k^j))^n + 
-    O(s + h^n)
     $$
     
     Parameters:
@@ -224,10 +211,16 @@ def approx2nonlinear(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200,
     
     for j in range(ntau - 1):
         for k in range(nchi - 1):
-            f = lambda sol: 0.5*(sol + sols[j+1, k] - sols[j, k+1] - sols[j, k])/dtau + (0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi)**n - nu((j + 0.5)*dtau, (k + 0.5)*dchi)
+            nu_val = nu((j + 0.5)*dtau, (k + 0.5)*dchi)
+            if n >= 1:
+                f = lambda sol: 0.5*(sol + sols[j+1, k] - sols[j, k+1] - sols[j, k])/dtau + (0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi)**n - nu_val
+                fprime = lambda sol: 0.5/dtau + n*(0.5/dchi)*(0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi)**(n - 1)
+                fprime2 = lambda sol: n*(n - 1)*(0.5/dchi)**2 * (0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi)**(n - 2)
+            else:
+                f = lambda sol: 0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi - (nu_val - 0.5*(sol + sols[j+1, k] - sols[j, k+1] - sols[j, k])/dtau)**(1/n)
+                fprime = lambda sol: 0.5/dchi - 0.5/(n*dtau)*(nu_val - 0.5*(sol + sols[j+1, k] - sols[j, k+1] - sols[j, k])/dtau)**(1/n-1)
+                fprime2 = lambda sol: 0.5*(n-1)/(n*dtau)**2*(nu_val - 0.5*(sol + sols[j+1, k] - sols[j, k+1] - sols[j, k])/dtau)**(1/n-1)
             if use_fprime:
-                fprime = lambda sol: 0.5/dtau + (0.5/dchi)*(0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi)**(n - 1)
-                fprime2 = lambda sol: (0.5/dchi)**2 * (0.5*(sol - sols[j+1, k] + sols[j, k+1] - sols[j, k])/dchi)**(n - 2)
                 try:
                     sols[j+1, k+1] = method(f, x0=sols[j, k], fprime=fprime, fprime2=fprime2)
                 except TypeError:
