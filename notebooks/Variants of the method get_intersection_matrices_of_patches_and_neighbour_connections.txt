@@ -1,0 +1,317 @@
+
+    '''
+    def get_intersection_matrices_of_patches_and_neighbour_connections(self, tau):
+        """
+        Returns the spatial position of intersections between neighbour connections.
+        Warning: the intersections will be available only in domain of patches and connections
+        
+        Parameters:
+        -----------
+        tau : float or float array
+            The (dimensionless) time argument
+        
+        Returns:
+        --------
+        chi : float arrray shape (N, N - 1, tau.shape)
+            The matrices of spatial positions of intersection  for time moments tau
+            The element [i, j] corresponds the intersection between i-th patch and j-th neighbour connection
+        """
+        tau = np.array(tau)
+        shape = np.concatenate([(self.count(), self.count() - 1), tau.shape]).astype(int)
+        if self.n == 1:
+            return np.nan*np.ones(shape)
+        
+        # initialize the matrices of patch starts
+        start_matrix_j = np.transpose(self.patch_starts*np.ones([self.count() - 1, self.count()]))
+        start_matrix_j = start_matrix_j.reshape(np.concatenate([(self.count(), self.count() - 1), 
+                                                                np.ones(tau.ndim, dtype=int)]))
+        start_matrix_k = self.patch_starts[1:]*np.ones([self.count(), self.count() - 1])
+        start_matrix_k = start_matrix_k.reshape(np.concatenate([(self.count(), self.count() - 1), 
+                                                                np.ones(tau.ndim, dtype=int)]))
+        uplift_matrix_k = self.uplift_rates[1:]*np.ones([self.count(), self.count() - 1])
+        uplift_matrix_k = uplift_matrix_k.reshape(np.concatenate([(self.count(), self.count() - 1), 
+                                                                np.ones(tau.ndim, dtype=int)]))
+        
+        # define the variables
+        a = tau - start_matrix_k
+        a[a <= 0] = np.nan
+        a = (self.n - 1)/self.n*(self.n*a)**(-1/(self.n - 1))
+        b = (tau - start_matrix_k)*uplift_matrix_k
+        for k in range(self.count() - 1):
+            stair_values = np.append(0, self.uplift_rates - self.uplift_rates[k+1])
+            b[:, k] += stair_integral(x0=self.patch_starts[k+1], 
+                                      x1=tau, 
+                                      borders=self.patch_starts, 
+                                      values=stair_values)
+        c = np.transpose(self.get_slopes()*np.ones([self.count() - 1, self.count()]))
+        c = c.reshape(np.concatenate([(self.count(), self.count() - 1), 
+                                      np.ones(tau.ndim, dtype=int)]))*np.ones(shape)
+        d = np.zeros(shape)
+        d[tau - start_matrix_j < 0] = np.nan
+        for j in range(self.count()):
+            stair_values = np.append(0, self.uplift_rates - self.uplift_rates[j])
+            d[k] = stair_integral(x0=self.patch_starts[k+1], 
+                                  x1=tau, 
+                                  borders=self.patch_starts, 
+                                  values=stair_values)
+        
+        # define left and right borders
+        shape_rev = np.concatenate([(self.count() - 1, self.count()), tau.shape]).astype(int)
+        borders_of_patches_left = self.get_lefts(tau)*np.ones(shape_rev)
+        borders_of_patches_left = np.swapaxes(borders_of_patches_left, 0, 1)
+        borders_of_patches_right = self.get_rights(tau)*np.ones(shape_rev)
+        borders_of_patches_right = np.swapaxes(borders_of_patches_right, 0, 1)
+        borders_of_connections_left = self.get_rights(tau)[:-1]*np.ones(shape)
+        borders_of_connections_right = self.get_lefts(tau)[1:]*np.ones(shape)
+        chi0 = np.max([borders_of_patches_left, borders_of_connections_left], axis=0)
+        chi1 = np.min([borders_of_patches_right, borders_of_connections_right], axis=0)
+        
+        # define the condition
+        f = lambda chi: a*chi**(self.n/(self.n - 1)) + b - c*chi - d
+        condition = f(chi0)*f(chi1) < 0
+        chi0[np.invert(condition)] = np.nan
+        chi1[np.invert(condition)] = np.nan
+        
+        #chi = solve_bisect(f, x0=chi0, x1=chi1)
+        a_cond = a[condition]
+        b_cond = b[condition]
+        c_cond = c[condition]
+        d_cond = d[condition]
+        
+        f_cond = lambda chi: a_cond*chi**(self.n/(self.n - 1)) + b_cond - c_cond*chi - d_cond
+        chi_cond = solve_bisect(f_cond, x0=chi0[condition], x1=chi1[condition])
+        
+        chi = np.nan*np.ones(shape)
+        chi[condition] = chi_cond
+        
+        return chi
+    '''
+    
+    '''
+    def get_intersection_matrices_of_patches_and_neighbour_connections(self, tau):
+        """
+        Returns the spatial position of intersections between neighbour connections.
+        Warning: the intersections will be available only in domain of patches and connections
+        
+        Parameters:
+        -----------
+        tau : float or float array
+            The (dimensionless) time argument
+        
+        Returns:
+        --------
+        chi : float arrray shape (N, N - 1, tau.shape)
+            The matrices of spatial positions of intersection  for time moments tau
+            The element [i, j] corresponds the intersection between i-th patch and j-th neighbour connection
+        """
+        tau = np.array(tau)
+        shape = np.concatenate([(self.count(), self.count() - 1), tau.shape]).astype(int)
+        if self.n == 1:
+            return np.nan*np.ones(shape)
+        
+        # something unefficient, but should be correct
+        # chi.shape should be (N, tau.shape)
+        elevation_p = lambda tau, chi: np.array([self.get_elevations_for_patches(tau, chi[i])[i]
+                                                 for i in range(self.count())])
+        # chi.shape should be (N - 1, tau.shape)
+        elevation_c = lambda tau, chi: np.array([self.get_neighbour_connections(tau, chi[i])[i]
+                                                 for i in range(self.count() - 1)])
+        chi_p = np.ones(np.append(self.count(), tau.shape).astype(int))
+        chi_c = np.ones(np.append(self.count() - 1, tau.shape).astype(int))
+        print(f'tau.shape = {tau.shape}')
+        print(f'chi_p.shape = {chi_p.shape}')
+        print(f'chi_c.shape = {chi_c.shape}')
+        print(f'elevation_p(tau, chi_p).shape = {elevation_p(tau, chi_p).shape}')
+        print(f'elevation_c(tau, chi_c).shape = {elevation_c(tau, chi_c).shape}')
+        print()
+        
+        
+        # define target function
+        tau_p = np.ones(np.append(self.count() - 1, tau.shape))*tau
+        tau_c = np.ones(np.append(self.count(), tau.shape))*tau
+        print(f'tau_p.shape = {tau_p.shape}')
+        print(f'tau_c.shape = {tau_c.shape}')
+        
+        chi = np.ones(shape)
+        print(f'chi.shape = {chi.shape}')
+        print(f'elevation_p(tau_p, chi).shape = {elevation_p(tau_p, chi).shape}')
+        print(f'np.swapaxes(elevation_c(tau_c, np.swapaxes(chi, 0, 1)), 0, 1).shape = {np.swapaxes(elevation_c(tau_c, np.swapaxes(chi, 0, 1)), 0, 1).shape}')
+        print()
+        f = lambda chi: elevation_p(tau_p, chi) - np.swapaxes(elevation_c(tau_c, np.swapaxes(chi, 0, 1)), 0, 1)
+        
+        
+        # define left and right borders
+        shape_rev = np.concatenate([(self.count() - 1, self.count()), tau.shape]).astype(int)
+        borders_of_patches_left = self.get_lefts(tau)*np.ones(shape_rev)
+        borders_of_patches_left = np.swapaxes(borders_of_patches_left, 0, 1)
+        borders_of_patches_right = self.get_rights(tau)*np.ones(shape_rev)
+        borders_of_patches_right = np.swapaxes(borders_of_patches_right, 0, 1)
+        borders_of_connections_left = self.get_rights(tau)[:-1]*np.ones(shape)
+        borders_of_connections_right = self.get_lefts(tau)[1:]*np.ones(shape)
+        chi0 = np.max([borders_of_patches_left, borders_of_connections_left], axis=0)
+        chi1 = np.min([borders_of_patches_right, borders_of_connections_right], axis=0)
+        
+        print(f'chi0.shape = {chi0.shape}')
+        print(f'chi1.shape = {chi1.shape}')
+        
+        # define the condition
+        condition = f(chi0)*f(chi1) < 0
+        chi0[np.invert(condition)] = np.nan
+        chi1[np.invert(condition)] = np.nan
+        
+        # find chi
+        chi = solve_bisect(f, chi0, chi1)
+        return chi
+    '''
+    '''
+    def get_intersection_matrices_of_patches_and_neighbour_connections(self, tau):
+        """
+        Returns the spatial position of intersections between neighbour connections.
+        Warning: the intersections will be available only in domain of patches and connections
+        
+        Parameters:
+        -----------
+        tau : float or float array
+            The (dimensionless) time argument
+        
+        Returns:
+        --------
+        chi : float arrray shape (N, N - 1, tau.shape)
+            The matrices of spatial positions of intersection  for time moments tau
+            The element [i, j] corresponds the intersection between i-th patch and j-th neighbour connection
+        """
+        tau = np.array(tau)
+        shape = np.concatenate([(self.count(), self.count() - 1), tau.shape]).astype(int)
+        if self.n == 1:
+            return np.nan*np.ones(shape)
+        
+        start_matrix_k = self.patch_starts[1:].reshape(1, self.count() - 1, *np.ones(tau.ndim, dtype=int))
+        start_matrix_j = self.patch_starts.reshape(self.count(), 1, *np.ones(tau.ndim, dtype=int))
+        uplift_rates_j = self.uplift_rates.reshape(self.count(), 1, *np.ones(tau.ndim, dtype=int))
+        print(f'start_matrix_k.shape = {start_matrix_k.shape}')
+        print(f'start_matrix_j.shape = {start_matrix_j.shape}')
+        print(f'uplift_rates_j.shape = {uplift_rates_j.shape}')
+        
+        a = ((self.n*(tau - start_matrix_k))**(-1/(self.n - 1)))*(self.n - 1)/self.n
+        b = -np.transpose(self.get_slopes()*np.ones([self.count() - 1, self.count()]))
+        b = b.reshape(*b.shape, *np.ones(tau.ndim, dtype=int))
+        c = stair_integral(x0=start_matrix_k*np.ones([self.count(), self.count() - 1, 
+                                                      *np.ones(tau.ndim, dtype=int)]), 
+                           x1=start_matrix_j*np.ones([self.count(), self.count() - 1, 
+                                                      *np.ones(tau.ndim, dtype=int)]), 
+                           values=np.append(0, self.uplift_rates), 
+                           borders=self.patch_starts) + uplift_rates_j*(tau - start_matrix_j)
+        print(f'a.shape = {a.shape}')
+        print(f'b.shape = {b.shape}')
+        print(f'c.shape = {c.shape}')
+        
+        # 
+        shape_rev = np.concatenate([(self.count() - 1, self.count()), tau.shape]).astype(int)
+        borders_of_patches_left = self.get_lefts(tau)*np.ones(shape_rev)
+        borders_of_patches_left = np.swapaxes(borders_of_patches_left, 0, 1)
+        borders_of_patches_right = self.get_rights(tau)*np.ones(shape_rev)
+        borders_of_patches_right = np.swapaxes(borders_of_patches_right, 0, 1)
+        borders_of_connections_left = self.get_rights(tau)[:-1]*np.ones(shape)
+        borders_of_connections_right = self.get_lefts(tau)[1:]*np.ones(shape)
+        chi0 = np.max([borders_of_patches_left, borders_of_connections_left], axis=0)
+        chi1 = np.min([borders_of_patches_right, borders_of_connections_right], axis=0)
+        print(f'chi0.shape = {chi0.shape}')
+        print(f'chi1.shape = {chi1.shape}')
+        
+        f = lambda chi: a*(chi**((self.n - 1)/self.n)) + b*chi + c
+        
+        cond = (np.sign(f(chi0))*np.sign(f(chi1)) <= 0)&(tau >= start_matrix_k)&(tau >= start_matrix_j)
+        a_cond = (a*np.ones(shape))[cond]
+        b_cond = (b*np.ones(shape))[cond]
+        c_cond = (c*np.ones(shape))[cond]
+        f_cond = lambda chi: a_cond*chi**((self.n - 1)/self.n) + b_cond*chi + c_cond
+        
+        chi = np.nan*np.ones(shape)
+        chi[cond] = solve_bisect(f_cond, chi0[cond], chi1[cond])
+        return chi
+    '''
+    
+    def get_intersection_matrices_of_patches_and_neighbour_connections(self, tau):
+        """
+        Returns the spatial position of intersections between neighbour connections.
+        Warning: the intersections will be available only in domain of patches and connections
+        
+        Parameters:
+        -----------
+        tau : float or float array
+            The (dimensionless) time argument
+        
+        Returns:
+        --------
+        chi : float arrray shape (N, N - 1, tau.shape)
+            The matrices of spatial positions of intersection  for time moments tau
+            The element [i, j] corresponds the intersection between i-th patch and j-th neighbour connection
+        """
+        tau = np.array(tau)
+        shape = np.concatenate([(self.count(), self.count() - 1), tau.shape]).astype(int)
+        if self.n == 1:
+            return np.nan*np.ones(shape)
+        
+        chi_right = self.get_rights(tau, first_is_infinite=False)
+        lam_right = self.get_right_elevations(tau, first_is_infinite=False)
+        chi_left = self.get_lefts(tau)
+        lam_left = self.get_left_elevations(tau)
+        print(f'chi_right.shape = {chi_right.shape}')
+        print(f'lam_right.shape = {lam_right.shape}')
+        print(f'chi_left.shape = {chi_left.shape}')
+        print(f'lam_left.shape = {lam_left.shape}')
+        print()
+        
+        patch_chi_right = chi_right.reshape(self.count(), 1, *tau.shape)
+        patch_lam_right = lam_right.reshape(self.count(), 1, *tau.shape)
+        patch_chi_left = chi_left.reshape(self.count(), 1, *tau.shape)
+        patch_lam_left = lam_left.reshape(self.count(), 1, *tau.shape)
+        print(f'patch_chi_right.shape = {patch_chi_right.shape}')
+        print(f'patch_lam_right.shape = {patch_lam_right.shape}')
+        print(f'patch_chi_left.shape = {patch_chi_left.shape}')
+        print(f'patch_lam_left.shape = {patch_lam_left.shape}')
+        print()
+        
+        connection_chi_right = chi_left[1:].reshape(1, self.count() - 1, *tau.shape)
+        connection_lam_right = lam_left[1:].reshape(1, self.count() - 1, *tau.shape)
+        connection_chi_left = chi_right[:-1].reshape(1, self.count() - 1, *tau.shape)
+        connection_lam_left = lam_right[:-1].reshape(1, self.count() - 1, *tau.shape)
+        print(f'connection_chi_right.shape = {connection_chi_right.shape}')
+        print(f'connection_lam_right.shape = {connection_lam_right.shape}')
+        print(f'connection_chi_left.shape = {connection_chi_left.shape}')
+        print(f'connection_lam_left.shape = {connection_lam_left.shape}')
+        print()
+        
+        k = self.n/(self.n - 1)
+        a = (connection_lam_right - connection_lam_left)/(connection_chi_right**k - connection_chi_left**k)
+        b = connection_lam_right - a*(connection_chi_right**k)
+        c = (patch_lam_right - patch_lam_left)/(patch_chi_right - patch_chi_left)
+        d = patch_lam_right - c*patch_chi_right
+        print(f'a.shape = {a.shape}')
+        print(f'b.shape = {b.shape}')
+        print(f'c.shape = {c.shape}')
+        print(f'd.shape = {d.shape}')
+        print()
+        
+        chi0 = np.max([patch_chi_left*np.ones(shape), connection_chi_left*np.ones(shape)], axis=0)
+        chi1 = np.min([patch_chi_right*np.ones(shape), connection_chi_right*np.ones(shape)], axis=0)
+        print(f'chi0.shape = {chi0.shape}')
+        print(f'chi1.shape = {chi1.shape}')
+        
+        f = lambda chi: a*(chi**k) + b - c*chi - d
+        
+        tau0_matrix_p = self.patch_starts.reshape(self.count(), *np.ones(tau.ndim + 1, dtype=int))
+        tau0_matrix_c = self.patch_starts[1:].reshape(1, self.count() - 1, *np.ones(tau.ndim, dtype=int))
+        
+        cond = (np.sign(f(chi0))*np.sign(f(chi1)) <= 0)&(tau >= tau0_matrix_p)&(tau >= tau0_matrix_c)
+        a_cond = (a*np.ones(shape))[cond]
+        b_cond = (b*np.ones(shape))[cond]
+        c_cond = (c*np.ones(shape))[cond]
+        d_cond = (d*np.ones(shape))[cond]
+        
+        f_cond = lambda chi: a_cond*(chi**k) + b_cond - c_cond*chi - d_cond
+        
+        chi = np.nan*np.ones(shape)
+        chi[cond] = solve_bisect(f_cond, chi0[cond], chi1[cond])
+        return chi
+    
