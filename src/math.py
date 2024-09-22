@@ -2,8 +2,10 @@ import numpy as np
 
 
 def lengths_check(borders, values, raise_error=True):
-    # Returns True, if lengths are correct: borders array should contain 1 element less, than values array
-    # If this is not correct, it will raise error if raise_error or return Flase in other case.
+    """
+    Returns True, if lengths are correct: borders array should contain 1 element less, than values array
+    If this is not correct, it will raise error if raise_error or return Flase in other case.
+    """
     r = len(values) - len(borders) == 1
     if raise_error and not r:
         msg = f'Wrong arrays lengths: borders array should contain 1 element less, than values array. But their length are {len(borders)} and {len(values)}.'
