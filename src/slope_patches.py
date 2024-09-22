@@ -29,13 +29,17 @@ class SlopePatches:
         
     
     def count(self):
-        # returns the number of patches N
+        """
+        Returns the number of patches N
+        """
         return len(self.patch_starts)
     
     
     def get_slopes(self):
-        # Returns the array of slopes for each patch; 
-        # Associated with the equation (10) form the article by Leigh Royden and J. Taylor Perron
+        """
+        Returns the array of slopes for each patch; 
+        Associated with the equation (10) form the article by Leigh Royden and J. Taylor Perron
+        """
         return self.uplift_rates**(1/self.n)
     
     
@@ -121,3 +125,64 @@ class SlopePatches:
         res = rights - lengths.reshape(shape_len)
         res[res < 0] = 0
         return res
+    
+    
+    def get_elevations_for_patches(self, tau, chi, index=None, filter_outer=True):
+        """
+        Returns the elevation for each patch for moments tau in spatial points chi for patches given by index
+        Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron
+        
+        If index is None
+        Returns the elevation for each patch for moments tau in spatial points chi
+        
+        Parameters:
+        -----------
+        tau : float or float array
+            The (dimensionless) time argument
+        
+        chi : float or float array
+            The (dimensionless) distance argument
+            tau and chi should be the same shape
+        
+        index : int, int array or None
+            The patches indices
+            Should be the same shape as tau and chi
+            If it's None, then this will be changed to array shape (N, *tau/chi.shape)
+            where index[i] == i
+            
+        filter_outer : bool
+            Remove the elements out of theoretical patch borders, if it's True
+            
+        Returns:
+        --------
+        lam : float array shape same as index.shape
+            The elevation throught the time moments tau, spatial points for the patch from patch_index 
+        """
+        tau = np.array(tau)
+        chi = np.array(chi)
+        if index is None:
+            index = np.arange(self.count(), dtype=int).reshape(self.count(), *np.ones(max(tau.ndim, chi.ndim), dtype=int))
+        index = np.array(index)*np.ones(tau.shape, dtype=int)*np.ones(chi.shape, dtype=int)
+        tau = tau*np.ones(index.shape)
+        chi = chi*np.ones(index.shape)
+        
+        if filter_outer:
+            lefts = self.get_lefts(tau)
+            rights = self.get_rights(tau)
+            for i in range(self.count()):
+                chi[(index == i)&np.invert(chi >= lefts[i])] = np.nan
+                chi[(index == i)&np.invert(chi <= rights[i])] = np.nan
+        
+        lam_prechi = chi*self.get_slopes()[index]
+        lam_pretau = np.zeros(tau.shape)
+        for i in range(self.count()):
+            stair_values = np.append(0, self.uplift_rates - self.uplift_rates[i])
+            lam_pretau[index == i] = step_integral(x0=self.patch_starts[i], 
+                                                   x1=tau[index == i], 
+                                                   borders=self.patch_starts, 
+                                                   values=stair_values)
+        lam = lam_prechi + lam_pretau
+        
+        return lam
+    
+    
