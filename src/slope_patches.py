@@ -648,3 +648,40 @@ class SlopePatches:
         
         return borders_left, borders_right
     
+    
+    def get_nu_value(self, tau, chi=np.nan, rate_before=None):
+        """
+        Returns the uplift rate (nu-value) for each moment tau.
+        Just returns the uplift rate at chi=0, nu(tau, chi=0)
+        
+        Parameters:
+        -----------
+        tau : float or float array
+            The time argument of the uplift rate function
+        
+        chi : float or float array
+            The spatial argument of the uplift rate function
+            The result value does not depend on this argument, 
+            but sometimes this function should take 2 paraeters.
+        
+        rate_before: float or None
+            The uplift rate before the first patch starts.
+            If it is None, then set rate_before same as rate of 1st patch (patch index 0).
+        
+        Returns:
+        --------
+        nu : float or float array
+             The uplift rates for moments tau
+        """
+        if rate_before is None:
+            rate_before = self.uplift_rates[0]
+        tau = np.array(tau)
+        chi = np.array(chi)
+        if tau.ndim > chi.ndim:
+            use_shape = tau.shape
+        else:
+            use_shape = chi.shape
+            
+        nu = step_function(tau, borders=self.patch_starts, values=np.append(rate_before, self.uplift_rates))
+        nu = np.ones(use_shape)*nu
+        return nu
