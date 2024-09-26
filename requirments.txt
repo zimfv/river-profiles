@@ -1,0 +1,9 @@
+Package    Version
+---------- -------
+bguriver   0.1.0
+numpy      2.1.1
+pip        22.3.1
+scipy      1.14.1
+setuptools 65.5.1
+tqdm       4.66.5
+wheel      0.44.0

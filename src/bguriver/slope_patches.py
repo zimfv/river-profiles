@@ -1,5 +1,5 @@
 import numpy as np
-from src.math import step_function, step_integral, solve_bisect
+from bguriver.math import step_function, step_integral, solve_bisect
 
 
 class SlopePatches:
