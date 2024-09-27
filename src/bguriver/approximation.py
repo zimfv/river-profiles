@@ -1,6 +1,7 @@
 import numpy as np
 import scipy as sp
 
+import warnings
 
 
 def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
@@ -8,7 +9,7 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     """
     Returns the 1st order approximation of the equation
     $$
-    \cfrac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\cfrac{\partial\lambda}{\partial\chi})^n
+    \frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n
     $$
     
     Parameters:
@@ -91,7 +92,7 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     """
     Returns the 2nd order approximation of the equation
     $$
-    \cfrac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\cfrac{\partial\lambda}{\partial\chi})^n
+    \frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n
     $$
     
     Parameters:
@@ -175,7 +176,8 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
 
 
 def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
-                method=sp.optimize.fsolve, use_fprime=True, bar=None, order=2):
+                method=sp.optimize.fsolve, use_fprime=True, bar=None, order=2, 
+                runtime_warning_action="ignore"):
     """
     Returns the 2nd order approximation of the equation
     
@@ -214,6 +216,13 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
     order : int (1 or 2)
         The order of approximation
         
+    runtime_warning_action : str
+        What should be done with RuntimeWarning, often throwing by optimizers.
+        Possible values:
+        default         # Show all warnings (even those ignored by default)
+        ignore          # Ignore all warnings
+        error           # Convert all warnings to errors
+
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
@@ -227,7 +236,9 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
     """
     schemes = {1: approximate_by1scheme, 
                2: approximate_by2scheme}
-    sols, taus, chis = schemes[order](nu=nu, initial=initial, border=border, n=n, 
-                                      dtau=dtau, dchi=dchi, ntau=ntau, nchi=nchi,
-                                      method=method, use_fprime=use_fprime, bar=bar)
+    with warnings.catch_warnings():
+        warnings.filterwarnings(runtime_warning_action, category=RuntimeWarning)
+        sols, taus, chis = schemes[order](nu=nu, initial=initial, border=border, n=n, 
+                                          dtau=dtau, dchi=dchi, ntau=ntau, nchi=nchi,
+                                          method=method, use_fprime=use_fprime, bar=bar)
     return sols, taus, chis

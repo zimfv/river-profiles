@@ -1,5 +1,9 @@
 import numpy as np
 from bguriver.math import step_function, step_integral, solve_bisect
+from bguriver.warning_handler import get_runtime_warning_act_decorator
+
+# set ignoring RuntimeWarnings in few methods
+runtime_warning_act = get_runtime_warning_act_decorator(runtime_warning_action="ignore")
 
 
 class SlopePatches:
@@ -127,6 +131,7 @@ class SlopePatches:
         return res
     
     
+    @runtime_warning_act
     def get_elevations_for_patches(self, tau, chi, index=None, filter_outer=True):
         """
         Returns the elevation for each patch for moments tau in spatial points chi for patches given by index
@@ -186,6 +191,7 @@ class SlopePatches:
         return lam
     
     
+    @runtime_warning_act
     def get_right_elevations(self, tau, first_is_infinite=True):
         """
         Returns elevations pon the right borders of the patches for time moments tau.  
@@ -224,6 +230,7 @@ class SlopePatches:
         return lam
     
     
+    @runtime_warning_act
     def get_left_elevations(self, tau):
         """
         Returns elevations on the left borders of the patches for time moments tau.  
@@ -258,6 +265,7 @@ class SlopePatches:
         return lam
     
     
+    @runtime_warning_act
     def get_elevations_for_stretch_zones(self, tau, chi, index=None, filter_outer=True):
         """
         Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch
@@ -389,6 +397,7 @@ class SlopePatches:
         return index
     
     
+    @runtime_warning_act
     def get_intersections_of_patches(self, tau, filtration=True):
         """
         Returns the spatial position of intersections between patches
@@ -425,6 +434,7 @@ class SlopePatches:
         return chi
     
     
+    @runtime_warning_act
     def get_intersections_of_stretch_zones(self, tau):
         """
         Returns the spatial position of intersections between neighbour connections
@@ -469,6 +479,7 @@ class SlopePatches:
         return chi
     
     
+    @runtime_warning_act
     def get_intersections_of_patches_and_stretch_zones(self, tau, xtol=1e-8, maxiter=100):
         """
         Returns the spatial position of intersections between patches and stretch zones
@@ -586,7 +597,7 @@ class SlopePatches:
         
         return borders_left, borders_right
     
-    
+
     def get_stretch_zones_relisation_borders(self, tau, xtol=1e-8, maxiter=100):
         """
         Returns the borders of stretch zones realisation

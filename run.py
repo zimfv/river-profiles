@@ -24,12 +24,10 @@ i = slp.count() - 1
 print(f'Patch {i}:        [{rpl[i]:.2f}, {rpr[i]:.2f}]\n')
 
 
-
-
 from bguriver.approximation import approximate
 n = slp.n
 nu = slp.get_nu_value
-initial = lambda chi: chi*slp.get_slopes()[0] # we sopouse, that nu(0) define the initial solution
+initial = lambda chi: chi*slp.get_slopes()[0]
 border = lambda tau: tau*0
 
 dtau = 0.1
