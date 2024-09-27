@@ -8,3 +8,14 @@ The module `approximation` contains the difference schemes approximating the euq
 
 ![The equation](https://agupubs.onlinelibrary.wiley.com/cms/asset/8e959e9f-4e03-4449-b3e6-d0029f55d7e1/jgrf20031-math-0010.gif)
 
+# Installation 
+__Linux__ and __Mac OS__:
+```
+git clone https://github.com/zimfv/river-profiles.git
+cd river-profiles
+pip install -r requirements.txt
+python setup.py bdist_wheel sdist
+pip install .
+```
+
+__Windows__: ...

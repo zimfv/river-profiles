@@ -66,7 +66,7 @@ class SlopePatches:
         res: float array shape (N, tau.shape)
             Right borders for each patch and each moment tau
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         
         shape_res = np.append(self.count(), tau.shape).astype(int)
         shape_rat = shape_res.copy()
@@ -113,7 +113,7 @@ class SlopePatches:
         res: float array shape (N, tau.shape)
             Left borders for each patch and each moment tau
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         
         rights = self.get_rights(tau, first_is_infinite=False)
         lengths = self.get_lengths()
@@ -158,8 +158,8 @@ class SlopePatches:
         lam : float array shape same as index.shape
             The elevation throught the time moments tau, spatial points for the patch from patch_index 
         """
-        tau = np.array(tau)
-        chi = np.array(chi)
+        tau = np.array(tau, dtype=float)
+        chi = np.array(chi, dtype=float)
         if index is None:
             index = np.arange(self.count(), dtype=int).reshape(self.count(), *np.ones(max(tau.ndim, chi.ndim), dtype=int))
         index = np.array(index)*np.ones(tau.shape, dtype=int)*np.ones(chi.shape, dtype=int)
@@ -209,7 +209,7 @@ class SlopePatches:
         lam: float array shape (N, tau.shape)
             Elevations on the right borders for each patch and each moment tau
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         chi = self.get_rights(tau, first_is_infinite=first_is_infinite)
         
         lam_prechi = np.array([chi[i]*s for i, s in enumerate(self.get_slopes())])
@@ -243,7 +243,7 @@ class SlopePatches:
         lam: float array shape (N, tau.shape)
             Elevations on the left borders for each patch and each moment tau
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         chi = self.get_lefts(tau)
         
         lam_prechi = np.array([chi[i]*s for i, s in enumerate(self.get_slopes())])
@@ -294,8 +294,8 @@ class SlopePatches:
         lam : float array shape tau/chi/inidex.shape
             The elevation throught the time moments tau, spatial points chi for the stretch zone from zone_inidex 
         """
-        tau = np.array(tau)
-        chi = np.array(chi)
+        tau = np.array(tau, dtype=float)
+        chi = np.array(chi, dtype=float)
         if index is None:
             index = np.arange(self.count() - 1, dtype=int).reshape(self.count() - 1, *np.ones(max(tau.ndim, chi.ndim), dtype=int))
         index = np.array(index)*np.ones(tau.shape, dtype=int)*np.ones(chi.shape, dtype=int)
@@ -440,7 +440,7 @@ class SlopePatches:
             The matrices of spatial positions of intersection  for time moments tau
             The element [i, j] corresponds the intersection between i-th and j-th neighbour connection
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         shape = np.concatenate([(self.count() - 1, self.count() - 1), tau.shape]).astype(int)
         if self.n == 1:
             return np.nan*np.ones(shape)
@@ -490,7 +490,7 @@ class SlopePatches:
             The matrices of spatial positions of intersection  for time moments tau
             The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         tau_big = np.ones([self.count(), self.count() - 1, *tau.shape])*tau
         
         patch_index = np.arange(self.count()).reshape(self.count(), *np.ones(tau.ndim + 1, dtype=int))
@@ -542,7 +542,7 @@ class SlopePatches:
         
         right_borders : float array shape (N, *tau.shape)
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         
         
         lefts = self.get_lefts(tau).reshape(self.count(), 1, *tau.shape)
@@ -607,7 +607,7 @@ class SlopePatches:
         
         right_borders : float array shape (N, *tau.shape)
         """
-        tau = np.array(tau)
+        tau = np.array(tau, dtype=float)
         
         lefts = self.get_rights(tau)[1:].reshape(self.count() - 1, 1, *tau.shape)
         rights = self.get_lefts(tau)[:-1].reshape(self.count() - 1, 1, *tau.shape)
@@ -675,8 +675,8 @@ class SlopePatches:
         """
         if rate_before is None:
             rate_before = self.uplift_rates[0]
-        tau = np.array(tau)
-        chi = np.array(chi)
+        tau = np.array(tau, dtype=float)
+        chi = np.array(chi, dtype=float)
         if tau.ndim > chi.ndim:
             use_shape = tau.shape
         else:
