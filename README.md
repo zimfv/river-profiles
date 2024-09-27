@@ -6,9 +6,12 @@ The module `slope_patches` contains the realisation of the concept of slope patc
 
 The module `approximation` contains the difference schemes approximating the euqation (8) from the mentioned article.
 
-![The equation](https://agupubs.onlinelibrary.wiley.com/cms/asset/8e959e9f-4e03-4449-b3e6-d0029f55d7e1/jgrf20031-math-0010.gif)
+![Image](pics/eq8.png)
+
 
 # Installation 
+The first you should have [python](https://www.python.org/), [pip](https://pypi.org/project/pip/) and [git](https://git-scm.com/) installed.
+
 __Linux__ and __Mac OS__:
 ```
 git clone https://github.com/zimfv/river-profiles.git
@@ -19,6 +22,7 @@ pip install .
 ```
 
 __Windows__: ...
+
 
 
 # Usage Examples
@@ -117,9 +121,15 @@ tau = 8
 
 # find patches realisation borders
 realisation_patches_lefts, realisation_patches_rights = slp.get_patches_relisation_borders(tau)
+print(f'realisation_patches_lefts.shape = {realisation_patches_lefts.shape}')
+print(f'realisation_patches_rights.shape = {realisation_patches_rights.shape}')
+print()
 
 # find stretch zones realisation borders
 realisation_stretch_lefts, realisation_stretch_rights = slp.get_stretch_zones_relisation_borders(tau)
+print(f'realisation_stretch_lefts.shape = {realisation_stretch_lefts.shape}')
+print(f'realisation_stretch_rights.shape = {realisation_stretch_rights.shape}')
+print()
 
 # represent the realisation borders as a table
 import pandas as pd
@@ -129,6 +139,11 @@ pd.DataFrame({'Left': np.concatenate([realisation_patches_lefts, realisation_str
              index=np.concatenate([np.char.add('Patch ', np.arange(slp.count()).astype(str)), 
                                    np.char.add('Stretch Zone ', np.arange(slp.count() - 1).astype(str))]))
 ```
+    realisation_patches_lefts.shape = (4,)
+    realisation_patches_rights.shape = (4,)
+
+    realisation_stretch_lefts.shape = (3,)
+    realisation_stretch_rights.shape = (3,)
 | | __Left__ | __Right__ |
 | -- | -- | -- | 
 __Patch 0__ | 4.293444 | inf | 
@@ -283,6 +298,7 @@ print(f'tau.shape = {tau.shape}')
 print(f'chi.shape = {chi.shape}')
 ```
 ![Image](pics/guide-bar.png)
+
     sol.shape = (200, 150)
     tau.shape = (200, 150)
     chi.shape = (200, 150)
