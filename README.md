@@ -53,10 +53,9 @@ print(f'slp.patch_starts = {slp.patch_starts}')
 print(f'slp.uplift_rates = {slp.uplift_rates}')
 print(f'slp.n = {slp.n}')
 ```
-Output:```
     slp.patch_starts = [0.  1.  5.  8.5]
     slp.uplift_rates = [2.1 0.4 1.9 0.6]
-    slp.n = 0.67```
+    slp.n = 0.67
 
 You can get the number of patches using the `SlopePatches.count()` method:
 ```python
