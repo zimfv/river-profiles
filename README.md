@@ -14,7 +14,7 @@ The first you should have [python](https://www.python.org/), [pip](https://pypi.
 
 Then run in terminal or CMD:
 ```
-git clone https://github.com/zimfv/river-profiles.git
+git clone --depth=1 --branch main https://github.com/zimfv/river-profiles
 cd river-profiles
 pip install -r requirements.txt
 python setup.py bdist_wheel sdist
