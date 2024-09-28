@@ -12,17 +12,14 @@ The module `approximation` contains the difference schemes approximating the euq
 # Installation 
 The first you should have [python](https://www.python.org/), [pip](https://pypi.org/project/pip/) and [git](https://git-scm.com/) installed.
 
-__Linux__ and __Mac OS__:
+Then run in terminal or CMD:
 ```
-git clone git@github.com:zimfv/river-profiles.git
+git clone https://github.com/zimfv/river-profiles.git
 cd river-profiles
 pip install -r requirements.txt
 python setup.py bdist_wheel sdist
 pip install .
 ```
-
-__Windows__: ...
-
 
 
 # Usage Examples
