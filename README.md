@@ -226,7 +226,7 @@ plt.show()
 ```
 ![Image](pics/guide-nu.png)
 
-You can see more methods of `SlopePatches` in the [Long Guide notebook](https://github.com/zimfv/river-profiles/blob/main/notebooks/Guide%20Long.ipynb).
+You can see more methods of `SlopePatches` in the [Long Guide notebook](https://github.com/zimfv/river-profiles/blob/dev/notebooks/Guide%20Long.ipynb).
 
 
 # Approximations
