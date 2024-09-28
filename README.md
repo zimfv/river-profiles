@@ -14,7 +14,7 @@ The first you should have [python](https://www.python.org/), [pip](https://pypi.
 
 __Linux__ and __Mac OS__:
 ```
-git clone https://github.com/zimfv/river-profiles.git
+git clone git@github.com:zimfv/river-profiles.git
 cd river-profiles
 pip install -r requirements.txt
 python setup.py bdist_wheel sdist
