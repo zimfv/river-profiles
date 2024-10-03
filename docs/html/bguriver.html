@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bguriver package &mdash; BGU-River 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="bguriver" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BGU-River
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">bguriver</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">bguriver package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bguriver.approximation">bguriver.approximation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.approximation.approximate"><code class="docutils literal notranslate"><span class="pre">approximate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.approximation.approximate_by1scheme"><code class="docutils literal notranslate"><span class="pre">approximate_by1scheme()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.approximation.approximate_by2scheme"><code class="docutils literal notranslate"><span class="pre">approximate_by2scheme()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bguriver.math">bguriver.math module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.math.lengths_check"><code class="docutils literal notranslate"><span class="pre">lengths_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.math.solve_bisect"><code class="docutils literal notranslate"><span class="pre">solve_bisect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.math.step_function"><code class="docutils literal notranslate"><span class="pre">step_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.math.step_integral"><code class="docutils literal notranslate"><span class="pre">step_integral()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bguriver.slope_patches">bguriver.slope_patches module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.slope_patches.SlopePatches"><code class="docutils literal notranslate"><span class="pre">SlopePatches</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bguriver.warning_handler">bguriver.warning_handler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bguriver.warning_handler.get_runtime_warning_act_decorator"><code class="docutils literal notranslate"><span class="pre">get_runtime_warning_act_decorator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-bguriver">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BGU-River</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">bguriver</a></li>
+      <li class="breadcrumb-item active">bguriver package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/bguriver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bguriver-package">
+<h1>bguriver package<a class="headerlink" href="#bguriver-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-bguriver.approximation">
+<span id="bguriver-approximation-module"></span><h2>bguriver.approximation module<a class="headerlink" href="#module-bguriver.approximation" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.approximation.approximate">
+<span class="sig-prename descclassname"><span class="pre">bguriver.approximation.</span></span><span class="sig-name descname"><span class="pre">approximate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtau=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dchi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchi=150</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method=&lt;function</span> <span class="pre">fsolve&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_fprime=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order=2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime_warning_action='ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/approximation.html#approximate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.approximation.approximate" title="Link to this definition"></a></dt>
+<dd><p>Returns the 2nd order approximation of the equation</p>
+<section id="parameters">
+<h3>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<p>nu: function of 2 arguments</p>
+<dl class="simple">
+<dt>initial: function of 1 argument</dt><dd><p>lambda(chi) for tau = 0</p>
+</dd>
+<dt>border: function of 1 argument</dt><dd><p>lambda(tau), for chi = 0</p>
+</dd>
+</dl>
+<p>n : float</p>
+<p>dtau : float</p>
+<p>dchi : float</p>
+<dl class="simple">
+<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of tau grid lines</p>
+</dd>
+<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of chi grid lines</p>
+</dd>
+<dt>method<span class="classifier">function</span></dt><dd><p>Method to solve nonlinear equation</p>
+</dd>
+<dt>use_fprime<span class="classifier">bool</span></dt><dd><p>Use an analytical derivative as fprime parameter in method</p>
+</dd>
+<dt>bar: tqdm bar or None:</dt><dd><p>bar to update each iteration.
+Not draw bar if it’s None</p>
+</dd>
+<dt>order<span class="classifier">int (1 or 2)</span></dt><dd><p>The order of approximation</p>
+</dd>
+<dt>runtime_warning_action<span class="classifier">str</span></dt><dd><p>What should be done with RuntimeWarning, often throwing by optimizers.
+Possible values:
+default         # Show all warnings (even those ignored by default)
+ignore          # Ignore all warnings
+error           # Convert all warnings to errors</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns:<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions</p>
+</dd>
+<dt>taus: np.array shape (ntau, nchi)</dt><dd><p>tau values</p>
+</dd>
+<dt>chis: np.array shape (ntau, nchi)</dt><dd><p>chi values</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.approximation.approximate_by1scheme">
+<span class="sig-prename descclassname"><span class="pre">bguriver.approximation.</span></span><span class="sig-name descname"><span class="pre">approximate_by1scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtau=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dchi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchi=150</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method=&lt;function</span> <span class="pre">fsolve&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_fprime=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/approximation.html#approximate_by1scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.approximation.approximate_by1scheme" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Returns the 1st order approximation of the equation
+$$</p>
+</div></blockquote>
+<p>rac{partiallambda}{partial      au} = 
+u(chi,         au) - (
+rac{partiallambda}{partialchi})^n</p>
+<blockquote>
+<div><p>$$</p>
+<p>nu: function of 2 arguments</p>
+<dl class="simple">
+<dt>initial: function of 1 argument</dt><dd><p>lambda(chi) for tau = 0</p>
+</dd>
+<dt>border: function of 1 argument</dt><dd><p>lambda(tau), for chi = 0</p>
+</dd>
+</dl>
+<p>n : float</p>
+<p>dtau : float</p>
+<p>dchi : float</p>
+<dl class="simple">
+<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of tau grid lines</p>
+</dd>
+<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of chi grid lines</p>
+</dd>
+<dt>method<span class="classifier">function</span></dt><dd><p>Method to solve nonlinear equation</p>
+</dd>
+<dt>use_fprime<span class="classifier">bool</span></dt><dd><p>Use an analytical derivative as fprime parameter in method</p>
+</dd>
+<dt>bar: tqdm bar or None:</dt><dd><p>bar to update each iteration.
+Not draw bar if it’s None</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions</p>
+</dd>
+<dt>taus: np.array shape (ntau, nchi)</dt><dd><p>tau values</p>
+</dd>
+<dt>chis: np.array shape (ntau, nchi)</dt><dd><p>chi values</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.approximation.approximate_by2scheme">
+<span class="sig-prename descclassname"><span class="pre">bguriver.approximation.</span></span><span class="sig-name descname"><span class="pre">approximate_by2scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">border</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n=1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtau=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dchi=0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ntau=200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nchi=150</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method=&lt;function</span> <span class="pre">fsolve&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_fprime=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bar=None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/approximation.html#approximate_by2scheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.approximation.approximate_by2scheme" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Returns the 2nd order approximation of the equation
+$$</p>
+</div></blockquote>
+<p>rac{partiallambda}{partial      au} = 
+u(chi,         au) - (
+rac{partiallambda}{partialchi})^n</p>
+<blockquote>
+<div><p>$$</p>
+<p>nu: function of 2 arguments</p>
+<dl class="simple">
+<dt>initial: function of 1 argument</dt><dd><p>lambda(chi) for tau = 0</p>
+</dd>
+<dt>border: function of 1 argument</dt><dd><p>lambda(tau), for chi = 0</p>
+</dd>
+</dl>
+<p>n : float</p>
+<p>dtau : float</p>
+<p>dchi : float</p>
+<dl class="simple">
+<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of tau grid lines</p>
+</dd>
+<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of chi grid lines</p>
+</dd>
+<dt>method<span class="classifier">function</span></dt><dd><p>Method to solve nonlinear equation</p>
+</dd>
+<dt>use_fprime<span class="classifier">bool</span></dt><dd><p>Use an analytical derivative as fprime parameter in method</p>
+</dd>
+<dt>bar: tqdm bar or None:</dt><dd><p>bar to update each iteration.
+Not draw bar if it’s None</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions</p>
+</dd>
+<dt>taus: np.array shape (ntau, nchi)</dt><dd><p>tau values</p>
+</dd>
+<dt>chis: np.array shape (ntau, nchi)</dt><dd><p>chi values</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+</section>
+<section id="module-bguriver.math">
+<span id="bguriver-math-module"></span><h2>bguriver.math module<a class="headerlink" href="#module-bguriver.math" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.math.lengths_check">
+<span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">lengths_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">borders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#lengths_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.lengths_check" title="Link to this definition"></a></dt>
+<dd><p>Returns True, if lengths are correct: borders array should contain 1 element less, than values array
+If this is not correct, it will raise error if raise_error or return Flase in other case.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.math.solve_bisect">
+<span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">solve_bisect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#solve_bisect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.solve_bisect" title="Link to this definition"></a></dt>
+<dd><p>Bisection recursive solve method
+<a class="reference external" href="https://en.wikipedia.org/wiki/Bisection_method">https://en.wikipedia.org/wiki/Bisection_method</a></p>
+<section id="id1">
+<h3>Parameters:<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>f : function, takes float or np.array as argument</p>
+<p>x0, x1: float or np.array same shape, as f-argument should be</p>
+<dl class="simple">
+<dt>xtol: float</dt><dd><p>The calculation will terminate if the relative error between two consecutive iterates is at most xtol.</p>
+</dd>
+<dt>maxiter: int</dt><dd><p>Maximal number of iterations</p>
+</dd>
+<dt>iteration<span class="classifier">int</span></dt><dd><p>Iteration number</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns:<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>float or np.array same shape, as x0 and x1</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.math.step_function">
+<span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">step_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#step_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.step_function" title="Link to this definition"></a></dt>
+<dd><section id="id3">
+<h3>Parameters:<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">float or float array</span></dt><dd><p>The argument of the function</p>
+</dd>
+<dt>borders<span class="classifier">list of floats len N</span></dt><dd><p>The points, when the function changes the value</p>
+</dd>
+<dt>values: list of floats len N+1</dt><dd><p>values[0] corresponds to the function value before borders[0]
+values[i] corresponds to the function value between borders[i-1] and borders[i]</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h3>Returns:<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>r : float or float array shape x.shape</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.math.step_integral">
+<span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">step_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative_backward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#step_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.step_integral" title="Link to this definition"></a></dt>
+<dd><section id="id5">
+<h3>Parameters:<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>x<span class="classifier">float or float array</span></dt><dd><p>The argument of the function</p>
+</dd>
+<dt>borders<span class="classifier">list of floats len N</span></dt><dd><p>The points, when the function changes the value</p>
+</dd>
+<dt>values: list of floats len N+1</dt><dd><p>values[0] corresponds to the function value before borders[0]
+values[i] corresponds to the function value between borders[i-1] and borders[i]</p>
+</dd>
+<dt>negative_backward: bool</dt><dd><p>Set I(x0, x1) = -I(x1, x0) for cases, when x0 &gt; x1</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Returns:<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>r : float or float array shape x.shape</p>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-bguriver.slope_patches">
+<span id="bguriver-slope-patches-module"></span><h2>bguriver.slope_patches module<a class="headerlink" href="#module-bguriver.slope_patches" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bguriver.slope_patches.</span></span><span class="sig-name descname"><span class="pre">SlopePatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_starts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uplift_rates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.count" title="Link to this definition"></a></dt>
+<dd><p>Returns the number of patches N</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevation">
+<span class="sig-name descname"><span class="pre">get_elevation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevation" title="Link to this definition"></a></dt>
+<dd><p>Returns the elevation</p>
+<section id="id7">
+<h3>Parameters:<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
+tau and chi should be the same shape</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Returns:<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>lam: float array shape  tau/chi.shape</dt><dd><p>The elevation</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevation_index">
+<span class="sig-name descname"><span class="pre">get_elevation_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevation_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevation_index" title="Link to this definition"></a></dt>
+<dd><p>Returns the index of patch or stretch_zone corresponding the real elevation</p>
+<section id="id9">
+<h3>Parameters:<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
+tau and chi should be the same shape</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns:<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>index: int array shape  tau/chi.shape</dt><dd><p>The indices of patches and stretch zones coresponding the real elevation
+The index i less than N coresponds the i-th patch
+The index i equal or higher than N coresponds the (i - N)-th stretch zone</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevations_for_patches">
+<span class="sig-name descname"><span class="pre">get_elevations_for_patches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevations_for_patches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevations_for_patches" title="Link to this definition"></a></dt>
+<dd><p>Returns the elevation for each patch for moments tau in spatial points chi for patches given by index
+Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron</p>
+<p>If index is None
+Returns the elevation for each patch for moments tau in spatial points chi</p>
+<section id="id11">
+<h3>Parameters:<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
+tau and chi should be the same shape</p>
+</dd>
+<dt>index<span class="classifier">int, int array or None</span></dt><dd><p>The patches indices
+Should be the same shape as tau and chi
+If it’s None, then this will be changed to array shape (N, <a href="#id12"><span class="problematic" id="id13">*</span></a>tau/chi.shape)
+where index[i] == i</p>
+</dd>
+<dt>filter_outer<span class="classifier">bool</span></dt><dd><p>Remove the elements out of theoretical patch borders, if it’s True</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h3>Returns:<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>lam<span class="classifier">float array shape same as index.shape</span></dt><dd><p>The elevation throught the time moments tau, spatial points for the patch from patch_index</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevations_for_stretch_zones">
+<span class="sig-name descname"><span class="pre">get_elevations_for_stretch_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevations_for_stretch_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevations_for_stretch_zones" title="Link to this definition"></a></dt>
+<dd><p>Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch
+Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron</p>
+<p>Returns the elevation over connection between i-th and (i+1)-th slope patches.
+This is stretch zones or consuming knick points</p>
+<section id="comment">
+<h3>Comment:<a class="headerlink" href="#comment" title="Link to this heading"></a></h3>
+<p>It’s nan in the case, if the point (tau, chi) do not correspond the patch.</p>
+</section>
+<section id="id15">
+<h3>Parameters:<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
+tau and chi should be the same shape</p>
+</dd>
+<dt>index<span class="classifier">int or int array</span></dt><dd><p>The stretch zones indices
+Should be the same shape as tau and chi
+If it’s None, then this will be changed to array shape (N - 1, <a href="#id16"><span class="problematic" id="id17">*</span></a>tau/chi.shape)
+where index[i] == i</p>
+</dd>
+<dt>filter_outer<span class="classifier">bool</span></dt><dd><p>Remove elevations out of theoretical patch borders, if it’s True</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h3>Returns:<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>lam<span class="classifier">float array shape tau/chi/inidex.shape</span></dt><dd><p>The elevation throught the time moments tau, spatial points chi for the stretch zone from zone_inidex</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_intersections_of_patches">
+<span class="sig-name descname"><span class="pre">get_intersections_of_patches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_intersections_of_patches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_intersections_of_patches" title="Link to this definition"></a></dt>
+<dd><p>Returns the spatial position of intersections between patches</p>
+<section id="id19">
+<h3>Parameters:<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h3>Returns:<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<dl>
+<dt>chi<span class="classifier">float arrray shape (N, N, <a href="#id21"><span class="problematic" id="id22">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions of intersection  for time moments tau
+The element [i, j] corresponds the intersection between i-th and j-th patches</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_intersections_of_patches_and_stretch_zones">
+<span class="sig-name descname"><span class="pre">get_intersections_of_patches_and_stretch_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_intersections_of_patches_and_stretch_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_intersections_of_patches_and_stretch_zones" title="Link to this definition"></a></dt>
+<dd><p>Returns the spatial position of intersections between patches and stretch zones</p>
+<section id="id23">
+<h3>Parameters:<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>xtol: float</dt><dd><p>Accuracy for the bisection solver</p>
+</dd>
+<dt>maxiter: int</dt><dd><p>Maximal number of iterations for the bisection solver</p>
+</dd>
+</dl>
+</section>
+<section id="id24">
+<h3>Returns:<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<dl>
+<dt>chi<span class="classifier">float arrray shape (N, N - 1, <a href="#id25"><span class="problematic" id="id26">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions of intersection  for time moments tau
+The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_intersections_of_stretch_zones">
+<span class="sig-name descname"><span class="pre">get_intersections_of_stretch_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_intersections_of_stretch_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_intersections_of_stretch_zones" title="Link to this definition"></a></dt>
+<dd><p>Returns the spatial position of intersections between neighbour connections</p>
+<section id="id27">
+<h3>Parameters:<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h3>Returns:<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<dl>
+<dt>chi<span class="classifier">float arrray shape (N - 1, N - 1, <a href="#id29"><span class="problematic" id="id30">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions of intersection  for time moments tau
+The element [i, j] corresponds the intersection between i-th and j-th neighbour connection</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_left_elevations">
+<span class="sig-name descname"><span class="pre">get_left_elevations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_left_elevations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_left_elevations" title="Link to this definition"></a></dt>
+<dd><p>Returns elevations on the left borders of the patches for time moments tau.  
+Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
+<section id="id31">
+<h3>Comment:<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<p>It’s nan for moments tau less than patch starts</p>
+</section>
+<section id="id32">
+<h3>Parameters:<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+</dl>
+</section>
+<section id="id33">
+<h3>Returns:<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>lam: float array shape (N, tau.shape)</dt><dd><p>Elevations on the left borders for each patch and each moment tau</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_lefts">
+<span class="sig-name descname"><span class="pre">get_lefts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_lefts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_lefts" title="Link to this definition"></a></dt>
+<dd><p>Returns the right spatial borders of the patches for time moments tau.
+It’s defune as subtraction of patch right (noninfinite) borders and their lengths</p>
+<section id="id34">
+<h3>Comment:<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>It’s nan for moments tau less than patch starts</p>
+</section>
+<section id="id35">
+<h3>Parameters:<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+</dl>
+</section>
+<section id="id36">
+<h3>Returns:<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>res: float array shape (N, tau.shape)</dt><dd><p>Left borders for each patch and each moment tau</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_lengths">
+<span class="sig-name descname"><span class="pre">get_lengths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_lengths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_lengths" title="Link to this definition"></a></dt>
+<dd><p>Returns the spatial lengths of patch.
+It’s defined as the product of time lengths of patches and their translation speed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_nu_value">
+<span class="sig-name descname"><span class="pre">get_nu_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_before</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_nu_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_nu_value" title="Link to this definition"></a></dt>
+<dd><p>Returns the uplift rate (nu-value) for each moment tau.
+Just returns the uplift rate at chi=0, nu(tau, chi=0)</p>
+<section id="id37">
+<h3>Parameters:<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The time argument of the uplift rate function</p>
+</dd>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The spatial argument of the uplift rate function
+The result value does not depend on this argument, 
+but sometimes this function should take 2 paraeters.</p>
+</dd>
+<dt>rate_before: float or None</dt><dd><p>The uplift rate before the first patch starts.
+If it is None, then set rate_before same as rate of 1st patch (patch index 0).</p>
+</dd>
+</dl>
+</section>
+<section id="id38">
+<h3>Returns:<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>nu<span class="classifier">float or float array</span></dt><dd><p>The uplift rates for moments tau</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_patches_relisation_borders">
+<span class="sig-name descname"><span class="pre">get_patches_relisation_borders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_patches_relisation_borders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_patches_relisation_borders" title="Link to this definition"></a></dt>
+<dd><p>Returns the borders of patch realisation</p>
+<section id="id39">
+<h3>Parameters:<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<p>tau: float or float array</p>
+<dl class="simple">
+<dt>xtol: float</dt><dd><p>Accuracy for the bisection solver</p>
+</dd>
+<dt>maxiter: int</dt><dd><p>Maximal number of iterations for the bisection solver</p>
+</dd>
+</dl>
+</section>
+<section id="id40">
+<h3>Returns:<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<p>left_borders : float array shape (N, <a href="#id41"><span class="problematic" id="id42">*</span></a>tau.shape)</p>
+<p>right_borders : float array shape (N, <a href="#id43"><span class="problematic" id="id44">*</span></a>tau.shape)</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_right_elevations">
+<span class="sig-name descname"><span class="pre">get_right_elevations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_is_infinite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_right_elevations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_right_elevations" title="Link to this definition"></a></dt>
+<dd><p>Returns elevations pon the right borders of the patches for time moments tau.  
+Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
+<section id="id45">
+<h3>Comment:<a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<p>It’s nan for moments tau less than patch starts</p>
+</section>
+<section id="id46">
+<h3>Parameters:<a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>first_is_infinite<span class="classifier">bool, default True</span></dt><dd><p>If it’s True, the first patch right border will be at infinite
+If it’s False, it will be defined proportional to the moment tau</p>
+</dd>
+</dl>
+</section>
+<section id="id47">
+<h3>Returns:<a class="headerlink" href="#id47" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>lam: float array shape (N, tau.shape)</dt><dd><p>Elevations on the right borders for each patch and each moment tau</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_rights">
+<span class="sig-name descname"><span class="pre">get_rights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_is_infinite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_rights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_rights" title="Link to this definition"></a></dt>
+<dd><p>Returns the right spatial borders of the patches for time moments tau.  
+Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
+<section id="id48">
+<h3>Comment:<a class="headerlink" href="#id48" title="Link to this heading"></a></h3>
+<p>It’s nan for moments tau less than patch starts</p>
+</section>
+<section id="id49">
+<h3>Parameters:<a class="headerlink" href="#id49" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+</dd>
+<dt>first_is_infinite<span class="classifier">bool, default True</span></dt><dd><p>If it’s True, the first patch right border will be at infinite
+If it’s False, it will be defined proportional to the moment tau</p>
+</dd>
+</dl>
+</section>
+<section id="id50">
+<h3>Returns:<a class="headerlink" href="#id50" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>res: float array shape (N, tau.shape)</dt><dd><p>Right borders for each patch and each moment tau</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_slopes">
+<span class="sig-name descname"><span class="pre">get_slopes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_slopes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_slopes" title="Link to this definition"></a></dt>
+<dd><p>Returns the array of slopes for each patch; 
+Associated with the equation (10) form the article by Leigh Royden and J. Taylor Perron</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders">
+<span class="sig-name descname"><span class="pre">get_stretch_zones_relisation_borders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_stretch_zones_relisation_borders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders" title="Link to this definition"></a></dt>
+<dd><p>Returns the borders of stretch zones realisation</p>
+<section id="id51">
+<h3>Parameters:<a class="headerlink" href="#id51" title="Link to this heading"></a></h3>
+<p>tau: float or float array</p>
+<dl class="simple">
+<dt>xtol: float</dt><dd><p>Accuracy for the bisection solver</p>
+</dd>
+<dt>maxiter: int</dt><dd><p>Maximal number of iterations for the bisection solver</p>
+</dd>
+</dl>
+</section>
+<section id="id52">
+<h3>Returns:<a class="headerlink" href="#id52" title="Link to this heading"></a></h3>
+<p>left_borders : float array shape (N, <a href="#id53"><span class="problematic" id="id54">*</span></a>tau.shape)</p>
+<p>right_borders : float array shape (N, <a href="#id55"><span class="problematic" id="id56">*</span></a>tau.shape)</p>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-bguriver.warning_handler">
+<span id="bguriver-warning-handler-module"></span><h2>bguriver.warning_handler module<a class="headerlink" href="#module-bguriver.warning_handler" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bguriver.warning_handler.get_runtime_warning_act_decorator">
+<span class="sig-prename descclassname"><span class="pre">bguriver.warning_handler.</span></span><span class="sig-name descname"><span class="pre">get_runtime_warning_act_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_warning_action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/warning_handler.html#get_runtime_warning_act_decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.warning_handler.get_runtime_warning_act_decorator" title="Link to this definition"></a></dt>
+<dd><p>Returns the decorator wraping a function with given reaction to RuntimeWarning</p>
+<section id="id57">
+<h3>Parameters:<a class="headerlink" href="#id57" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>runtime_warning_action<span class="classifier">str</span></dt><dd><p>What should be done with RuntimeWarning, often throwing by optimizers.
+Possible values:
+default         # Show all warnings (even those ignored by default)
+ignore          # Ignore all warnings
+error           # Convert all warnings to errors</p>
+</dd>
+</dl>
+</section>
+<section id="id58">
+<h3>Returns:<a class="headerlink" href="#id58" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>runtime_warning_act<span class="classifier">function</span></dt><dd><p>A decorator function that applies the desired warning handling to a wrapped function.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+<section id="module-bguriver">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-bguriver" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="bguriver" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Fedor Zimin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bguriver.math &mdash; BGU-River 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            BGU-River
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">bguriver</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">BGU-River</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bguriver.math</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bguriver.math</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="lengths_check">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.math.lengths_check">[docs]</a>
+<span class="k">def</span> <span class="nf">lengths_check</span><span class="p">(</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns True, if lengths are correct: borders array should contain 1 element less, than values array</span>
+<span class="sd">    If this is not correct, it will raise error if raise_error or return Flase in other case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">borders</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">raise_error</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">r</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;Wrong arrays lengths: borders array should contain 1 element less, than values array. But their length are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">borders</span><span class="p">)</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        
+    <span class="n">borders</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">borders</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">borders</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">borders</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The borders array is not strictly increasing&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span></div>
+
+
+
+<div class="viewcode-block" id="step_function">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.math.step_function">[docs]</a>
+<span class="k">def</span> <span class="nf">step_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">borders</span><span class="o">=</span><span class="p">[],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    x : float or float array</span>
+<span class="sd">        The argument of the function</span>
+<span class="sd">    </span>
+<span class="sd">    borders : list of floats len N</span>
+<span class="sd">        The points, when the function changes the value</span>
+<span class="sd">    </span>
+<span class="sd">    values: list of floats len N+1</span>
+<span class="sd">        values[0] corresponds to the function value before borders[0]</span>
+<span class="sd">        values[i] corresponds to the function value between borders[i-1] and borders[i]</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    r : float or float array shape x.shape</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lengths_check</span><span class="p">(</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">():</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">borders</span><span class="p">)):</span>
+        <span class="n">r</span><span class="p">[</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">borders</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">():</span>
+        <span class="k">return</span> <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">r</span></div>
+
+
+
+<div class="viewcode-block" id="step_integral">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.math.step_integral">[docs]</a>
+<span class="k">def</span> <span class="nf">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">borders</span><span class="o">=</span><span class="p">[],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">negative_backward</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    x : float or float array</span>
+<span class="sd">        The argument of the function</span>
+<span class="sd">    </span>
+<span class="sd">    borders : list of floats len N</span>
+<span class="sd">        The points, when the function changes the value</span>
+<span class="sd">    </span>
+<span class="sd">    values: list of floats len N+1</span>
+<span class="sd">        values[0] corresponds to the function value before borders[0]</span>
+<span class="sd">        values[i] corresponds to the function value between borders[i-1] and borders[i]</span>
+<span class="sd">        </span>
+<span class="sd">    negative_backward: bool</span>
+<span class="sd">        Set I(x0, x1) = -I(x1, x0) for cases, when x0 &gt; x1 </span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    r : float or float array shape x.shape</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lengths_check</span><span class="p">(</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">x0</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    
+    <span class="n">borders_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="n">borders</span><span class="p">,</span> <span class="p">[</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]])</span>
+    
+    <span class="n">ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">borders_</span><span class="p">),</span> <span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">ones</span><span class="o">*</span><span class="n">borders_</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">borders_</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x1</span><span class="o">.</span><span class="n">shape</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">res</span> <span class="o">&lt;</span> <span class="n">x0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x0</span><span class="o">*</span><span class="n">ones</span><span class="p">)[</span><span class="n">res</span> <span class="o">&lt;</span> <span class="n">x0</span><span class="p">]</span>
+    <span class="n">res</span><span class="p">[</span><span class="n">res</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">*</span><span class="n">ones</span><span class="p">)[</span><span class="n">res</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">res</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">negative_backward</span> <span class="ow">and</span> <span class="p">(</span><span class="n">x0</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">x0</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="n">x0</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">],</span> <span class="n">x1</span><span class="o">=</span><span class="n">x0</span><span class="p">[</span><span class="n">x0</span> <span class="o">&gt;</span> <span class="n">x1</span><span class="p">],</span> <span class="n">borders</span><span class="o">=</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">res</span></div>
+
+
+
+<div class="viewcode-block" id="solve_bisect">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.math.solve_bisect">[docs]</a>
+<span class="k">def</span> <span class="nf">solve_bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bisection recursive solve method</span>
+<span class="sd">    https://en.wikipedia.org/wiki/Bisection_method</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    f : function, takes float or np.array as argument</span>
+<span class="sd">    </span>
+<span class="sd">    x0, x1: float or np.array same shape, as f-argument should be</span>
+<span class="sd">    </span>
+<span class="sd">    xtol: float</span>
+<span class="sd">        The calculation will terminate if the relative error between two consecutive iterates is at most xtol.</span>
+<span class="sd">    </span>
+<span class="sd">    maxiter: int</span>
+<span class="sd">        Maximal number of iterations</span>
+<span class="sd">    </span>
+<span class="sd">    iteration : int</span>
+<span class="sd">        Iteration number</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">    --------</span>
+<span class="sd">    float or np.array same shape, as x0 and x1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;f(x0) and f(x1) should have different signs.&#39;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">xm</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="n">change0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">))</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">))</span>
+    <span class="n">change1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">))</span>
+    <span class="n">x0</span><span class="p">[</span><span class="n">change0</span><span class="p">]</span> <span class="o">=</span> <span class="n">xm</span><span class="p">[</span><span class="n">change0</span><span class="p">]</span>
+    <span class="n">x1</span><span class="p">[</span><span class="n">change1</span><span class="p">]</span> <span class="o">=</span> <span class="n">xm</span><span class="p">[</span><span class="n">change1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">x0</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)[</span><span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">x0</span> <span class="o">-</span> <span class="n">x1</span><span class="p">))]</span> <span class="o">&lt;</span> <span class="n">xtol</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">or</span> <span class="p">(</span><span class="n">iteration</span> <span class="o">==</span> <span class="n">maxiter</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">xm</span>
+    <span class="k">return</span> <span class="n">solve_bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="n">xtol</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="n">iteration</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Fedor Zimin.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
