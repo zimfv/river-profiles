@@ -19,7 +19,13 @@ release = '0.1.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ["sphinx.ext.todo", "sphinx.ext.viewcode", "sphinx.ext.autodoc"]
+extensions = ["sphinx.ext.todo", # Support for todo items
+			  "sphinx.ext.viewcode", # Add links to highlighted source code
+			  "sphinx.ext.autodoc", # Include documentation from docstrings
+			  #"sphinx.ext.napoleon", # Support for NumPy and Google style docstrings
+			  #"sphinx.ext.imgmath", # Render math as images
+			  #"sphinx.ext.mathjax", # Render math via JavaScript
+]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
@@ -29,9 +35,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'sphinx_rtd_theme'
-#html_theme = 'bootstrap'
-#html_theme = 'furo'
-#html_theme = 'sphinx_material'
+#html_theme = 'sphinx_rtd_theme'
+html_theme = 'furo'
 
 html_static_path = ['_static']
