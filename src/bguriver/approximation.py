@@ -8,9 +8,7 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
                           method=sp.optimize.fsolve, use_fprime=True, bar=None):
     """
     Returns the 1st order approximation of the equation
-    $$
-    \frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n
-    $$
+    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
     
     Parameters:
     -----------
@@ -91,9 +89,7 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
                           method=sp.optimize.fsolve, use_fprime=True, bar=None):
     """
     Returns the 2nd order approximation of the equation
-    $$
-    \frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n
-    $$
+    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
     
     Parameters:
     -----------
@@ -179,7 +175,8 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
                 method=sp.optimize.fsolve, use_fprime=True, bar=None, order=2, 
                 runtime_warning_action="ignore"):
     """
-    Returns the 2nd order approximation of the equation
+    Returns the approximation of the equation
+    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
     
     Parameters:
     -----------
