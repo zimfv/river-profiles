@@ -6,10 +6,12 @@ import warnings
 
 def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
                           method=sp.optimize.fsolve, use_fprime=True, bar=None):
-    """
-    Returns the 1st order approximation of the equation
-    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
+    r"""
+    Returns the 1st order approximation of the equation:
     
+    .. math::
+        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
     Parameters:
     -----------
     nu: function of 2 arguments
@@ -38,7 +40,7 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     use_fprime : bool
         Use an analytical derivative as fprime parameter in method
         
-    bar: tqdm bar or None:
+    bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
         
@@ -87,10 +89,12 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
 
 def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
                           method=sp.optimize.fsolve, use_fprime=True, bar=None):
-    """
-    Returns the 2nd order approximation of the equation
-    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
-    
+    r"""
+    Returns the 2nd order approximation of the equation:
+
+    .. math::
+        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
     Parameters:
     -----------
     nu: function of 2 arguments
@@ -119,7 +123,7 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     use_fprime : bool
         Use an analytical derivative as fprime parameter in method
         
-    bar: tqdm bar or None:
+    bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
         
@@ -174,10 +178,12 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
 def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
                 method=sp.optimize.fsolve, use_fprime=True, bar=None, order=2, 
                 runtime_warning_action="ignore"):
-    """
-    Returns the approximation of the equation
-    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
+    r"""
+    Returns the approximation of the equation:
     
+    .. math::
+        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
     Parameters:
     -----------
     nu: function of 2 arguments
@@ -206,7 +212,7 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
     use_fprime : bool
         Use an analytical derivative as fprime parameter in method
         
-    bar: tqdm bar or None:
+    bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
         
