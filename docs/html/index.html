@@ -44,7 +44,7 @@
     <script src="_static/MathJax/es5/tex-mml-chtml.js?v=cadf963e"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="bguriver package" href="bguriver.html" />
+    <link rel="next" title="bguriver" href="modules.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -135,8 +135,8 @@
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="bguriver.html">
-    bguriver package
+  <a class="nav-link nav-internal" href="modules.html">
+    bguriver
   </a>
 </li>
 
@@ -227,8 +227,8 @@ document.write(`
   <ul class="bd-navbar-elements navbar-nav">
     
 <li class="nav-item ">
-  <a class="nav-link nav-internal" href="bguriver.html">
-    bguriver package
+  <a class="nav-link nav-internal" href="modules.html">
+    bguriver
   </a>
 </li>
 
@@ -283,19 +283,53 @@ document.write(`
                   
   <section id="bgu-river-documentation">
 <h1>BGU-River documentation<a class="headerlink" href="#bgu-river-documentation" title="Link to this heading">#</a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
+<p>Here is a package, with tools to describe the river profile evolution.</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">slope_patches</span></code> contains the realisation of the concept of slope patches, which is described in the <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a> by Leigh Royden and J. Taylor Perron.</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">approximation</span></code> contains the difference schemes approximating the euqation (8) from the mentioned article.</p>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
+<p>The first you should have <a class="reference external" href="https://www.python.org/">python</a>, <a class="reference external" href="https://pypi.org/project/pip/">pip</a> and <a class="reference external" href="https://git-scm.com/">git</a> installed.</p>
+<p>Then run in terminal or CMD:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="o">=</span><span class="m">1</span><span class="w"> </span>--branch<span class="w"> </span>main<span class="w"> </span>https://github.com/zimfv/river-profiles
+<span class="nb">cd</span><span class="w"> </span>river-profiles
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>setup.py<span class="w"> </span>bdist_wheel<span class="w"> </span>sdist
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="full-documentation">
+<h1>Full Documentation<a class="headerlink" href="#full-documentation" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="bguriver.html">bguriver package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bguriver.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bguriver.html#module-bguriver.approximation">bguriver.approximation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bguriver.html#module-bguriver.math">bguriver.math module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bguriver.html#module-bguriver.slope_patches">bguriver.slope_patches module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bguriver.html#module-bguriver.warning_handler">bguriver.warning_handler module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bguriver.html#module-bguriver">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">bguriver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bguriver.html">bguriver package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="bguriver.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bguriver.html#module-bguriver.approximation">bguriver.approximation module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.approximation.approximate"><code class="docutils literal notranslate"><span class="pre">approximate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.approximation.approximate_by1scheme"><code class="docutils literal notranslate"><span class="pre">approximate_by1scheme()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.approximation.approximate_by2scheme"><code class="docutils literal notranslate"><span class="pre">approximate_by2scheme()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bguriver.html#module-bguriver.math">bguriver.math module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.math.lengths_check"><code class="docutils literal notranslate"><span class="pre">lengths_check()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.math.solve_bisect"><code class="docutils literal notranslate"><span class="pre">solve_bisect()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.math.step_function"><code class="docutils literal notranslate"><span class="pre">step_function()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.math.step_integral"><code class="docutils literal notranslate"><span class="pre">step_integral()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bguriver.html#module-bguriver.slope_patches">bguriver.slope_patches module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches"><code class="docutils literal notranslate"><span class="pre">SlopePatches</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bguriver.html#module-bguriver.warning_handler">bguriver.warning_handler module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bguriver.html#bguriver.warning_handler.get_runtime_warning_act_decorator"><code class="docutils literal notranslate"><span class="pre">get_runtime_warning_act_decorator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bguriver.html#module-bguriver">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -313,11 +347,11 @@ documentation for details.</p>
                   
 <div class="prev-next-area">
     <a class="right-next"
-       href="bguriver.html"
+       href="modules.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">bguriver package</p>
+        <p class="prev-next-title">bguriver</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -330,6 +364,21 @@ documentation for details.</p>
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">BGU-River documentation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#full-documentation">Full Documentation</a></li>
+</ul>
+
+  </nav></div>
 
   <div class="sidebar-secondary-item">
 

@@ -18,11 +18,12 @@ import os, sys
 
 sys.path.insert(0, os.path.abspath('../src/bguriver'))
 
+autosummary_generate = True
+
 # Extensions list
 extensions = ["sphinx.ext.todo", 
 			  "sphinx.ext.viewcode", 
 			  "sphinx.ext.autodoc", 
-              #"sphinx.ext.autosummary",
 			  "sphinx.ext.mathjax",
 ]
 
@@ -46,4 +47,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 #html_theme = 'sphinx_rtd_theme'
 html_theme = 'pydata_sphinx_theme'
+html_theme_options = {
+    "navigation_depth": 4,
+    "show_toc_level": 4,
+}
 html_static_path = ['_static']

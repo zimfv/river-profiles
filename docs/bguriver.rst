@@ -27,6 +27,7 @@ bguriver.slope\_patches module
    :members:
    :undoc-members:
    :show-inheritance:
+   :private-members:
 
 bguriver.warning\_handler module
 --------------------------------
