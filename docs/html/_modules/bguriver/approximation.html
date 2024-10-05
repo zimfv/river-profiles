@@ -322,24 +322,28 @@ document.write(`
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    nu: function of 2 arguments</span>
+<span class="sd">        The uplift rate function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`</span>
 <span class="sd">    </span>
 <span class="sd">    initial: function of 1 argument</span>
-<span class="sd">        lambda(chi) for tau = 0</span>
+<span class="sd">        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`</span>
 <span class="sd">        </span>
 <span class="sd">    border: function of 1 argument</span>
-<span class="sd">        lambda(tau), for chi = 0</span>
+<span class="sd">        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`</span>
 <span class="sd">        </span>
 <span class="sd">    n : float</span>
+<span class="sd">        Slope exponent</span>
 <span class="sd">    </span>
 <span class="sd">    dtau : float</span>
+<span class="sd">        Step over :math:`\tau`</span>
 <span class="sd">    </span>
 <span class="sd">    dchi : float</span>
+<span class="sd">        Step over :math:`\chi`</span>
 <span class="sd">    </span>
 <span class="sd">    ntau : int</span>
-<span class="sd">        Number of tau grid lines</span>
+<span class="sd">        Number of :math:`\tau` grid lines</span>
 <span class="sd">    </span>
 <span class="sd">    nchi : int</span>
-<span class="sd">        Number of chi grid lines</span>
+<span class="sd">        Number of :math:`\chi` grid lines</span>
 <span class="sd">    </span>
 <span class="sd">    method : function</span>
 <span class="sd">        Method to solve nonlinear equation</span>
@@ -354,13 +358,13 @@ document.write(`
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    sols: np.array shape (ntau, nchi)</span>
-<span class="sd">        Solutions</span>
+<span class="sd">        Solutions :math:`\lambda(\tau, \chi)`</span>
 <span class="sd">    </span>
 <span class="sd">    taus: np.array shape (ntau, nchi)</span>
-<span class="sd">        tau values</span>
+<span class="sd">        :math:`\tau` values</span>
 <span class="sd">        </span>
 <span class="sd">    chis: np.array shape (ntau, nchi)</span>
-<span class="sd">        chi values</span>
+<span class="sd">        :math:`\chi` values</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">taus</span> <span class="o">=</span> <span class="n">dtau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ntau</span><span class="p">)</span>
     <span class="n">chis</span> <span class="o">=</span> <span class="n">dchi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nchi</span><span class="p">)</span>
@@ -408,24 +412,28 @@ document.write(`
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    nu: function of 2 arguments</span>
+<span class="sd">        The function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`</span>
 <span class="sd">    </span>
 <span class="sd">    initial: function of 1 argument</span>
-<span class="sd">        lambda(chi) for tau = 0</span>
+<span class="sd">        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`</span>
 <span class="sd">        </span>
 <span class="sd">    border: function of 1 argument</span>
-<span class="sd">        lambda(tau), for chi = 0</span>
+<span class="sd">        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`</span>
 <span class="sd">        </span>
 <span class="sd">    n : float</span>
+<span class="sd">        Slope exponent</span>
 <span class="sd">    </span>
 <span class="sd">    dtau : float</span>
+<span class="sd">        Step over :math:`\tau`</span>
 <span class="sd">    </span>
 <span class="sd">    dchi : float</span>
+<span class="sd">        Step over :math:`\chi`</span>
 <span class="sd">    </span>
 <span class="sd">    ntau : int</span>
-<span class="sd">        Number of tau grid lines</span>
+<span class="sd">        Number of :math:`\tau` grid lines</span>
 <span class="sd">    </span>
 <span class="sd">    nchi : int</span>
-<span class="sd">        Number of chi grid lines</span>
+<span class="sd">        Number of :math:`\chi` grid lines</span>
 <span class="sd">    </span>
 <span class="sd">    method : function</span>
 <span class="sd">        Method to solve nonlinear equation</span>
@@ -440,13 +448,13 @@ document.write(`
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    sols: np.array shape (ntau, nchi)</span>
-<span class="sd">        Solutions</span>
+<span class="sd">        Solutions :math:`\lambda(\tau, \chi)`</span>
 <span class="sd">    </span>
 <span class="sd">    taus: np.array shape (ntau, nchi)</span>
-<span class="sd">        tau values</span>
+<span class="sd">        :math:`\tau` values</span>
 <span class="sd">        </span>
 <span class="sd">    chis: np.array shape (ntau, nchi)</span>
-<span class="sd">        chi values</span>
+<span class="sd">        :math:`\chi` values</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">taus</span> <span class="o">=</span> <span class="n">dtau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ntau</span><span class="p">)</span>
     <span class="n">chis</span> <span class="o">=</span> <span class="n">dchi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nchi</span><span class="p">)</span>
@@ -499,25 +507,30 @@ document.write(`
 
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
+
 <span class="sd">    nu: function of 2 arguments</span>
-<span class="sd">    </span>
+<span class="sd">        The function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`</span>
+
 <span class="sd">    initial: function of 1 argument</span>
-<span class="sd">        lambda(chi) for tau = 0</span>
+<span class="sd">        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`</span>
 <span class="sd">        </span>
 <span class="sd">    border: function of 1 argument</span>
-<span class="sd">        lambda(tau), for chi = 0</span>
+<span class="sd">        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`</span>
 <span class="sd">        </span>
 <span class="sd">    n : float</span>
+<span class="sd">        Slope exponent</span>
 <span class="sd">    </span>
 <span class="sd">    dtau : float</span>
+<span class="sd">        Step over :math:`\tau`</span>
 <span class="sd">    </span>
 <span class="sd">    dchi : float</span>
+<span class="sd">        Step over :math:`\chi`</span>
 <span class="sd">    </span>
 <span class="sd">    ntau : int</span>
-<span class="sd">        Number of tau grid lines</span>
+<span class="sd">        Number of :math:`\tau` grid lines</span>
 <span class="sd">    </span>
 <span class="sd">    nchi : int</span>
-<span class="sd">        Number of chi grid lines</span>
+<span class="sd">        Number of :math:`\chi` grid lines</span>
 <span class="sd">    </span>
 <span class="sd">    method : function</span>
 <span class="sd">        Method to solve nonlinear equation</span>
@@ -528,27 +541,28 @@ document.write(`
 <span class="sd">    bar: tqdm.tqdm or None:</span>
 <span class="sd">        bar to update each iteration.</span>
 <span class="sd">        Not draw bar if it&#39;s None</span>
-<span class="sd">        </span>
+
 <span class="sd">    order : int (1 or 2)</span>
 <span class="sd">        The order of approximation</span>
 <span class="sd">        </span>
 <span class="sd">    runtime_warning_action : str</span>
 <span class="sd">        What should be done with RuntimeWarning, often throwing by optimizers.</span>
 <span class="sd">        Possible values:</span>
-<span class="sd">        default         # Show all warnings (even those ignored by default)</span>
-<span class="sd">        ignore          # Ignore all warnings</span>
-<span class="sd">        error           # Convert all warnings to errors</span>
+<span class="sd">            </span>
+<span class="sd">            - &quot;default&quot; - Show all warnings (even those ignored by default)</span>
+<span class="sd">            - &quot;ignore&quot; - Ignore all warnings</span>
+<span class="sd">            - &quot;error&quot; - Convert all warnings to errors</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    sols: np.array shape (ntau, nchi)</span>
-<span class="sd">        Solutions</span>
+<span class="sd">        Solutions :math:`\lambda(\tau, \chi)`</span>
 <span class="sd">    </span>
 <span class="sd">    taus: np.array shape (ntau, nchi)</span>
-<span class="sd">        tau values</span>
+<span class="sd">        :math:`\tau` values</span>
 <span class="sd">        </span>
 <span class="sd">    chis: np.array shape (ntau, nchi)</span>
-<span class="sd">        chi values</span>
+<span class="sd">        :math:`\chi` values</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">schemes</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="n">approximate_by1scheme</span><span class="p">,</span> 
                <span class="mi">2</span><span class="p">:</span> <span class="n">approximate_by2scheme</span><span class="p">}</span>

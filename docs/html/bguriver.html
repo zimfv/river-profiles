@@ -329,20 +329,22 @@ document.write(`
 \[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
 <section id="parameters">
 <h3>Parameters:<a class="headerlink" href="#parameters" title="Link to this heading">#</a></h3>
-<p>nu: function of 2 arguments</p>
-<dl class="simple">
-<dt>initial: function of 1 argument</dt><dd><p>lambda(chi) for tau = 0</p>
+<dl>
+<dt>nu: function of 2 arguments</dt><dd><p>The function of <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\chi\)</span>: <span class="math notranslate nohighlight">\(\nu(\tau, \chi)\)</span></p>
 </dd>
-<dt>border: function of 1 argument</dt><dd><p>lambda(tau), for chi = 0</p>
+<dt>initial: function of 1 argument</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\chi\)</span> at moment <span class="math notranslate nohighlight">\(\tau=0\)</span>: <span class="math notranslate nohighlight">\(\lambda(\tau=0, \chi)\)</span></p>
 </dd>
-</dl>
-<p>n : float</p>
-<p>dtau : float</p>
-<p>dchi : float</p>
-<dl class="simple">
-<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of tau grid lines</p>
+<dt>border: function of 1 argument</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\tau\)</span> for position <span class="math notranslate nohighlight">\(\chi=0\)</span>: <span class="math notranslate nohighlight">\(\lambda(\tau, \chi=0)\)</span></p>
 </dd>
-<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of chi grid lines</p>
+<dt>n<span class="classifier">float</span></dt><dd><p>Slope exponent</p>
+</dd>
+<dt>dtau<span class="classifier">float</span></dt><dd><p>Step over <span class="math notranslate nohighlight">\(\tau\)</span></p>
+</dd>
+<dt>dchi<span class="classifier">float</span></dt><dd><p>Step over <span class="math notranslate nohighlight">\(\chi\)</span></p>
+</dd>
+<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of <span class="math notranslate nohighlight">\(\tau\)</span> grid lines</p>
+</dd>
+<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of <span class="math notranslate nohighlight">\(\chi\)</span> grid lines</p>
 </dd>
 <dt>method<span class="classifier">function</span></dt><dd><p>Method to solve nonlinear equation</p>
 </dd>
@@ -354,21 +356,25 @@ Not draw bar if it’s None</p>
 <dt>order<span class="classifier">int (1 or 2)</span></dt><dd><p>The order of approximation</p>
 </dd>
 <dt>runtime_warning_action<span class="classifier">str</span></dt><dd><p>What should be done with RuntimeWarning, often throwing by optimizers.
-Possible values:
-default         # Show all warnings (even those ignored by default)
-ignore          # Ignore all warnings
-error           # Convert all warnings to errors</p>
+Possible values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“default” - Show all warnings (even those ignored by default)</p></li>
+<li><p>“ignore” - Ignore all warnings</p></li>
+<li><p>“error” - Convert all warnings to errors</p></li>
+</ul>
+</div></blockquote>
 </dd>
 </dl>
 </section>
 <section id="returns">
 <h3>Returns:<a class="headerlink" href="#returns" title="Link to this heading">#</a></h3>
 <dl class="simple">
-<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions</p>
+<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions <span class="math notranslate nohighlight">\(\lambda(\tau, \chi)\)</span></p>
 </dd>
-<dt>taus: np.array shape (ntau, nchi)</dt><dd><p>tau values</p>
+<dt>taus: np.array shape (ntau, nchi)</dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> values</p>
 </dd>
-<dt>chis: np.array shape (ntau, nchi)</dt><dd><p>chi values</p>
+<dt>chis: np.array shape (ntau, nchi)</dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> values</p>
 </dd>
 </dl>
 </section>
@@ -382,20 +388,22 @@ error           # Convert all warnings to errors</p>
 \[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
 <section id="id1">
 <h3>Parameters:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>nu: function of 2 arguments</p>
 <dl class="simple">
-<dt>initial: function of 1 argument</dt><dd><p>lambda(chi) for tau = 0</p>
+<dt>nu: function of 2 arguments</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\chi\)</span>: <span class="math notranslate nohighlight">\(\nu(\tau, \chi)\)</span></p>
 </dd>
-<dt>border: function of 1 argument</dt><dd><p>lambda(tau), for chi = 0</p>
+<dt>initial: function of 1 argument</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\chi\)</span> at moment <span class="math notranslate nohighlight">\(\tau=0\)</span>: <span class="math notranslate nohighlight">\(\lambda(\tau=0, \chi)\)</span></p>
 </dd>
-</dl>
-<p>n : float</p>
-<p>dtau : float</p>
-<p>dchi : float</p>
-<dl class="simple">
-<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of tau grid lines</p>
+<dt>border: function of 1 argument</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\tau\)</span> for position <span class="math notranslate nohighlight">\(\chi=0\)</span>: <span class="math notranslate nohighlight">\(\lambda(\tau, \chi=0)\)</span></p>
 </dd>
-<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of chi grid lines</p>
+<dt>n<span class="classifier">float</span></dt><dd><p>Slope exponent</p>
+</dd>
+<dt>dtau<span class="classifier">float</span></dt><dd><p>Step over <span class="math notranslate nohighlight">\(\tau\)</span></p>
+</dd>
+<dt>dchi<span class="classifier">float</span></dt><dd><p>Step over <span class="math notranslate nohighlight">\(\chi\)</span></p>
+</dd>
+<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of <span class="math notranslate nohighlight">\(\tau\)</span> grid lines</p>
+</dd>
+<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of <span class="math notranslate nohighlight">\(\chi\)</span> grid lines</p>
 </dd>
 <dt>method<span class="classifier">function</span></dt><dd><p>Method to solve nonlinear equation</p>
 </dd>
@@ -409,11 +417,11 @@ Not draw bar if it’s None</p>
 <section id="id2">
 <h3>Returns:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <dl class="simple">
-<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions</p>
+<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions <span class="math notranslate nohighlight">\(\lambda(\tau, \chi)\)</span></p>
 </dd>
-<dt>taus: np.array shape (ntau, nchi)</dt><dd><p>tau values</p>
+<dt>taus: np.array shape (ntau, nchi)</dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> values</p>
 </dd>
-<dt>chis: np.array shape (ntau, nchi)</dt><dd><p>chi values</p>
+<dt>chis: np.array shape (ntau, nchi)</dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> values</p>
 </dd>
 </dl>
 </section>
@@ -427,20 +435,22 @@ Not draw bar if it’s None</p>
 \[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
 <section id="id3">
 <h3>Parameters:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>nu: function of 2 arguments</p>
 <dl class="simple">
-<dt>initial: function of 1 argument</dt><dd><p>lambda(chi) for tau = 0</p>
+<dt>nu: function of 2 arguments</dt><dd><p>The function of <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\chi\)</span>: <span class="math notranslate nohighlight">\(\nu(\tau, \chi)\)</span></p>
 </dd>
-<dt>border: function of 1 argument</dt><dd><p>lambda(tau), for chi = 0</p>
+<dt>initial: function of 1 argument</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\chi\)</span> at moment <span class="math notranslate nohighlight">\(\tau=0\)</span>: <span class="math notranslate nohighlight">\(\lambda(\tau=0, \chi)\)</span></p>
 </dd>
-</dl>
-<p>n : float</p>
-<p>dtau : float</p>
-<p>dchi : float</p>
-<dl class="simple">
-<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of tau grid lines</p>
+<dt>border: function of 1 argument</dt><dd><p>The uplift rate function of <span class="math notranslate nohighlight">\(\tau\)</span> for position <span class="math notranslate nohighlight">\(\chi=0\)</span>: <span class="math notranslate nohighlight">\(\lambda(\tau, \chi=0)\)</span></p>
 </dd>
-<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of chi grid lines</p>
+<dt>n<span class="classifier">float</span></dt><dd><p>Slope exponent</p>
+</dd>
+<dt>dtau<span class="classifier">float</span></dt><dd><p>Step over <span class="math notranslate nohighlight">\(\tau\)</span></p>
+</dd>
+<dt>dchi<span class="classifier">float</span></dt><dd><p>Step over <span class="math notranslate nohighlight">\(\chi\)</span></p>
+</dd>
+<dt>ntau<span class="classifier">int</span></dt><dd><p>Number of <span class="math notranslate nohighlight">\(\tau\)</span> grid lines</p>
+</dd>
+<dt>nchi<span class="classifier">int</span></dt><dd><p>Number of <span class="math notranslate nohighlight">\(\chi\)</span> grid lines</p>
 </dd>
 <dt>method<span class="classifier">function</span></dt><dd><p>Method to solve nonlinear equation</p>
 </dd>
@@ -454,11 +464,11 @@ Not draw bar if it’s None</p>
 <section id="id4">
 <h3>Returns:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <dl class="simple">
-<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions</p>
+<dt>sols: np.array shape (ntau, nchi)</dt><dd><p>Solutions <span class="math notranslate nohighlight">\(\lambda(\tau, \chi)\)</span></p>
 </dd>
-<dt>taus: np.array shape (ntau, nchi)</dt><dd><p>tau values</p>
+<dt>taus: np.array shape (ntau, nchi)</dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> values</p>
 </dd>
-<dt>chis: np.array shape (ntau, nchi)</dt><dd><p>chi values</p>
+<dt>chis: np.array shape (ntau, nchi)</dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> values</p>
 </dd>
 </dl>
 </section>

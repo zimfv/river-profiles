@@ -15,24 +15,28 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     Parameters:
     -----------
     nu: function of 2 arguments
+        The uplift rate function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`
     
     initial: function of 1 argument
-        lambda(chi) for tau = 0
+        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`
         
     border: function of 1 argument
-        lambda(tau), for chi = 0
+        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`
         
     n : float
+        Slope exponent
     
     dtau : float
+        Step over :math:`\tau`
     
     dchi : float
+        Step over :math:`\chi`
     
     ntau : int
-        Number of tau grid lines
+        Number of :math:`\tau` grid lines
     
     nchi : int
-        Number of chi grid lines
+        Number of :math:`\chi` grid lines
     
     method : function
         Method to solve nonlinear equation
@@ -47,13 +51,13 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
-        Solutions
+        Solutions :math:`\lambda(\tau, \chi)`
     
     taus: np.array shape (ntau, nchi)
-        tau values
+        :math:`\tau` values
         
     chis: np.array shape (ntau, nchi)
-        chi values
+        :math:`\chi` values
     """
     taus = dtau*np.arange(ntau)
     chis = dchi*np.arange(nchi)
@@ -98,24 +102,28 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     Parameters:
     -----------
     nu: function of 2 arguments
+        The function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`
     
     initial: function of 1 argument
-        lambda(chi) for tau = 0
+        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`
         
     border: function of 1 argument
-        lambda(tau), for chi = 0
+        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`
         
     n : float
+        Slope exponent
     
     dtau : float
+        Step over :math:`\tau`
     
     dchi : float
+        Step over :math:`\chi`
     
     ntau : int
-        Number of tau grid lines
+        Number of :math:`\tau` grid lines
     
     nchi : int
-        Number of chi grid lines
+        Number of :math:`\chi` grid lines
     
     method : function
         Method to solve nonlinear equation
@@ -130,13 +138,13 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
-        Solutions
+        Solutions :math:`\lambda(\tau, \chi)`
     
     taus: np.array shape (ntau, nchi)
-        tau values
+        :math:`\tau` values
         
     chis: np.array shape (ntau, nchi)
-        chi values
+        :math:`\chi` values
     """
     taus = dtau*np.arange(ntau)
     chis = dchi*np.arange(nchi)
@@ -186,25 +194,30 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
 
     Parameters:
     -----------
+
     nu: function of 2 arguments
-    
+        The function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`
+
     initial: function of 1 argument
-        lambda(chi) for tau = 0
+        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`
         
     border: function of 1 argument
-        lambda(tau), for chi = 0
+        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`
         
     n : float
+        Slope exponent
     
     dtau : float
+        Step over :math:`\tau`
     
     dchi : float
+        Step over :math:`\chi`
     
     ntau : int
-        Number of tau grid lines
+        Number of :math:`\tau` grid lines
     
     nchi : int
-        Number of chi grid lines
+        Number of :math:`\chi` grid lines
     
     method : function
         Method to solve nonlinear equation
@@ -215,27 +228,28 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
     bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
-        
+
     order : int (1 or 2)
         The order of approximation
         
     runtime_warning_action : str
         What should be done with RuntimeWarning, often throwing by optimizers.
         Possible values:
-        default         # Show all warnings (even those ignored by default)
-        ignore          # Ignore all warnings
-        error           # Convert all warnings to errors
+            
+            - "default" - Show all warnings (even those ignored by default)
+            - "ignore" - Ignore all warnings
+            - "error" - Convert all warnings to errors
 
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
-        Solutions
+        Solutions :math:`\lambda(\tau, \chi)`
     
     taus: np.array shape (ntau, nchi)
-        tau values
+        :math:`\tau` values
         
     chis: np.array shape (ntau, nchi)
-        chi values
+        :math:`\chi` values
     """
     schemes = {1: approximate_by1scheme, 
                2: approximate_by2scheme}
