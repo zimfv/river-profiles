@@ -319,6 +319,19 @@ document.write(`
 <span class="sd">    .. math::</span>
 <span class="sd">        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)</span>
 
+<span class="sd">    If :math:`n \ge 1` the difference scheme is</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau} + \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi}\right)^{n} - \nu^{j+1}_{k+1} = 0</span>
+
+<span class="sd">    and if :math:`n &lt; 1` the difference scheme is</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi} - \left(\nu^{j+1}_{k+1} - \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau}\right)^{1/n} = 0</span>
+
+<span class="sd">    where :math:`\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)` </span>
+<span class="sd">    and :math:`\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)`</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    nu: function of 2 arguments</span>
@@ -408,6 +421,23 @@ document.write(`
 
 <span class="sd">    .. math::</span>
 <span class="sd">        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)</span>
+
+<span class="sd">    If :math:`n \ge 1` the difference scheme is</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau} + </span>
+<span class="sd">        \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi}\right)^n - </span>
+<span class="sd">        \nu^{j+0.5}_{k+0.5} = 0</span>
+
+<span class="sd">    and if :math:`n &lt; 1` the difference scheme is</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        \frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi} -</span>
+<span class="sd">        \left(\nu^{j+0.5}_{k+0.5} - \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau}\right)^{1/n} = 0</span>
+
+
+<span class="sd">    where :math:`\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)` </span>
+<span class="sd">    and :math:`\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)`</span>
 
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>

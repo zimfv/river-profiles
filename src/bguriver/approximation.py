@@ -12,6 +12,19 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     .. math::
         \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
 
+    If :math:`n \ge 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau} + \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi}\right)^{n} - \nu^{j+1}_{k+1} = 0
+
+    and if :math:`n < 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi} - \left(\nu^{j+1}_{k+1} - \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau}\right)^{1/n} = 0
+
+    where :math:`\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)` 
+    and :math:`\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)`
+
     Parameters:
     -----------
     nu: function of 2 arguments
@@ -98,6 +111,23 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
 
     .. math::
         \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
+    If :math:`n \ge 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau} + 
+        \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi}\right)^n - 
+        \nu^{j+0.5}_{k+0.5} = 0
+
+    and if :math:`n < 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi} -
+        \left(\nu^{j+0.5}_{k+0.5} - \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau}\right)^{1/n} = 0
+
+
+    where :math:`\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)` 
+    and :math:`\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)`
 
     Parameters:
     -----------

@@ -386,6 +386,14 @@ Possible values:</p>
 <dd><p>Returns the 1st order approximation of the equation:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
+<p>If <span class="math notranslate nohighlight">\(n \ge 1\)</span> the difference scheme is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau} + \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi}\right)^{n} - \nu^{j+1}_{k+1} = 0\]</div>
+<p>and if <span class="math notranslate nohighlight">\(n &lt; 1\)</span> the difference scheme is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi} - \left(\nu^{j+1}_{k+1} - \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau}\right)^{1/n} = 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)\)</span> 
+and <span class="math notranslate nohighlight">\(\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)\)</span></p>
 <section id="id1">
 <h3>Parameters:<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <dl class="simple">
@@ -433,6 +441,17 @@ Not draw bar if it’s None</p>
 <dd><p>Returns the 2nd order approximation of the equation:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
+<p>If <span class="math notranslate nohighlight">\(n \ge 1\)</span> the difference scheme is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau} + 
+\left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi}\right)^n - 
+\nu^{j+0.5}_{k+0.5} = 0\]</div>
+<p>and if <span class="math notranslate nohighlight">\(n &lt; 1\)</span> the difference scheme is</p>
+<div class="math notranslate nohighlight">
+\[\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi} -
+\left(\nu^{j+0.5}_{k+0.5} - \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau}\right)^{1/n} = 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)\)</span> 
+and <span class="math notranslate nohighlight">\(\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)\)</span></p>
 <section id="id3">
 <h3>Parameters:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <dl class="simple">
