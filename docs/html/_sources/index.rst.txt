@@ -3,15 +3,20 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-BGU-River documentation
-=======================
+BGU-River
+=========
 
-Here is a package, with tools to describe the river profile evolution.
+This package provides tools for describing the evolution of river profiles.
 
-The module ``slope_patches`` contains the realisation of the concept of slope patches, which is described in the `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_ by Leigh Royden and J. Taylor Perron.
+The module ``slope_patches`` implements the concept of slope patches, as described in the `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_ by Leigh Royden and J. Taylor Perron.
 
-The module ``approximation`` contains the difference schemes approximating the euqation (8) from the mentioned article.
+The module ``approximation`` contains the difference schemes approximating the euqation (8) from the mentioned article
 
+.. math::
+   \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
+
+You can find the package on `GitHub <https://github.com/zimfv/river-profiles>`_
 
 Installation
 ============
@@ -29,12 +34,13 @@ Then run in terminal or CMD:
    pip install .
 
 
-Full Documentation
-==================
+Full Documentation Contents
+===========================
 
 .. toctree::
    :maxdepth: 4
 
+   guide
    modules
    
 
