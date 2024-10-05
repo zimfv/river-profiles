@@ -7,18 +7,59 @@ runtime_warning_act = get_runtime_warning_act_decorator(runtime_warning_action="
 
 
 class SlopePatches:
+    r"""
+    The slope patches are needed to understand the evolution of river profiles, given by formula
+    
+    .. math::
+        \cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)
+    
+    where the function :math:`\nu` is :math:`\chi`-independent step function:
+    
+    .. math::
+        \nu(\tau, \chi) = \nu(\tau) = 
+        \begin{cases}
+        \nu_0, \; \tau_0 \le \tau < \tau_1 \\
+        \nu_1, \; \tau_1 \le \tau < \tau_2 \\
+        ... \\
+        \nu_i, \; \tau_{i} \le \tau < \tau_{i+1} \\
+        ... \\
+        \nu_N, \; \tau_N \le \tau < \infty \\
+        \end{cases}
+
+    we can just say, that :math:`\nu_{N+1} = \infty`.
+
+    The concept of slope patches is described in the article by Leigh Royden and J. Taylor Perron:
+    https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031
+
+
+    Attributes:
+    -----------
+    patch_starts - float array length N
+        The times :math:`\tau_i`, when :math:`i`-th patch starts
+        
+        Let N be the number of patches; It's not used in code itself
+        
+    uplift_rates - float array length N
+        The values :math:`\nu_i`, uplift rate of the :math:`i`-th patch 
+        (correspondes :math:`\tau` between :math:`\tau_i` and :math:`\tau_{i+1}`)
+        
+    n - float
+        The constant :math:`n` - the exponent on channel slope
+
+    """
     def __init__(self, patch_starts, uplift_rates, n):
-        """
+        r"""
         Atributes:
         ----------
-        patch_starts - float array length N > 0 (let N be the number of patches; It's not used in code itself)
-            The times tau_i, when i-th patch starts
+        patch_starts - float array length N
+            The times :math:`\tau_i`, when :math:`i`-th patch starts
         
         uplift_rates - float array length N
-            The values nu_i, uplift rate of the i-th patch (correspondes tau between tau_i and tau_{i+1})
-        
+            The values :math:`\nu_i`, uplift rate of the :math:`i`-th patch 
+            (correspondes :math:`\tau` between :math:`\tau_i` and :math:`\tau_{i+1}`)
+
         n - float
-            The exponent on channel slope
+            The constant :math:`n` - the exponent on channel slope
         """
         if len(patch_starts) == 0:
             raise ValueError('The patch_starts should be not empty.')
@@ -33,25 +74,42 @@ class SlopePatches:
         
     
     def count(self):
-        """
+        r"""
         Returns the number of patches N
         """
         return len(self.patch_starts)
     
     
     def get_slopes(self):
+        r"""
+        Returns the array of slopes for each patch.
+
+        Associated with the equation (13) form the article by Leigh Royden and J. Taylor Perron:
+
+        .. math::
+            \sigma(\chi, \tau) = \frac{\partial \lambda}{\partial \chi} = \nu(\tau)^{1/n}
+        .. math::
+            \sigma_i = \nu_i^{1/n}
+
+        Returns:
+        --------
+        slopes - float array length N 
+            The slopes of the patches
         """
-        Returns the array of slopes for each patch; 
-        Associated with the equation (10) form the article by Leigh Royden and J. Taylor Perron
-        """
-        return self.uplift_rates**(1/self.n)
+        slopes = self.uplift_rates**(1/self.n)
+        return slopes
     
     
     def get_rights(self, tau, first_is_infinite=True):
-        """
+        r"""
         Returns the right spatial borders of the patches for time moments tau.  
+
         Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron
-        
+
+        .. math::
+            \chi_{R, i}(\tau) = n\nu_i^{(n - 1)/n}(\tau_i)
+
+
         Comment:
         --------
         It's nan for moments tau less than patch starts
@@ -59,16 +117,17 @@ class SlopePatches:
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         first_is_infinite : bool, default True
             If it's True, the first patch right border will be at infinite
-            If it's False, it will be defined proportional to the moment tau
+
+            If it's False, it will be defined proportional to tau
             
         Returns:
         --------
         res: float array shape (N, tau.shape)
-            Right borders for each patch and each moment tau
+            Right borders :math:`\chi_{R, i}` for each patch and each :math:`\tau` moment in tau
         """
         tau = np.array(tau, dtype=float)
         
@@ -89,9 +148,18 @@ class SlopePatches:
     
     
     def get_lengths(self):
-        """
+        r"""
         Returns the spatial lengths of patch.
-        It's defined as the product of time lengths of patches and their translation speed
+
+        It's defined as the product of time lengths of patches and their translation speed:
+
+        .. math::
+            \Delta_i = \chi_{R, i}(\tau_{i+1}) = n\nu_i^{(n - 1)/n}(\tau_{i+1} - \tau_i)
+
+        Returns:
+        --------
+        res: float array shape (N, *tau.shape)
+            Lengths of the patches :math:`\Delta_i`
         """
         res = self.n*self.uplift_rates**((self.n - 1)/self.n) 
         res *= np.append((self.patch_starts[1:] - self.patch_starts[:-1]), np.inf)
@@ -99,10 +167,14 @@ class SlopePatches:
     
     
     def get_lefts(self, tau):
-        """
-        Returns the right spatial borders of the patches for time moments tau.
-        It's defune as subtraction of patch right (noninfinite) borders and their lengths
+        r"""
+        Returns the right spatial borders of the patches for :math:`\tau` moments tau.
+
+        It's defune as subtraction of patch right (noninfinite) borders and their lengths:
         
+        .. math::
+            \chi_{L, i}(\tau) = \chi_{R, i}(\tau) - \Delta_i
+
         Comment:
         --------
         It's nan for moments tau less than patch starts
@@ -110,12 +182,12 @@ class SlopePatches:
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         Returns:
         --------
         res: float array shape (N, tau.shape)
-            Left borders for each patch and each moment tau
+            Left borders :math:`\chi_{L, i}` for each patch and each :math:`\tau` moment in tau
         """
         tau = np.array(tau, dtype=float)
         
@@ -133,21 +205,26 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_elevations_for_patches(self, tau, chi, index=None, filter_outer=True):
-        """
-        Returns the elevation for each patch for moments tau in spatial points chi for patches given by index
-        Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron
+        r"""
+        Returns the elevation for each patch for moments tau in spatial points chi for patches given by index.
+
+        Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron:
+
+        .. math::
+            \lambda_i(\tau, \chi) = \chi\sigma_i + \int\limits_{\tau_i}^\tau [\nu(t) - \nu_i]dt
         
         If index is None
-        Returns the elevation for each patch for moments tau in spatial points chi
+        Returns the elevation for each patch for points :math:`(\tau, \chi)`, which does not correspond the patch
         
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         chi : float or float array
-            The (dimensionless) distance argument
-            tau and chi should be the same shape
+            :math:`\chi` - the dimensionless distance argument
+            
+            The arguments tau and chi should be the same shape
         
         index : int, int array or None
             The patches indices
@@ -161,7 +238,10 @@ class SlopePatches:
         Returns:
         --------
         lam : float array shape same as index.shape
-            The elevation throught the time moments tau, spatial points for the patch from patch_index 
+            The elevation :math:`\lambda_i(\tau, \chi)` 
+            throught the time moments :math:`\tau`, spatial points :math:`\chi` 
+            for the patch :math:`i` from patch_index 
+
         """
         tau = np.array(tau, dtype=float)
         chi = np.array(chi, dtype=float)
@@ -193,10 +273,9 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_right_elevations(self, tau, first_is_infinite=True):
-        """
-        Returns elevations pon the right borders of the patches for time moments tau.  
-        Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron
-        
+        r"""
+        Returns elevations :math:`\lambda_i(\tau, \chi_{R, i})` on the right borders of the patches for time moments :math:`\tau`.
+
         Comment:
         --------
         It's nan for moments tau less than patch starts
@@ -204,16 +283,18 @@ class SlopePatches:
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         first_is_infinite : bool, default True
             If it's True, the first patch right border will be at infinite
+
             If it's False, it will be defined proportional to the moment tau
             
         Returns:
         --------
-        lam: float array shape (N, tau.shape)
-            Elevations on the right borders for each patch and each moment tau
+        lam : float array shape same as index.shape
+            The elevation :math:`\lambda_i(\tau, \chi_{R, i})`
+            throught the time moments :math:`\tau`
         """
         tau = np.array(tau, dtype=float)
         chi = self.get_rights(tau, first_is_infinite=first_is_infinite)
@@ -232,9 +313,8 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_left_elevations(self, tau):
-        """
-        Returns elevations on the left borders of the patches for time moments tau.  
-        Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron
+        r"""
+        Returns elevations :math:`\lambda_i(\tau, \chi_{L, i})` on the left borders of the patches for time moments :math:`\tau`.
         
         Comment:
         --------
@@ -243,12 +323,13 @@ class SlopePatches:
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         Returns:
         --------
-        lam: float array shape (N, tau.shape)
-            Elevations on the left borders for each patch and each moment tau
+        lam : float array shape same as index.shape
+            The elevation :math:`\lambda_i(\tau, \chi_{L, i})` 
+            throught the time moments :math:`\tau`
         """
         tau = np.array(tau, dtype=float)
         chi = self.get_lefts(tau)
@@ -267,30 +348,39 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_elevations_for_stretch_zones(self, tau, chi, index=None, filter_outer=True):
-        """
-        Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch
-        Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron
+        r"""
+        Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch.
+
+        Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron:
+
+        .. math::
+            \lambda_i = 
+            \cfrac{n-1}{n}\left(\cfrac{\chi^n}{n(\tau - \tau_{i+1})}\right)^{\cfrac{1}{n-1}} + 
+            \left(\tau - \tau_{i+1}\right)\nu_{i+1} + 
+            \int\limits_{\tau_{i+1}}^\tau (\nu(t) - \nu_{i+1}) dt
         
-        
-        Returns the elevation over connection between i-th and (i+1)-th slope patches.
+        Returns the elevation over connection between :math:`i`-th and :math:`(i+1)`-th slope patches.
         This is stretch zones or consuming knick points
         
         Comment:
         --------
-        It's nan in the case, if the point (tau, chi) do not correspond the patch.
+        It's nan in the case, if the point :math:`(\tau, \chi)` do not correspond the stretch zone.
         
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         chi : float or float array
-            The (dimensionless) distance argument
-            tau and chi should be the same shape
+            :math:`\chi` - the dimensionless distance argument
+            
+            The arguments tau and chi should be the same shape
         
         index : int or int array
             The stretch zones indices
+
             Should be the same shape as tau and chi
+
             If it's None, then this will be changed to array shape (N - 1, *tau/chi.shape)
             where index[i] == i
             
@@ -338,22 +428,33 @@ class SlopePatches:
     
     
     def get_elevation(self, tau, chi):
-        """
-        Returns the elevation
+        r"""
+        Returns the elevation :math:`\lambda(\tau, \chi)` at the point :math:`\chi` at moment :math:`\tau`
+
+        .. math::
+            \lambda(\tau, \chi) = 
+            \begin{cases}
+            \min \lambda_j(\tau, \chi), \; n \ge 1 \\
+            \max \lambda_j(\tau, \chi), \; n < 1
+            \end{cases}
+
+        where :math:`\lambda_j(\tau, \chi)` is from the set of functions, 
+        corresponing the elevation of patches or neighbour patch connections.
         
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         chi : float or float array
-            The (dimensionless) distance argument
-            tau and chi should be the same shape
+            :math:`\chi` - the dimensionless distance argument
+            
+            The arguments tau and chi should be the same shape
         
         Returns:
         --------
         lam: float array shape  tau/chi.shape
-            The elevation
+            The elevation :math:`\lambda(\tau, \chi)`
         """
         lam = np.concatenate([self.get_elevations_for_patches(tau, chi), 
                               self.get_elevations_for_stretch_zones(tau, chi)], axis=0)
@@ -367,24 +468,37 @@ class SlopePatches:
     
     
     def get_elevation_index(self, tau, chi):
-        """
+        r"""
         Returns the index of patch or stretch_zone corresponding the real elevation
         
+        .. math::
+            \text{index}(\tau, \chi) = 
+            \begin{cases}
+            \text{argmin}\; \lambda_j(\tau, \chi), \; n \ge 1 \\
+            \text{argmax}\; \lambda_j(\tau, \chi), \; n < 1
+            \end{cases}
+
+        where :math:`\lambda_j(\tau, \chi)` is from the set of functions, 
+        corresponing the elevation of patches or neighbour patch connections.
+
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         chi : float or float array
-            The (dimensionless) distance argument
-            tau and chi should be the same shape
+            :math:`\chi` - the dimensionless distance argument
+            
+            The arguments tau and chi should be the same shape
         
         Returns:
         --------
         index: int array shape  tau/chi.shape
             The indices of patches and stretch zones coresponding the real elevation
-            The index i less than N coresponds the i-th patch
-            The index i equal or higher than N coresponds the (i - N)-th stretch zone
+
+            The index :math:`i` less than `N` coresponds the :math:`i`-th patch
+            
+            The index :math:`i` equal or higher than `N` coresponds the :math:`(i - N)`-th stretch zone
         """
         lam = np.concatenate([self.get_elevations_for_patches(tau, chi), 
                               self.get_elevations_for_stretch_zones(tau, chi)], axis=0)
@@ -399,18 +513,19 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_intersections_of_patches(self, tau, filtration=True):
-        """
-        Returns the spatial position of intersections between patches
+        r"""
+        Returns the spatial position :math:`\chi` of intersections between patches.
         
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         Returns:
         --------
         chi : float arrray shape (N, N, *tau.shape)
-            The matrices of spatial positions of intersection  for time moments tau
+            The matrices of spatial positions :math:`\chi` of intersection for :math:`\tau` moments in tau
+
             The element [i, j] corresponds the intersection between i-th and j-th patches
         """
         shape = np.concatenate([[self.count(), self.count()], tau.shape]).astype(int)
@@ -436,19 +551,20 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_intersections_of_stretch_zones(self, tau):
-        """
-        Returns the spatial position of intersections between neighbour connections
+        r"""        
+        Returns the spatial positions :math:`\chi` of intersections between stretch zones.
         
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         Returns:
         --------
         chi : float arrray shape (N - 1, N - 1, *tau.shape)
-            The matrices of spatial positions of intersection  for time moments tau
-            The element [i, j] corresponds the intersection between i-th and j-th neighbour connection
+            The matrices of spatial positions :math:`\chi` of intersection for :math:`\tau` moments in tau
+
+            The element [i, j] corresponds the intersection between i-th and j-th stretch zone
         """
         tau = np.array(tau, dtype=float)
         shape = np.concatenate([(self.count() - 1, self.count() - 1), tau.shape]).astype(int)
@@ -481,13 +597,13 @@ class SlopePatches:
     
     @runtime_warning_act
     def get_intersections_of_patches_and_stretch_zones(self, tau, xtol=1e-8, maxiter=100):
-        """
-        Returns the spatial position of intersections between patches and stretch zones
+        r"""
+        Returns the spatial positions :math:`\chi` of intersections between patches and stretch zones
         
         Parameters:
         -----------
         tau : float or float array
-            The (dimensionless) time argument
+            :math:`\tau` - the dimensionless time argument
         
         xtol: float
             Accuracy for the bisection solver
@@ -498,7 +614,8 @@ class SlopePatches:
         Returns:
         --------
         chi : float arrray shape (N, N - 1, *tau.shape)
-            The matrices of spatial positions of intersection  for time moments tau
+            The matrices of spatial positions :math:`\chi` of intersections for :math:`\tau` moments in tau
+
             The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone
         """
         tau = np.array(tau, dtype=float)
@@ -534,12 +651,19 @@ class SlopePatches:
     
     
     def get_patches_relisation_borders(self, tau, xtol=1e-8, maxiter=100):
-        """
+        r"""
         Returns the borders of patch realisation
         
+        The left border is the maximal intersection of the patch 
+        with another patch or stretch zone after the current, or the left border of patch itself.
+
+        The right border is the minimal intersection of the patch 
+        with another patch or stretch zone before the current, or the right border of patch itself.
+
         Parameters:
         -----------
         tau: float or float array
+            :math:`\tau` - the dimensionless time argument
         
         xtol: float
             Accuracy for the bisection solver
@@ -550,8 +674,10 @@ class SlopePatches:
         Returns:
         --------
         left_borders : float array shape (N, *tau.shape)
+            left_borders[i] corresponds the left realisation borders of the :math`i`-th patch
         
         right_borders : float array shape (N, *tau.shape)
+            right_borders[i] corresponds the right realisation borders of the :math`i`-th patch
         """
         tau = np.array(tau, dtype=float)
         
@@ -599,12 +725,19 @@ class SlopePatches:
     
 
     def get_stretch_zones_relisation_borders(self, tau, xtol=1e-8, maxiter=100):
-        """
+        r"""
         Returns the borders of stretch zones realisation
         
+        The left border is the maximal intersection of the stretch zone 
+        with another patch or stretch zone after the current, or the left border of patch itself.
+
+        The right border is the minimal intersection of the stretch zone 
+        with another patch or stretch zone before the current, or the right border of patch itself.
+
         Parameters:
         -----------
         tau: float or float array
+            :math:`\tau` - the dimensionless time argument
         
         xtol: float
             Accuracy for the bisection solver
@@ -614,9 +747,11 @@ class SlopePatches:
             
         Returns:
         --------
-        left_borders : float array shape (N, *tau.shape)
+        left_borders : float array shape (N - 1, *tau.shape)
+            left_borders[i] corresponds the left realisation borders of the :math`i`-th stretch zone
         
-        right_borders : float array shape (N, *tau.shape)
+        right_borders : float array shape (N - 1, *tau.shape)
+            left_borders[i] corresponds the right realisation borders of the :math`i`-th stretch zone
         """
         tau = np.array(tau, dtype=float)
         
@@ -661,9 +796,18 @@ class SlopePatches:
     
     
     def get_nu_value(self, tau, chi=np.nan, rate_before=None):
-        """
-        Returns the uplift rate (nu-value) for each moment tau.
-        Just returns the uplift rate at chi=0, nu(tau, chi=0)
+        r"""
+        Returns the uplift rate (nu-value) for each moment :math:`\tau`.
+
+        Just returns the uplift rate at :math:`\chi=0`, this is the value of the function:
+
+        .. math::
+            \nu(\tau, \chi=0) = \nu(\tau) = \nu(\tau, \chi)
+
+        from the equation defining slope patches object:
+
+        .. math::
+            \cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)
         
         Parameters:
         -----------
@@ -672,11 +816,13 @@ class SlopePatches:
         
         chi : float or float array
             The spatial argument of the uplift rate function
+
             The result value does not depend on this argument, 
-            but sometimes this function should take 2 paraeters.
+            but sometimes this function should take 2 parameters.
         
         rate_before: float or None
             The uplift rate before the first patch starts.
+
             If it is None, then set rate_before same as rate of 1st patch (patch index 0).
         
         Returns:

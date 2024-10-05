@@ -10,9 +10,10 @@ def get_runtime_warning_act_decorator(runtime_warning_action="ignore"):
 	runtime_warning_action : str
 		What should be done with RuntimeWarning, often throwing by optimizers.
 		Possible values:
-		default         # Show all warnings (even those ignored by default)
-		ignore          # Ignore all warnings
-		error           # Convert all warnings to errors
+
+			- "default" - Show all warnings (even those ignored by default)
+			- "ignore"  - Ignore all warnings
+			- "error"   - Convert all warnings to errors
 
 	Returns:
 	--------

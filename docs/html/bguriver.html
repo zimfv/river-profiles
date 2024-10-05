@@ -480,20 +480,23 @@ Not draw bar if it’s None</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="bguriver.math.lengths_check">
 <span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">lengths_check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">borders</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#lengths_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.lengths_check" title="Link to this definition">#</a></dt>
-<dd><p>Returns True, if lengths are correct: borders array should contain 1 element less, than values array
-If this is not correct, it will raise error if raise_error or return Flase in other case.</p>
+<dd><p>Returns True, if lengths are correct: borders array should contain 1 element less, than values array</p>
+<p>If this is not correct, it will raise error if raise_error or return Flase in other case.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="bguriver.math.solve_bisect">
 <span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">solve_bisect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iteration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#solve_bisect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.solve_bisect" title="Link to this definition">#</a></dt>
-<dd><p>Bisection recursive solve method
+<dd><p>Bisection recursive solve nonlinear equations method:
 <a class="reference external" href="https://en.wikipedia.org/wiki/Bisection_method">https://en.wikipedia.org/wiki/Bisection_method</a></p>
 <section id="id5">
 <h3>Parameters:<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <p>f : function, takes float or np.array as argument</p>
-<p>x0, x1: float or np.array same shape, as f-argument should be</p>
 <dl class="simple">
+<dt>x0: float or np.array same shape, as f-argument should be</dt><dd><p>The left initial segment borders</p>
+</dd>
+<dt>x1: float or np.array same shape, as f-argument should be</dt><dd><p>The right initial segment borders</p>
+</dd>
 <dt>xtol: float</dt><dd><p>The calculation will terminate if the relative error between two consecutive iterates is at most xtol.</p>
 </dd>
 <dt>maxiter: int</dt><dd><p>Maximal number of iterations</p>
@@ -511,44 +514,66 @@ If this is not correct, it will raise error if raise_error or return Flase in ot
 <dl class="py function">
 <dt class="sig sig-object py" id="bguriver.math.step_function">
 <span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">step_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#step_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.step_function" title="Link to this definition">#</a></dt>
-<dd><section id="id7">
+<dd><p>Returns the value of a step function <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) = 
+\begin{cases}
+f_0,\; x &lt; x_0 \\
+f_i,\; x_{i-1} &lt; x &lt; x_i, \; i = 1, ..., N-1 \\
+f_N,\; x &gt; x_N
+\end{cases}\end{split}\]</div>
+<section id="id7">
 <h3>Parameters:<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>x<span class="classifier">float or float array</span></dt><dd><p>The argument of the function</p>
 </dd>
-<dt>borders<span class="classifier">list of floats len N</span></dt><dd><p>The points, when the function changes the value</p>
+<dt>borders<span class="classifier">list of floats len N</span></dt><dd><p>The points <span class="math notranslate nohighlight">\(x_i\)</span>, when the function changes the value</p>
 </dd>
-<dt>values: list of floats len N+1</dt><dd><p>values[0] corresponds to the function value before borders[0]
-values[i] corresponds to the function value between borders[i-1] and borders[i]</p>
+<dt>values: list of floats len N+1</dt><dd><p>The values of the function <span class="math notranslate nohighlight">\(f_i\)</span>:</p>
 </dd>
 </dl>
 </section>
 <section id="id8">
 <h3>Returns:<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
-<p>r : float or float array shape x.shape</p>
+<dl class="simple">
+<dt>r<span class="classifier">float or float array shape x.shape</span></dt><dd><p>The value of the step function <span class="math notranslate nohighlight">\(f(x)\)</span>.</p>
+</dd>
+</dl>
 </section>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="bguriver.math.step_integral">
 <span class="sig-prename descclassname"><span class="pre">bguriver.math.</span></span><span class="sig-name descname"><span class="pre">step_integral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">borders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">negative_backward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/math.html#step_integral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.math.step_integral" title="Link to this definition">#</a></dt>
-<dd><section id="id9">
+<dd><p>Returns the integral of a step <span class="math notranslate nohighlight">\(\int\limits_{x_0}^{x_1}f(x) dx\)</span> function 
+where <span class="math notranslate nohighlight">\(f(x)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) = 
+\begin{cases}
+f_0,\; x &lt; x_0 \\
+f_i,\; x_{i-1} &lt; x &lt; x_i, \; i = 1, ..., N-1 \\
+f_N,\; x &gt; x_N
+\end{cases}\end{split}\]</div>
+<section id="id9">
 <h3>Parameters:<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>x<span class="classifier">float or float array</span></dt><dd><p>The argument of the function</p>
 </dd>
-<dt>borders<span class="classifier">list of floats len N</span></dt><dd><p>The points, when the function changes the value</p>
+<dt>borders<span class="classifier">list of floats len N</span></dt><dd><p>The points <span class="math notranslate nohighlight">\(x_i\)</span>, when the function changes the value</p>
 </dd>
-<dt>values: list of floats len N+1</dt><dd><p>values[0] corresponds to the function value before borders[0]
-values[i] corresponds to the function value between borders[i-1] and borders[i]</p>
+<dt>values: list of floats len N+1</dt><dd><p>The values of the function <span class="math notranslate nohighlight">\(f_i\)</span>:</p>
 </dd>
-<dt>negative_backward: bool</dt><dd><p>Set I(x0, x1) = -I(x1, x0) for cases, when x0 &gt; x1</p>
+<dt>negative_backward: bool</dt><dd><p>Set <span class="math notranslate nohighlight">\(\int\limits_{x_0}^{x_1}f(x) dx = -\int\limits_{x_1}^{x_0}f(x) dx\)</span> 
+for cases, when <span class="math notranslate nohighlight">\(x_0 &gt; x_1\)</span>.</p>
 </dd>
 </dl>
 </section>
 <section id="id10">
 <h3>Returns:<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
-<p>r : float or float array shape x.shape</p>
+<dl class="simple">
+<dt>r<span class="classifier">float or float array shape x.shape</span></dt><dd><p>The integral value <span class="math notranslate nohighlight">\(\int\limits_{x_0}^{x_1}f(x) dx\)</span>.</p>
+</dd>
+</dl>
 </section>
 </dd></dl>
 
@@ -559,6 +584,35 @@ values[i] corresponds to the function value between borders[i-1] and borders[i]<
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bguriver.slope_patches.</span></span><span class="sig-name descname"><span class="pre">SlopePatches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patch_starts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uplift_rates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The slope patches are needed to understand the evolution of river profiles, given by formula</p>
+<div class="math notranslate nohighlight">
+\[\cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)\]</div>
+<p>where the function <span class="math notranslate nohighlight">\(\nu\)</span> is <span class="math notranslate nohighlight">\(\chi\)</span>-independent step function:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\nu(\tau, \chi) = \nu(\tau) = 
+\begin{cases}
+\nu_0, \; \tau_0 \le \tau &lt; \tau_1 \\
+\nu_1, \; \tau_1 \le \tau &lt; \tau_2 \\
+... \\
+\nu_i, \; \tau_{i} \le \tau &lt; \tau_{i+1} \\
+... \\
+\nu_N, \; \tau_N \le \tau &lt; \infty \\
+\end{cases}\end{split}\]</div>
+<p>we can just say, that <span class="math notranslate nohighlight">\(\nu_{N+1} = \infty\)</span>.</p>
+<p>The concept of slope patches is described in the article by Leigh Royden and J. Taylor Perron:
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031</a></p>
+<section id="attributes">
+<h3>Attributes:<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h3>
+<dl>
+<dt>patch_starts - float array length N</dt><dd><p>The times <span class="math notranslate nohighlight">\(\tau_i\)</span>, when <span class="math notranslate nohighlight">\(i\)</span>-th patch starts</p>
+<p>Let N be the number of patches; It’s not used in code itself</p>
+</dd>
+<dt>uplift_rates - float array length N</dt><dd><p>The values <span class="math notranslate nohighlight">\(\nu_i\)</span>, uplift rate of the <span class="math notranslate nohighlight">\(i\)</span>-th patch 
+(correspondes <span class="math notranslate nohighlight">\(\tau\)</span> between <span class="math notranslate nohighlight">\(\tau_i\)</span> and <span class="math notranslate nohighlight">\(\tau_{i+1}\)</span>)</p>
+</dd>
+<dt>n - float</dt><dd><p>The constant <span class="math notranslate nohighlight">\(n\)</span> - the exponent on channel slope</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.count">
 <span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.count"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.count" title="Link to this definition">#</a></dt>
@@ -568,21 +622,29 @@ values[i] corresponds to the function value between borders[i-1] and borders[i]<
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevation">
 <span class="sig-name descname"><span class="pre">get_elevation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevation" title="Link to this definition">#</a></dt>
-<dd><p>Returns the elevation</p>
+<dd><p>Returns the elevation <span class="math notranslate nohighlight">\(\lambda(\tau, \chi)\)</span> at the point <span class="math notranslate nohighlight">\(\chi\)</span> at moment <span class="math notranslate nohighlight">\(\tau\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\lambda(\tau, \chi) = 
+\begin{cases}
+\min \lambda_j(\tau, \chi), \; n \ge 1 \\
+\max \lambda_j(\tau, \chi), \; n &lt; 1
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_j(\tau, \chi)\)</span> is from the set of functions, 
+corresponing the elevation of patches or neighbour patch connections.</p>
 <section id="id11">
-<h3>Parameters:<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<h4>Parameters:<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<dl>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
-<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
-tau and chi should be the same shape</p>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> - the dimensionless distance argument</p>
+<p>The arguments tau and chi should be the same shape</p>
 </dd>
 </dl>
 </section>
 <section id="id12">
-<h3>Returns:<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>lam: float array shape  tau/chi.shape</dt><dd><p>The elevation</p>
+<dt>lam: float array shape  tau/chi.shape</dt><dd><p>The elevation <span class="math notranslate nohighlight">\(\lambda(\tau, \chi)\)</span></p>
 </dd>
 </dl>
 </section>
@@ -592,22 +654,30 @@ tau and chi should be the same shape</p>
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevation_index">
 <span class="sig-name descname"><span class="pre">get_elevation_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevation_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevation_index" title="Link to this definition">#</a></dt>
 <dd><p>Returns the index of patch or stretch_zone corresponding the real elevation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{index}(\tau, \chi) = 
+\begin{cases}
+\text{argmin}\; \lambda_j(\tau, \chi), \; n \ge 1 \\
+\text{argmax}\; \lambda_j(\tau, \chi), \; n &lt; 1
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda_j(\tau, \chi)\)</span> is from the set of functions, 
+corresponing the elevation of patches or neighbour patch connections.</p>
 <section id="id13">
-<h3>Parameters:<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<h4>Parameters:<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<dl>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
-<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
-tau and chi should be the same shape</p>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> - the dimensionless distance argument</p>
+<p>The arguments tau and chi should be the same shape</p>
 </dd>
 </dl>
 </section>
 <section id="id14">
-<h3>Returns:<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>index: int array shape  tau/chi.shape</dt><dd><p>The indices of patches and stretch zones coresponding the real elevation
-The index i less than N coresponds the i-th patch
-The index i equal or higher than N coresponds the (i - N)-th stretch zone</p>
+<h4>Returns:<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<dl>
+<dt>index: int array shape  tau/chi.shape</dt><dd><p>The indices of patches and stretch zones coresponding the real elevation</p>
+<p>The index <span class="math notranslate nohighlight">\(i\)</span> less than <cite>N</cite> coresponds the <span class="math notranslate nohighlight">\(i\)</span>-th patch</p>
+<p>The index <span class="math notranslate nohighlight">\(i\)</span> equal or higher than <cite>N</cite> coresponds the <span class="math notranslate nohighlight">\((i - N)\)</span>-th stretch zone</p>
 </dd>
 </dl>
 </section>
@@ -616,17 +686,19 @@ The index i equal or higher than N coresponds the (i - N)-th stretch zone</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevations_for_patches">
 <span class="sig-name descname"><span class="pre">get_elevations_for_patches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevations_for_patches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevations_for_patches" title="Link to this definition">#</a></dt>
-<dd><p>Returns the elevation for each patch for moments tau in spatial points chi for patches given by index
-Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron</p>
+<dd><p>Returns the elevation for each patch for moments tau in spatial points chi for patches given by index.</p>
+<p>Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_i(\tau, \chi) = \chi\sigma_i + \int\limits_{\tau_i}^\tau [\nu(t) - \nu_i]dt\]</div>
 <p>If index is None
-Returns the elevation for each patch for moments tau in spatial points chi</p>
+Returns the elevation for each patch for points <span class="math notranslate nohighlight">\((\tau, \chi)\)</span>, which does not correspond the patch</p>
 <section id="id15">
-<h3>Parameters:<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<h4>Parameters:<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<dl>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
-<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
-tau and chi should be the same shape</p>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> - the dimensionless distance argument</p>
+<p>The arguments tau and chi should be the same shape</p>
 </dd>
 <dt>index<span class="classifier">int, int array or None</span></dt><dd><p>The patches indices
 Should be the same shape as tau and chi
@@ -638,9 +710,11 @@ where index[i] == i</p>
 </dl>
 </section>
 <section id="id18">
-<h3>Returns:<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>lam<span class="classifier">float array shape same as index.shape</span></dt><dd><p>The elevation throught the time moments tau, spatial points for the patch from patch_index</p>
+<dt>lam<span class="classifier">float array shape same as index.shape</span></dt><dd><p>The elevation <span class="math notranslate nohighlight">\(\lambda_i(\tau, \chi)\)</span> 
+throught the time moments <span class="math notranslate nohighlight">\(\tau\)</span>, spatial points <span class="math notranslate nohighlight">\(\chi\)</span> 
+for the patch <span class="math notranslate nohighlight">\(i\)</span> from patch_index</p>
 </dd>
 </dl>
 </section>
@@ -649,25 +723,30 @@ where index[i] == i</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_elevations_for_stretch_zones">
 <span class="sig-name descname"><span class="pre">get_elevations_for_stretch_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_elevations_for_stretch_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_elevations_for_stretch_zones" title="Link to this definition">#</a></dt>
-<dd><p>Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch
-Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron</p>
-<p>Returns the elevation over connection between i-th and (i+1)-th slope patches.
+<dd><p>Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch.</p>
+<p>Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron:</p>
+<div class="math notranslate nohighlight">
+\[\lambda_i = 
+\cfrac{n-1}{n}\left(\cfrac{\chi^n}{n(\tau - \tau_{i+1})}\right)^{\cfrac{1}{n-1}} + 
+\left(\tau - \tau_{i+1}\right)\nu_{i+1} + 
+\int\limits_{\tau_{i+1}}^\tau (\nu(t) - \nu_{i+1}) dt\]</div>
+<p>Returns the elevation over connection between <span class="math notranslate nohighlight">\(i\)</span>-th and <span class="math notranslate nohighlight">\((i+1)\)</span>-th slope patches.
 This is stretch zones or consuming knick points</p>
 <section id="comment">
-<h3>Comment:<a class="headerlink" href="#comment" title="Link to this heading">#</a></h3>
-<p>It’s nan in the case, if the point (tau, chi) do not correspond the patch.</p>
+<h4>Comment:<a class="headerlink" href="#comment" title="Link to this heading">#</a></h4>
+<p>It’s nan in the case, if the point <span class="math notranslate nohighlight">\((\tau, \chi)\)</span> do not correspond the stretch zone.</p>
 </section>
 <section id="id19">
-<h3>Parameters:<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<h4>Parameters:<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<dl>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
-<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) distance argument
-tau and chi should be the same shape</p>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\chi\)</span> - the dimensionless distance argument</p>
+<p>The arguments tau and chi should be the same shape</p>
 </dd>
-<dt>index<span class="classifier">int or int array</span></dt><dd><p>The stretch zones indices
-Should be the same shape as tau and chi
-If it’s None, then this will be changed to array shape (N - 1, <a href="#id20"><span class="problematic" id="id21">*</span></a>tau/chi.shape)
+<dt>index<span class="classifier">int or int array</span></dt><dd><p>The stretch zones indices</p>
+<p>Should be the same shape as tau and chi</p>
+<p>If it’s None, then this will be changed to array shape (N - 1, <a href="#id20"><span class="problematic" id="id21">*</span></a>tau/chi.shape)
 where index[i] == i</p>
 </dd>
 <dt>filter_outer<span class="classifier">bool</span></dt><dd><p>Remove elevations out of theoretical patch borders, if it’s True</p>
@@ -675,7 +754,7 @@ where index[i] == i</p>
 </dl>
 </section>
 <section id="id22">
-<h3>Returns:<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
 <dl class="simple">
 <dt>lam<span class="classifier">float array shape tau/chi/inidex.shape</span></dt><dd><p>The elevation throught the time moments tau, spatial points chi for the stretch zone from zone_inidex</p>
 </dd>
@@ -686,19 +765,19 @@ where index[i] == i</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_intersections_of_patches">
 <span class="sig-name descname"><span class="pre">get_intersections_of_patches</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filtration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_intersections_of_patches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_intersections_of_patches" title="Link to this definition">#</a></dt>
-<dd><p>Returns the spatial position of intersections between patches</p>
+<dd><p>Returns the spatial position <span class="math notranslate nohighlight">\(\chi\)</span> of intersections between patches.</p>
 <section id="id23">
-<h3>Parameters:<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<h4>Parameters:<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
 </dl>
 </section>
 <section id="id24">
-<h3>Returns:<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
 <dl>
-<dt>chi<span class="classifier">float arrray shape (N, N, <a href="#id25"><span class="problematic" id="id26">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions of intersection  for time moments tau
-The element [i, j] corresponds the intersection between i-th and j-th patches</p>
+<dt>chi<span class="classifier">float arrray shape (N, N, <a href="#id25"><span class="problematic" id="id26">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions <span class="math notranslate nohighlight">\(\chi\)</span> of intersection for <span class="math notranslate nohighlight">\(\tau\)</span> moments in tau</p>
+<p>The element [i, j] corresponds the intersection between i-th and j-th patches</p>
 </dd>
 </dl>
 </section>
@@ -707,11 +786,11 @@ The element [i, j] corresponds the intersection between i-th and j-th patches</p
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_intersections_of_patches_and_stretch_zones">
 <span class="sig-name descname"><span class="pre">get_intersections_of_patches_and_stretch_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_intersections_of_patches_and_stretch_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_intersections_of_patches_and_stretch_zones" title="Link to this definition">#</a></dt>
-<dd><p>Returns the spatial position of intersections between patches and stretch zones</p>
+<dd><p>Returns the spatial positions <span class="math notranslate nohighlight">\(\chi\)</span> of intersections between patches and stretch zones</p>
 <section id="id27">
-<h3>Parameters:<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<h4>Parameters:<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
 <dt>xtol: float</dt><dd><p>Accuracy for the bisection solver</p>
 </dd>
@@ -720,10 +799,10 @@ The element [i, j] corresponds the intersection between i-th and j-th patches</p
 </dl>
 </section>
 <section id="id28">
-<h3>Returns:<a class="headerlink" href="#id28" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
 <dl>
-<dt>chi<span class="classifier">float arrray shape (N, N - 1, <a href="#id29"><span class="problematic" id="id30">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions of intersection  for time moments tau
-The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone</p>
+<dt>chi<span class="classifier">float arrray shape (N, N - 1, <a href="#id29"><span class="problematic" id="id30">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions <span class="math notranslate nohighlight">\(\chi\)</span> of intersections for <span class="math notranslate nohighlight">\(\tau\)</span> moments in tau</p>
+<p>The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone</p>
 </dd>
 </dl>
 </section>
@@ -732,19 +811,19 @@ The element [i, j] corresponds the intersection between i-th patch and j-th stre
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_intersections_of_stretch_zones">
 <span class="sig-name descname"><span class="pre">get_intersections_of_stretch_zones</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_intersections_of_stretch_zones"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_intersections_of_stretch_zones" title="Link to this definition">#</a></dt>
-<dd><p>Returns the spatial position of intersections between neighbour connections</p>
+<dd><p>Returns the spatial positions <span class="math notranslate nohighlight">\(\chi\)</span> of intersections between stretch zones.</p>
 <section id="id31">
-<h3>Parameters:<a class="headerlink" href="#id31" title="Link to this heading">#</a></h3>
+<h4>Parameters:<a class="headerlink" href="#id31" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
 </dl>
 </section>
 <section id="id32">
-<h3>Returns:<a class="headerlink" href="#id32" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id32" title="Link to this heading">#</a></h4>
 <dl>
-<dt>chi<span class="classifier">float arrray shape (N - 1, N - 1, <a href="#id33"><span class="problematic" id="id34">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions of intersection  for time moments tau
-The element [i, j] corresponds the intersection between i-th and j-th neighbour connection</p>
+<dt>chi<span class="classifier">float arrray shape (N - 1, N - 1, <a href="#id33"><span class="problematic" id="id34">*</span></a>tau.shape)</span></dt><dd><p>The matrices of spatial positions <span class="math notranslate nohighlight">\(\chi\)</span> of intersection for <span class="math notranslate nohighlight">\(\tau\)</span> moments in tau</p>
+<p>The element [i, j] corresponds the intersection between i-th and j-th stretch zone</p>
 </dd>
 </dl>
 </section>
@@ -753,23 +832,23 @@ The element [i, j] corresponds the intersection between i-th and j-th neighbour 
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_left_elevations">
 <span class="sig-name descname"><span class="pre">get_left_elevations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_left_elevations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_left_elevations" title="Link to this definition">#</a></dt>
-<dd><p>Returns elevations on the left borders of the patches for time moments tau.  
-Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
+<dd><p>Returns elevations <span class="math notranslate nohighlight">\(\lambda_i(\tau, \chi_{L, i})\)</span> on the left borders of the patches for time moments <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
 <section id="id35">
-<h3>Comment:<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<h4>Comment:<a class="headerlink" href="#id35" title="Link to this heading">#</a></h4>
 <p>It’s nan for moments tau less than patch starts</p>
 </section>
 <section id="id36">
-<h3>Parameters:<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<h4>Parameters:<a class="headerlink" href="#id36" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
 </dl>
 </section>
 <section id="id37">
-<h3>Returns:<a class="headerlink" href="#id37" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id37" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>lam: float array shape (N, tau.shape)</dt><dd><p>Elevations on the left borders for each patch and each moment tau</p>
+<dt>lam<span class="classifier">float array shape same as index.shape</span></dt><dd><p>The elevation <span class="math notranslate nohighlight">\(\lambda_i(\tau, \chi_{L, i})\)</span> 
+throught the time moments <span class="math notranslate nohighlight">\(\tau\)</span></p>
 </dd>
 </dl>
 </section>
@@ -778,23 +857,25 @@ Associated with the equation (B7) form the article by Leigh Royden and J. Taylor
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_lefts">
 <span class="sig-name descname"><span class="pre">get_lefts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_lefts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_lefts" title="Link to this definition">#</a></dt>
-<dd><p>Returns the right spatial borders of the patches for time moments tau.
-It’s defune as subtraction of patch right (noninfinite) borders and their lengths</p>
+<dd><p>Returns the right spatial borders of the patches for <span class="math notranslate nohighlight">\(\tau\)</span> moments tau.</p>
+<p>It’s defune as subtraction of patch right (noninfinite) borders and their lengths:</p>
+<div class="math notranslate nohighlight">
+\[\chi_{L, i}(\tau) = \chi_{R, i}(\tau) - \Delta_i\]</div>
 <section id="id38">
-<h3>Comment:<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<h4>Comment:<a class="headerlink" href="#id38" title="Link to this heading">#</a></h4>
 <p>It’s nan for moments tau less than patch starts</p>
 </section>
 <section id="id39">
-<h3>Parameters:<a class="headerlink" href="#id39" title="Link to this heading">#</a></h3>
+<h4>Parameters:<a class="headerlink" href="#id39" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
 </dl>
 </section>
 <section id="id40">
-<h3>Returns:<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<h4>Returns:<a class="headerlink" href="#id40" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>res: float array shape (N, tau.shape)</dt><dd><p>Left borders for each patch and each moment tau</p>
+<dt>res: float array shape (N, tau.shape)</dt><dd><p>Left borders <span class="math notranslate nohighlight">\(\chi_{L, i}\)</span> for each patch and each <span class="math notranslate nohighlight">\(\tau\)</span> moment in tau</p>
 </dd>
 </dl>
 </section>
@@ -803,31 +884,45 @@ It’s defune as subtraction of patch right (noninfinite) borders and their leng
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_lengths">
 <span class="sig-name descname"><span class="pre">get_lengths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_lengths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_lengths" title="Link to this definition">#</a></dt>
-<dd><p>Returns the spatial lengths of patch.
-It’s defined as the product of time lengths of patches and their translation speed</p>
+<dd><p>Returns the spatial lengths of patch.</p>
+<p>It’s defined as the product of time lengths of patches and their translation speed:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_i = \chi_{R, i}(\tau_{i+1}) = n\nu_i^{(n - 1)/n}(\tau_{i+1} - \tau_i)\]</div>
+<section id="id41">
+<h4>Returns:<a class="headerlink" href="#id41" title="Link to this heading">#</a></h4>
+<dl class="simple">
+<dt>res: float array shape (N, <a href="#id42"><span class="problematic" id="id43">*</span></a>tau.shape)</dt><dd><p>Lengths of the patches <span class="math notranslate nohighlight">\(\Delta_i\)</span></p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_nu_value">
 <span class="sig-name descname"><span class="pre">get_nu_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chi</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">nan</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rate_before</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_nu_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_nu_value" title="Link to this definition">#</a></dt>
-<dd><p>Returns the uplift rate (nu-value) for each moment tau.
-Just returns the uplift rate at chi=0, nu(tau, chi=0)</p>
-<section id="id41">
-<h3>Parameters:<a class="headerlink" href="#id41" title="Link to this heading">#</a></h3>
-<dl class="simple">
+<dd><p>Returns the uplift rate (nu-value) for each moment <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<p>Just returns the uplift rate at <span class="math notranslate nohighlight">\(\chi=0\)</span>, this is the value of the function:</p>
+<div class="math notranslate nohighlight">
+\[\nu(\tau, \chi=0) = \nu(\tau) = \nu(\tau, \chi)\]</div>
+<p>from the equation defining slope patches object:</p>
+<div class="math notranslate nohighlight">
+\[\cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)\]</div>
+<section id="id44">
+<h4>Parameters:<a class="headerlink" href="#id44" title="Link to this heading">#</a></h4>
+<dl>
 <dt>tau<span class="classifier">float or float array</span></dt><dd><p>The time argument of the uplift rate function</p>
 </dd>
-<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The spatial argument of the uplift rate function
-The result value does not depend on this argument, 
-but sometimes this function should take 2 paraeters.</p>
+<dt>chi<span class="classifier">float or float array</span></dt><dd><p>The spatial argument of the uplift rate function</p>
+<p>The result value does not depend on this argument, 
+but sometimes this function should take 2 parameters.</p>
 </dd>
-<dt>rate_before: float or None</dt><dd><p>The uplift rate before the first patch starts.
-If it is None, then set rate_before same as rate of 1st patch (patch index 0).</p>
+<dt>rate_before: float or None</dt><dd><p>The uplift rate before the first patch starts.</p>
+<p>If it is None, then set rate_before same as rate of 1st patch (patch index 0).</p>
 </dd>
 </dl>
 </section>
-<section id="id42">
-<h3>Returns:<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<section id="id45">
+<h4>Returns:<a class="headerlink" href="#id45" title="Link to this heading">#</a></h4>
 <dl class="simple">
 <dt>nu<span class="classifier">float or float array</span></dt><dd><p>The uplift rates for moments tau</p>
 </dd>
@@ -839,46 +934,55 @@ If it is None, then set rate_before same as rate of 1st patch (patch index 0).</
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_patches_relisation_borders">
 <span class="sig-name descname"><span class="pre">get_patches_relisation_borders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_patches_relisation_borders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_patches_relisation_borders" title="Link to this definition">#</a></dt>
 <dd><p>Returns the borders of patch realisation</p>
-<section id="id43">
-<h3>Parameters:<a class="headerlink" href="#id43" title="Link to this heading">#</a></h3>
-<p>tau: float or float array</p>
+<p>The left border is the maximal intersection of the patch 
+with another patch or stretch zone after the current, or the left border of patch itself.</p>
+<p>The right border is the minimal intersection of the patch 
+with another patch or stretch zone before the current, or the right border of patch itself.</p>
+<section id="id46">
+<h4>Parameters:<a class="headerlink" href="#id46" title="Link to this heading">#</a></h4>
 <dl class="simple">
+<dt>tau: float or float array</dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
+</dd>
 <dt>xtol: float</dt><dd><p>Accuracy for the bisection solver</p>
 </dd>
 <dt>maxiter: int</dt><dd><p>Maximal number of iterations for the bisection solver</p>
 </dd>
 </dl>
 </section>
-<section id="id44">
-<h3>Returns:<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
-<p>left_borders : float array shape (N, <a href="#id45"><span class="problematic" id="id46">*</span></a>tau.shape)</p>
-<p>right_borders : float array shape (N, <a href="#id47"><span class="problematic" id="id48">*</span></a>tau.shape)</p>
+<section id="id47">
+<h4>Returns:<a class="headerlink" href="#id47" title="Link to this heading">#</a></h4>
+<dl>
+<dt>left_borders<span class="classifier">float array shape (N, <a href="#id48"><span class="problematic" id="id49">*</span></a>tau.shape)</span></dt><dd><p>left_borders[i] corresponds the left realisation borders of the :math`i`-th patch</p>
+</dd>
+<dt>right_borders<span class="classifier">float array shape (N, <a href="#id50"><span class="problematic" id="id51">*</span></a>tau.shape)</span></dt><dd><p>right_borders[i] corresponds the right realisation borders of the :math`i`-th patch</p>
+</dd>
+</dl>
 </section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_right_elevations">
 <span class="sig-name descname"><span class="pre">get_right_elevations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_is_infinite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_right_elevations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_right_elevations" title="Link to this definition">#</a></dt>
-<dd><p>Returns elevations pon the right borders of the patches for time moments tau.  
-Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
-<section id="id49">
-<h3>Comment:<a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<dd><p>Returns elevations <span class="math notranslate nohighlight">\(\lambda_i(\tau, \chi_{R, i})\)</span> on the right borders of the patches for time moments <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<section id="id52">
+<h4>Comment:<a class="headerlink" href="#id52" title="Link to this heading">#</a></h4>
 <p>It’s nan for moments tau less than patch starts</p>
 </section>
-<section id="id50">
-<h3>Parameters:<a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<section id="id53">
+<h4>Parameters:<a class="headerlink" href="#id53" title="Link to this heading">#</a></h4>
+<dl>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
-<dt>first_is_infinite<span class="classifier">bool, default True</span></dt><dd><p>If it’s True, the first patch right border will be at infinite
-If it’s False, it will be defined proportional to the moment tau</p>
+<dt>first_is_infinite<span class="classifier">bool, default True</span></dt><dd><p>If it’s True, the first patch right border will be at infinite</p>
+<p>If it’s False, it will be defined proportional to the moment tau</p>
 </dd>
 </dl>
 </section>
-<section id="id51">
-<h3>Returns:<a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<section id="id54">
+<h4>Returns:<a class="headerlink" href="#id54" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>lam: float array shape (N, tau.shape)</dt><dd><p>Elevations on the right borders for each patch and each moment tau</p>
+<dt>lam<span class="classifier">float array shape same as index.shape</span></dt><dd><p>The elevation <span class="math notranslate nohighlight">\(\lambda_i(\tau, \chi_{R, i})\)</span>
+throught the time moments <span class="math notranslate nohighlight">\(\tau\)</span></p>
 </dd>
 </dl>
 </section>
@@ -887,26 +991,28 @@ If it’s False, it will be defined proportional to the moment tau</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_rights">
 <span class="sig-name descname"><span class="pre">get_rights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_is_infinite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_rights"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_rights" title="Link to this definition">#</a></dt>
-<dd><p>Returns the right spatial borders of the patches for time moments tau.  
-Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
-<section id="id52">
-<h3>Comment:<a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
+<dd><p>Returns the right spatial borders of the patches for time moments tau.</p>
+<p>Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</p>
+<div class="math notranslate nohighlight">
+\[\chi_{R, i}(\tau) = n\nu_i^{(n - 1)/n}(\tau_i)\]</div>
+<section id="id55">
+<h4>Comment:<a class="headerlink" href="#id55" title="Link to this heading">#</a></h4>
 <p>It’s nan for moments tau less than patch starts</p>
 </section>
-<section id="id53">
-<h3>Parameters:<a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
-<dl class="simple">
-<dt>tau<span class="classifier">float or float array</span></dt><dd><p>The (dimensionless) time argument</p>
+<section id="id56">
+<h4>Parameters:<a class="headerlink" href="#id56" title="Link to this heading">#</a></h4>
+<dl>
+<dt>tau<span class="classifier">float or float array</span></dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
 </dd>
-<dt>first_is_infinite<span class="classifier">bool, default True</span></dt><dd><p>If it’s True, the first patch right border will be at infinite
-If it’s False, it will be defined proportional to the moment tau</p>
+<dt>first_is_infinite<span class="classifier">bool, default True</span></dt><dd><p>If it’s True, the first patch right border will be at infinite</p>
+<p>If it’s False, it will be defined proportional to tau</p>
 </dd>
 </dl>
 </section>
-<section id="id54">
-<h3>Returns:<a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
+<section id="id57">
+<h4>Returns:<a class="headerlink" href="#id57" title="Link to this heading">#</a></h4>
 <dl class="simple">
-<dt>res: float array shape (N, tau.shape)</dt><dd><p>Right borders for each patch and each moment tau</p>
+<dt>res: float array shape (N, tau.shape)</dt><dd><p>Right borders <span class="math notranslate nohighlight">\(\chi_{R, i}\)</span> for each patch and each <span class="math notranslate nohighlight">\(\tau\)</span> moment in tau</p>
 </dd>
 </dl>
 </section>
@@ -915,31 +1021,52 @@ If it’s False, it will be defined proportional to the moment tau</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_slopes">
 <span class="sig-name descname"><span class="pre">get_slopes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_slopes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_slopes" title="Link to this definition">#</a></dt>
-<dd><p>Returns the array of slopes for each patch; 
-Associated with the equation (10) form the article by Leigh Royden and J. Taylor Perron</p>
+<dd><p>Returns the array of slopes for each patch.</p>
+<p>Associated with the equation (13) form the article by Leigh Royden and J. Taylor Perron:</p>
+<div class="math notranslate nohighlight">
+\[\sigma(\chi, \tau) = \frac{\partial \lambda}{\partial \chi} = \nu(\tau)^{1/n}\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma_i = \nu_i^{1/n}\]</div>
+<section id="id58">
+<h4>Returns:<a class="headerlink" href="#id58" title="Link to this heading">#</a></h4>
+<dl class="simple">
+<dt>slopes - float array length N </dt><dd><p>The slopes of the patches</p>
+</dd>
+</dl>
+</section>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders">
 <span class="sig-name descname"><span class="pre">get_stretch_zones_relisation_borders</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tau</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maxiter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/slope_patches.html#SlopePatches.get_stretch_zones_relisation_borders"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders" title="Link to this definition">#</a></dt>
 <dd><p>Returns the borders of stretch zones realisation</p>
-<section id="id55">
-<h3>Parameters:<a class="headerlink" href="#id55" title="Link to this heading">#</a></h3>
-<p>tau: float or float array</p>
+<p>The left border is the maximal intersection of the stretch zone 
+with another patch or stretch zone after the current, or the left border of patch itself.</p>
+<p>The right border is the minimal intersection of the stretch zone 
+with another patch or stretch zone before the current, or the right border of patch itself.</p>
+<section id="id59">
+<h4>Parameters:<a class="headerlink" href="#id59" title="Link to this heading">#</a></h4>
 <dl class="simple">
+<dt>tau: float or float array</dt><dd><p><span class="math notranslate nohighlight">\(\tau\)</span> - the dimensionless time argument</p>
+</dd>
 <dt>xtol: float</dt><dd><p>Accuracy for the bisection solver</p>
 </dd>
 <dt>maxiter: int</dt><dd><p>Maximal number of iterations for the bisection solver</p>
 </dd>
 </dl>
 </section>
-<section id="id56">
-<h3>Returns:<a class="headerlink" href="#id56" title="Link to this heading">#</a></h3>
-<p>left_borders : float array shape (N, <a href="#id57"><span class="problematic" id="id58">*</span></a>tau.shape)</p>
-<p>right_borders : float array shape (N, <a href="#id59"><span class="problematic" id="id60">*</span></a>tau.shape)</p>
+<section id="id60">
+<h4>Returns:<a class="headerlink" href="#id60" title="Link to this heading">#</a></h4>
+<dl>
+<dt>left_borders<span class="classifier">float array shape (N - 1, <a href="#id61"><span class="problematic" id="id62">*</span></a>tau.shape)</span></dt><dd><p>left_borders[i] corresponds the left realisation borders of the :math`i`-th stretch zone</p>
+</dd>
+<dt>right_borders<span class="classifier">float array shape (N - 1, <a href="#id63"><span class="problematic" id="id64">*</span></a>tau.shape)</span></dt><dd><p>left_borders[i] corresponds the right realisation borders of the :math`i`-th stretch zone</p>
+</dd>
+</dl>
 </section>
 </dd></dl>
 
+</section>
 </dd></dl>
 
 </section>
@@ -949,19 +1076,23 @@ Associated with the equation (10) form the article by Leigh Royden and J. Taylor
 <dt class="sig sig-object py" id="bguriver.warning_handler.get_runtime_warning_act_decorator">
 <span class="sig-prename descclassname"><span class="pre">bguriver.warning_handler.</span></span><span class="sig-name descname"><span class="pre">get_runtime_warning_act_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_warning_action</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ignore'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bguriver/warning_handler.html#get_runtime_warning_act_decorator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bguriver.warning_handler.get_runtime_warning_act_decorator" title="Link to this definition">#</a></dt>
 <dd><p>Returns the decorator wraping a function with given reaction to RuntimeWarning</p>
-<section id="id61">
-<h3>Parameters:<a class="headerlink" href="#id61" title="Link to this heading">#</a></h3>
-<dl class="simple">
+<section id="id65">
+<h3>Parameters:<a class="headerlink" href="#id65" title="Link to this heading">#</a></h3>
+<dl>
 <dt>runtime_warning_action<span class="classifier">str</span></dt><dd><p>What should be done with RuntimeWarning, often throwing by optimizers.
-Possible values:
-default         # Show all warnings (even those ignored by default)
-ignore          # Ignore all warnings
-error           # Convert all warnings to errors</p>
+Possible values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“default” - Show all warnings (even those ignored by default)</p></li>
+<li><p>“ignore”  - Ignore all warnings</p></li>
+<li><p>“error”   - Convert all warnings to errors</p></li>
+</ul>
+</div></blockquote>
 </dd>
 </dl>
 </section>
-<section id="id62">
-<h3>Returns:<a class="headerlink" href="#id62" title="Link to this heading">#</a></h3>
+<section id="id66">
+<h3>Returns:<a class="headerlink" href="#id66" title="Link to this heading">#</a></h3>
 <dl class="simple">
 <dt>runtime_warning_act<span class="classifier">function</span></dt><dd><p>A decorator function that applies the desired warning handling to a wrapped function.</p>
 </dd>

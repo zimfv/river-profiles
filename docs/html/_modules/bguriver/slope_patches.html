@@ -314,18 +314,59 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches">[docs]</a>
 <span class="k">class</span> <span class="nc">SlopePatches</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The slope patches are needed to understand the evolution of river profiles, given by formula</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)</span>
+<span class="sd">    </span>
+<span class="sd">    where the function :math:`\nu` is :math:`\chi`-independent step function:</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \nu(\tau, \chi) = \nu(\tau) = </span>
+<span class="sd">        \begin{cases}</span>
+<span class="sd">        \nu_0, \; \tau_0 \le \tau &lt; \tau_1 \\</span>
+<span class="sd">        \nu_1, \; \tau_1 \le \tau &lt; \tau_2 \\</span>
+<span class="sd">        ... \\</span>
+<span class="sd">        \nu_i, \; \tau_{i} \le \tau &lt; \tau_{i+1} \\</span>
+<span class="sd">        ... \\</span>
+<span class="sd">        \nu_N, \; \tau_N \le \tau &lt; \infty \\</span>
+<span class="sd">        \end{cases}</span>
+
+<span class="sd">    we can just say, that :math:`\nu_{N+1} = \infty`.</span>
+
+<span class="sd">    The concept of slope patches is described in the article by Leigh Royden and J. Taylor Perron:</span>
+<span class="sd">    https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031</span>
+
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    patch_starts - float array length N</span>
+<span class="sd">        The times :math:`\tau_i`, when :math:`i`-th patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        Let N be the number of patches; It&#39;s not used in code itself</span>
+<span class="sd">        </span>
+<span class="sd">    uplift_rates - float array length N</span>
+<span class="sd">        The values :math:`\nu_i`, uplift rate of the :math:`i`-th patch </span>
+<span class="sd">        (correspondes :math:`\tau` between :math:`\tau_i` and :math:`\tau_{i+1}`)</span>
+<span class="sd">        </span>
+<span class="sd">    n - float</span>
+<span class="sd">        The constant :math:`n` - the exponent on channel slope</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patch_starts</span><span class="p">,</span> <span class="n">uplift_rates</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Atributes:</span>
 <span class="sd">        ----------</span>
-<span class="sd">        patch_starts - float array length N &gt; 0 (let N be the number of patches; It&#39;s not used in code itself)</span>
-<span class="sd">            The times tau_i, when i-th patch starts</span>
+<span class="sd">        patch_starts - float array length N</span>
+<span class="sd">            The times :math:`\tau_i`, when :math:`i`-th patch starts</span>
 <span class="sd">        </span>
 <span class="sd">        uplift_rates - float array length N</span>
-<span class="sd">            The values nu_i, uplift rate of the i-th patch (correspondes tau between tau_i and tau_{i+1})</span>
-<span class="sd">        </span>
+<span class="sd">            The values :math:`\nu_i`, uplift rate of the :math:`i`-th patch </span>
+<span class="sd">            (correspondes :math:`\tau` between :math:`\tau_i` and :math:`\tau_{i+1}`)</span>
+
 <span class="sd">        n - float</span>
-<span class="sd">            The exponent on channel slope</span>
+<span class="sd">            The constant :math:`n` - the exponent on channel slope</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">patch_starts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The patch_starts should be not empty.&#39;</span><span class="p">)</span>
@@ -342,7 +383,7 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.count">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.count">[docs]</a>
     <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the number of patches N</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">)</span></div>
@@ -352,21 +393,38 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_slopes">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_slopes">[docs]</a>
     <span class="k">def</span> <span class="nf">get_slopes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the array of slopes for each patch; </span>
-<span class="sd">        Associated with the equation (10) form the article by Leigh Royden and J. Taylor Perron</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the array of slopes for each patch.</span>
+
+<span class="sd">        Associated with the equation (13) form the article by Leigh Royden and J. Taylor Perron:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \sigma(\chi, \tau) = \frac{\partial \lambda}{\partial \chi} = \nu(\tau)^{1/n}</span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \sigma_i = \nu_i^{1/n}</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        slopes - float array length N </span>
+<span class="sd">            The slopes of the patches</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span></div>
+        <span class="n">slopes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">slopes</span></div>
 
     
     
 <div class="viewcode-block" id="SlopePatches.get_rights">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_rights">[docs]</a>
     <span class="k">def</span> <span class="nf">get_rights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the right spatial borders of the patches for time moments tau.  </span>
+
 <span class="sd">        Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</span>
-<span class="sd">        </span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \chi_{R, i}(\tau) = n\nu_i^{(n - 1)/n}(\tau_i)</span>
+
+
 <span class="sd">        Comment:</span>
 <span class="sd">        --------</span>
 <span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
@@ -374,16 +432,17 @@ document.write(`
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        first_is_infinite : bool, default True</span>
 <span class="sd">            If it&#39;s True, the first patch right border will be at infinite</span>
-<span class="sd">            If it&#39;s False, it will be defined proportional to the moment tau</span>
+
+<span class="sd">            If it&#39;s False, it will be defined proportional to tau</span>
 <span class="sd">            </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        res: float array shape (N, tau.shape)</span>
-<span class="sd">            Right borders for each patch and each moment tau</span>
+<span class="sd">            Right borders :math:`\chi_{R, i}` for each patch and each :math:`\tau` moment in tau</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         
@@ -407,9 +466,18 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_lengths">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_lengths">[docs]</a>
     <span class="k">def</span> <span class="nf">get_lengths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the spatial lengths of patch.</span>
-<span class="sd">        It&#39;s defined as the product of time lengths of patches and their translation speed</span>
+
+<span class="sd">        It&#39;s defined as the product of time lengths of patches and their translation speed:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \Delta_i = \chi_{R, i}(\tau_{i+1}) = n\nu_i^{(n - 1)/n}(\tau_{i+1} - \tau_i)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        res: float array shape (N, *tau.shape)</span>
+<span class="sd">            Lengths of the patches :math:`\Delta_i`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="o">**</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> 
         <span class="n">res</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
@@ -420,10 +488,14 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_lefts">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_lefts">[docs]</a>
     <span class="k">def</span> <span class="nf">get_lefts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the right spatial borders of the patches for time moments tau.</span>
-<span class="sd">        It&#39;s defune as subtraction of patch right (noninfinite) borders and their lengths</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the right spatial borders of the patches for :math:`\tau` moments tau.</span>
+
+<span class="sd">        It&#39;s defune as subtraction of patch right (noninfinite) borders and their lengths:</span>
 <span class="sd">        </span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \chi_{L, i}(\tau) = \chi_{R, i}(\tau) - \Delta_i</span>
+
 <span class="sd">        Comment:</span>
 <span class="sd">        --------</span>
 <span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
@@ -431,12 +503,12 @@ document.write(`
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        res: float array shape (N, tau.shape)</span>
-<span class="sd">            Left borders for each patch and each moment tau</span>
+<span class="sd">            Left borders :math:`\chi_{L, i}` for each patch and each :math:`\tau` moment in tau</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         
@@ -457,21 +529,26 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevations_for_patches">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_elevations_for_patches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filter_outer</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi for patches given by index</span>
-<span class="sd">        Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi for patches given by index.</span>
+
+<span class="sd">        Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \lambda_i(\tau, \chi) = \chi\sigma_i + \int\limits_{\tau_i}^\tau [\nu(t) - \nu_i]dt</span>
 <span class="sd">        </span>
 <span class="sd">        If index is None</span>
-<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi</span>
+<span class="sd">        Returns the elevation for each patch for points :math:`(\tau, \chi)`, which does not correspond the patch</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        chi : float or float array</span>
-<span class="sd">            The (dimensionless) distance argument</span>
-<span class="sd">            tau and chi should be the same shape</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
 <span class="sd">        </span>
 <span class="sd">        index : int, int array or None</span>
 <span class="sd">            The patches indices</span>
@@ -485,7 +562,10 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        lam : float array shape same as index.shape</span>
-<span class="sd">            The elevation throught the time moments tau, spatial points for the patch from patch_index </span>
+<span class="sd">            The elevation :math:`\lambda_i(\tau, \chi)` </span>
+<span class="sd">            throught the time moments :math:`\tau`, spatial points :math:`\chi` </span>
+<span class="sd">            for the patch :math:`i` from patch_index </span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -520,10 +600,9 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_right_elevations">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_right_elevations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns elevations pon the right borders of the patches for time moments tau.  </span>
-<span class="sd">        Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</span>
-<span class="sd">        </span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns elevations :math:`\lambda_i(\tau, \chi_{R, i})` on the right borders of the patches for time moments :math:`\tau`.</span>
+
 <span class="sd">        Comment:</span>
 <span class="sd">        --------</span>
 <span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
@@ -531,16 +610,18 @@ document.write(`
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        first_is_infinite : bool, default True</span>
 <span class="sd">            If it&#39;s True, the first patch right border will be at infinite</span>
+
 <span class="sd">            If it&#39;s False, it will be defined proportional to the moment tau</span>
 <span class="sd">            </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
-<span class="sd">        lam: float array shape (N, tau.shape)</span>
-<span class="sd">            Elevations on the right borders for each patch and each moment tau</span>
+<span class="sd">        lam : float array shape same as index.shape</span>
+<span class="sd">            The elevation :math:`\lambda_i(\tau, \chi_{R, i})`</span>
+<span class="sd">            throught the time moments :math:`\tau`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">chi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="n">first_is_infinite</span><span class="p">)</span>
@@ -562,9 +643,8 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_left_elevations">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_left_elevations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns elevations on the left borders of the patches for time moments tau.  </span>
-<span class="sd">        Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns elevations :math:`\lambda_i(\tau, \chi_{L, i})` on the left borders of the patches for time moments :math:`\tau`.</span>
 <span class="sd">        </span>
 <span class="sd">        Comment:</span>
 <span class="sd">        --------</span>
@@ -573,12 +653,13 @@ document.write(`
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
-<span class="sd">        lam: float array shape (N, tau.shape)</span>
-<span class="sd">            Elevations on the left borders for each patch and each moment tau</span>
+<span class="sd">        lam : float array shape same as index.shape</span>
+<span class="sd">            The elevation :math:`\lambda_i(\tau, \chi_{L, i})` </span>
+<span class="sd">            throught the time moments :math:`\tau`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">chi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
@@ -600,30 +681,39 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevations_for_stretch_zones">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filter_outer</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch</span>
-<span class="sd">        Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch.</span>
+
+<span class="sd">        Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \lambda_i = </span>
+<span class="sd">            \cfrac{n-1}{n}\left(\cfrac{\chi^n}{n(\tau - \tau_{i+1})}\right)^{\cfrac{1}{n-1}} + </span>
+<span class="sd">            \left(\tau - \tau_{i+1}\right)\nu_{i+1} + </span>
+<span class="sd">            \int\limits_{\tau_{i+1}}^\tau (\nu(t) - \nu_{i+1}) dt</span>
 <span class="sd">        </span>
-<span class="sd">        </span>
-<span class="sd">        Returns the elevation over connection between i-th and (i+1)-th slope patches.</span>
+<span class="sd">        Returns the elevation over connection between :math:`i`-th and :math:`(i+1)`-th slope patches.</span>
 <span class="sd">        This is stretch zones or consuming knick points</span>
 <span class="sd">        </span>
 <span class="sd">        Comment:</span>
 <span class="sd">        --------</span>
-<span class="sd">        It&#39;s nan in the case, if the point (tau, chi) do not correspond the patch.</span>
+<span class="sd">        It&#39;s nan in the case, if the point :math:`(\tau, \chi)` do not correspond the stretch zone.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        chi : float or float array</span>
-<span class="sd">            The (dimensionless) distance argument</span>
-<span class="sd">            tau and chi should be the same shape</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
 <span class="sd">        </span>
 <span class="sd">        index : int or int array</span>
 <span class="sd">            The stretch zones indices</span>
+
 <span class="sd">            Should be the same shape as tau and chi</span>
+
 <span class="sd">            If it&#39;s None, then this will be changed to array shape (N - 1, *tau/chi.shape)</span>
 <span class="sd">            where index[i] == i</span>
 <span class="sd">            </span>
@@ -674,22 +764,33 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_elevation">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation">[docs]</a>
     <span class="k">def</span> <span class="nf">get_elevation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the elevation</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the elevation :math:`\lambda(\tau, \chi)` at the point :math:`\chi` at moment :math:`\tau`</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \lambda(\tau, \chi) = </span>
+<span class="sd">            \begin{cases}</span>
+<span class="sd">            \min \lambda_j(\tau, \chi), \; n \ge 1 \\</span>
+<span class="sd">            \max \lambda_j(\tau, \chi), \; n &lt; 1</span>
+<span class="sd">            \end{cases}</span>
+
+<span class="sd">        where :math:`\lambda_j(\tau, \chi)` is from the set of functions, </span>
+<span class="sd">        corresponing the elevation of patches or neighbour patch connections.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        chi : float or float array</span>
-<span class="sd">            The (dimensionless) distance argument</span>
-<span class="sd">            tau and chi should be the same shape</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        lam: float array shape  tau/chi.shape</span>
-<span class="sd">            The elevation</span>
+<span class="sd">            The elevation :math:`\lambda(\tau, \chi)`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_patches</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">),</span> 
                               <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -706,24 +807,37 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_elevation_index">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation_index">[docs]</a>
     <span class="k">def</span> <span class="nf">get_elevation_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the index of patch or stretch_zone corresponding the real elevation</span>
 <span class="sd">        </span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \text{index}(\tau, \chi) = </span>
+<span class="sd">            \begin{cases}</span>
+<span class="sd">            \text{argmin}\; \lambda_j(\tau, \chi), \; n \ge 1 \\</span>
+<span class="sd">            \text{argmax}\; \lambda_j(\tau, \chi), \; n &lt; 1</span>
+<span class="sd">            \end{cases}</span>
+
+<span class="sd">        where :math:`\lambda_j(\tau, \chi)` is from the set of functions, </span>
+<span class="sd">        corresponing the elevation of patches or neighbour patch connections.</span>
+
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        chi : float or float array</span>
-<span class="sd">            The (dimensionless) distance argument</span>
-<span class="sd">            tau and chi should be the same shape</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        index: int array shape  tau/chi.shape</span>
 <span class="sd">            The indices of patches and stretch zones coresponding the real elevation</span>
-<span class="sd">            The index i less than N coresponds the i-th patch</span>
-<span class="sd">            The index i equal or higher than N coresponds the (i - N)-th stretch zone</span>
+
+<span class="sd">            The index :math:`i` less than `N` coresponds the :math:`i`-th patch</span>
+<span class="sd">            </span>
+<span class="sd">            The index :math:`i` equal or higher than `N` coresponds the :math:`(i - N)`-th stretch zone</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_patches</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">),</span> 
                               <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -741,18 +855,19 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_intersections_of_patches">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_intersections_of_patches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">filtration</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the spatial position of intersections between patches</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the spatial position :math:`\chi` of intersections between patches.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        chi : float arrray shape (N, N, *tau.shape)</span>
-<span class="sd">            The matrices of spatial positions of intersection  for time moments tau</span>
+<span class="sd">            The matrices of spatial positions :math:`\chi` of intersection for :math:`\tau` moments in tau</span>
+
 <span class="sd">            The element [i, j] corresponds the intersection between i-th and j-th patches</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()],</span> <span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -781,19 +896,20 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_intersections_of_stretch_zones">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_intersections_of_stretch_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the spatial position of intersections between neighbour connections</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;        </span>
+<span class="sd">        Returns the spatial positions :math:`\chi` of intersections between stretch zones.</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        chi : float arrray shape (N - 1, N - 1, *tau.shape)</span>
-<span class="sd">            The matrices of spatial positions of intersection  for time moments tau</span>
-<span class="sd">            The element [i, j] corresponds the intersection between i-th and j-th neighbour connection</span>
+<span class="sd">            The matrices of spatial positions :math:`\chi` of intersection for :math:`\tau` moments in tau</span>
+
+<span class="sd">            The element [i, j] corresponds the intersection between i-th and j-th stretch zone</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -829,13 +945,13 @@ document.write(`
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_intersections_of_patches_and_stretch_zones">[docs]</a>
     <span class="nd">@runtime_warning_act</span>
     <span class="k">def</span> <span class="nf">get_intersections_of_patches_and_stretch_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the spatial position of intersections between patches and stretch zones</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the spatial positions :math:`\chi` of intersections between patches and stretch zones</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau : float or float array</span>
-<span class="sd">            The (dimensionless) time argument</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        xtol: float</span>
 <span class="sd">            Accuracy for the bisection solver</span>
@@ -846,7 +962,8 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        chi : float arrray shape (N, N - 1, *tau.shape)</span>
-<span class="sd">            The matrices of spatial positions of intersection  for time moments tau</span>
+<span class="sd">            The matrices of spatial positions :math:`\chi` of intersections for :math:`\tau` moments in tau</span>
+
 <span class="sd">            The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -885,12 +1002,19 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_patches_relisation_borders">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_patches_relisation_borders">[docs]</a>
     <span class="k">def</span> <span class="nf">get_patches_relisation_borders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the borders of patch realisation</span>
 <span class="sd">        </span>
+<span class="sd">        The left border is the maximal intersection of the patch </span>
+<span class="sd">        with another patch or stretch zone after the current, or the left border of patch itself.</span>
+
+<span class="sd">        The right border is the minimal intersection of the patch </span>
+<span class="sd">        with another patch or stretch zone before the current, or the right border of patch itself.</span>
+
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau: float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        xtol: float</span>
 <span class="sd">            Accuracy for the bisection solver</span>
@@ -901,8 +1025,10 @@ document.write(`
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
 <span class="sd">        left_borders : float array shape (N, *tau.shape)</span>
+<span class="sd">            left_borders[i] corresponds the left realisation borders of the :math`i`-th patch</span>
 <span class="sd">        </span>
 <span class="sd">        right_borders : float array shape (N, *tau.shape)</span>
+<span class="sd">            right_borders[i] corresponds the right realisation borders of the :math`i`-th patch</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         
@@ -953,12 +1079,19 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_stretch_zones_relisation_borders">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders">[docs]</a>
     <span class="k">def</span> <span class="nf">get_stretch_zones_relisation_borders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Returns the borders of stretch zones realisation</span>
 <span class="sd">        </span>
+<span class="sd">        The left border is the maximal intersection of the stretch zone </span>
+<span class="sd">        with another patch or stretch zone after the current, or the left border of patch itself.</span>
+
+<span class="sd">        The right border is the minimal intersection of the stretch zone </span>
+<span class="sd">        with another patch or stretch zone before the current, or the right border of patch itself.</span>
+
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
 <span class="sd">        tau: float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
 <span class="sd">        </span>
 <span class="sd">        xtol: float</span>
 <span class="sd">            Accuracy for the bisection solver</span>
@@ -968,9 +1101,11 @@ document.write(`
 <span class="sd">            </span>
 <span class="sd">        Returns:</span>
 <span class="sd">        --------</span>
-<span class="sd">        left_borders : float array shape (N, *tau.shape)</span>
+<span class="sd">        left_borders : float array shape (N - 1, *tau.shape)</span>
+<span class="sd">            left_borders[i] corresponds the left realisation borders of the :math`i`-th stretch zone</span>
 <span class="sd">        </span>
-<span class="sd">        right_borders : float array shape (N, *tau.shape)</span>
+<span class="sd">        right_borders : float array shape (N - 1, *tau.shape)</span>
+<span class="sd">            left_borders[i] corresponds the right realisation borders of the :math`i`-th stretch zone</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         
@@ -1018,9 +1153,18 @@ document.write(`
 <div class="viewcode-block" id="SlopePatches.get_nu_value">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_nu_value">[docs]</a>
     <span class="k">def</span> <span class="nf">get_nu_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">rate_before</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Returns the uplift rate (nu-value) for each moment tau.</span>
-<span class="sd">        Just returns the uplift rate at chi=0, nu(tau, chi=0)</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the uplift rate (nu-value) for each moment :math:`\tau`.</span>
+
+<span class="sd">        Just returns the uplift rate at :math:`\chi=0`, this is the value of the function:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \nu(\tau, \chi=0) = \nu(\tau) = \nu(\tau, \chi)</span>
+
+<span class="sd">        from the equation defining slope patches object:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)</span>
 <span class="sd">        </span>
 <span class="sd">        Parameters:</span>
 <span class="sd">        -----------</span>
@@ -1029,11 +1173,13 @@ document.write(`
 <span class="sd">        </span>
 <span class="sd">        chi : float or float array</span>
 <span class="sd">            The spatial argument of the uplift rate function</span>
+
 <span class="sd">            The result value does not depend on this argument, </span>
-<span class="sd">            but sometimes this function should take 2 paraeters.</span>
+<span class="sd">            but sometimes this function should take 2 parameters.</span>
 <span class="sd">        </span>
 <span class="sd">        rate_before: float or None</span>
 <span class="sd">            The uplift rate before the first patch starts.</span>
+
 <span class="sd">            If it is None, then set rate_before same as rate of 1st patch (patch index 0).</span>
 <span class="sd">        </span>
 <span class="sd">        Returns:</span>

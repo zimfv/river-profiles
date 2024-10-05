@@ -311,6 +311,7 @@ document.write(`
 <span class="k">def</span> <span class="nf">lengths_check</span><span class="p">(</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns True, if lengths are correct: borders array should contain 1 element less, than values array</span>
+
 <span class="sd">    If this is not correct, it will raise error if raise_error or return Flase in other case.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">r</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">borders</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
@@ -328,22 +329,32 @@ document.write(`
 <div class="viewcode-block" id="step_function">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.math.step_function">[docs]</a>
 <span class="k">def</span> <span class="nf">step_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">borders</span><span class="o">=</span><span class="p">[],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the value of a step function :math:`f(x)`:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        f(x) = </span>
+<span class="sd">        \begin{cases}</span>
+<span class="sd">        f_0,\; x &lt; x_0 \\</span>
+<span class="sd">        f_i,\; x_{i-1} &lt; x &lt; x_i, \; i = 1, ..., N-1 \\</span>
+<span class="sd">        f_N,\; x &gt; x_N</span>
+<span class="sd">        \end{cases}</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    x : float or float array</span>
 <span class="sd">        The argument of the function</span>
 <span class="sd">    </span>
 <span class="sd">    borders : list of floats len N</span>
-<span class="sd">        The points, when the function changes the value</span>
+<span class="sd">        The points :math:`x_i`, when the function changes the value</span>
 <span class="sd">    </span>
 <span class="sd">    values: list of floats len N+1</span>
-<span class="sd">        values[0] corresponds to the function value before borders[0]</span>
-<span class="sd">        values[i] corresponds to the function value between borders[i-1] and borders[i]</span>
+<span class="sd">        The values of the function :math:`f_i`:</span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    r : float or float array shape x.shape</span>
+<span class="sd">        The value of the step function :math:`f(x)`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lengths_check</span><span class="p">(</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -362,25 +373,37 @@ document.write(`
 <div class="viewcode-block" id="step_integral">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.math.step_integral">[docs]</a>
 <span class="k">def</span> <span class="nf">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">borders</span><span class="o">=</span><span class="p">[],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">negative_backward</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the integral of a step :math:`\int\limits_{x_0}^{x_1}f(x) dx` function </span>
+<span class="sd">    where :math:`f(x)`:</span>
+
+<span class="sd">    .. math::</span>
+<span class="sd">        f(x) = </span>
+<span class="sd">        \begin{cases}</span>
+<span class="sd">        f_0,\; x &lt; x_0 \\</span>
+<span class="sd">        f_i,\; x_{i-1} &lt; x &lt; x_i, \; i = 1, ..., N-1 \\</span>
+<span class="sd">        f_N,\; x &gt; x_N</span>
+<span class="sd">        \end{cases}</span>
+
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    x : float or float array</span>
 <span class="sd">        The argument of the function</span>
 <span class="sd">    </span>
 <span class="sd">    borders : list of floats len N</span>
-<span class="sd">        The points, when the function changes the value</span>
+<span class="sd">        The points :math:`x_i`, when the function changes the value</span>
 <span class="sd">    </span>
 <span class="sd">    values: list of floats len N+1</span>
-<span class="sd">        values[0] corresponds to the function value before borders[0]</span>
-<span class="sd">        values[i] corresponds to the function value between borders[i-1] and borders[i]</span>
+<span class="sd">        The values of the function :math:`f_i`:</span>
 <span class="sd">        </span>
 <span class="sd">    negative_backward: bool</span>
-<span class="sd">        Set I(x0, x1) = -I(x1, x0) for cases, when x0 &gt; x1 </span>
+<span class="sd">        Set :math:`\int\limits_{x_0}^{x_1}f(x) dx = -\int\limits_{x_1}^{x_0}f(x) dx` </span>
+<span class="sd">        for cases, when :math:`x_0 &gt; x_1`. </span>
 <span class="sd">        </span>
 <span class="sd">    Returns:</span>
 <span class="sd">    --------</span>
 <span class="sd">    r : float or float array shape x.shape</span>
+<span class="sd">        The integral value :math:`\int\limits_{x_0}^{x_1}f(x) dx`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">lengths_check</span><span class="p">(</span><span class="n">borders</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
@@ -409,15 +432,19 @@ document.write(`
 <div class="viewcode-block" id="solve_bisect">
 <a class="viewcode-back" href="../../bguriver.html#bguriver.math.solve_bisect">[docs]</a>
 <span class="k">def</span> <span class="nf">solve_bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">iteration</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Bisection recursive solve method</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bisection recursive solve nonlinear equations method:</span>
 <span class="sd">    https://en.wikipedia.org/wiki/Bisection_method</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters:</span>
 <span class="sd">    -----------</span>
 <span class="sd">    f : function, takes float or np.array as argument</span>
 <span class="sd">    </span>
-<span class="sd">    x0, x1: float or np.array same shape, as f-argument should be</span>
+<span class="sd">    x0: float or np.array same shape, as f-argument should be</span>
+<span class="sd">        The left initial segment borders</span>
+
+<span class="sd">    x1: float or np.array same shape, as f-argument should be</span>
+<span class="sd">        The right initial segment borders</span>
 <span class="sd">    </span>
 <span class="sd">    xtol: float</span>
 <span class="sd">        The calculation will terminate if the relative error between two consecutive iterates is at most xtol.</span>
