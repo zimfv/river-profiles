@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>BGU-River &#8212; BGU-River 0.1.0 documentation</title>
+    <title>BGU-River: Tools for Describing River Profile Evolution &#8212; BGU-River 0.1.0 documentation</title>
   
   
   
@@ -295,14 +295,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="bgu-river">
-<h1>BGU-River<a class="headerlink" href="#bgu-river" title="Link to this heading">#</a></h1>
-<p>This package provides tools for describing the evolution of river profiles.</p>
-<p>The <a class="reference internal" href="bguriver.html#module-bguriver.slope_patches" title="bguriver.slope_patches"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bguriver.slope_patches</span></code></a> module implements the concept of slope patches, as described in the <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a> by Leigh Royden and J. Taylor Perron.</p>
-<p>The <a class="reference internal" href="bguriver.html#module-bguriver.approximation" title="bguriver.approximation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bguriver.approximation</span></code></a> module contains the difference schemes approximating the euqation (8) from the mentioned article</p>
+  <section id="bgu-river-tools-for-describing-river-profile-evolution">
+<h1>BGU-River: Tools for Describing River Profile Evolution<a class="headerlink" href="#bgu-river-tools-for-describing-river-profile-evolution" title="Link to this heading">#</a></h1>
+<p>This package provides tools for modeling and analyzing the evolution of river longitudinal profiles.</p>
+<p>The <a class="reference internal" href="bguriver.html#module-bguriver.slope_patches" title="bguriver.slope_patches"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bguriver.slope_patches</span></code></a> module implements the concept of slope patches, as described in the article <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a> by Leigh Royden and J. Taylor Perron.</p>
+<p>The <a class="reference internal" href="bguriver.html#module-bguriver.approximation" title="bguriver.approximation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bguriver.approximation</span></code></a> module contains numerical schemes for approximating equation (8) from the mentioned article:</p>
 <div class="math notranslate nohighlight">
 \[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
-<p>You can find the package on <a class="reference external" href="https://github.com/zimfv/river-profiles">GitHub</a></p>
+<p>This package is developed by Fedor Zimin for <a class="reference external" href="https://sites.google.com/site/gorenliran/home">Liran Goren</a>’s research group at <a class="reference external" href="https://www.bgu.ac.il/en">Ben Gurion University of the Negev</a>.</p>
+<p>The project repository can be found <a class="reference external" href="https://github.com/zimfv/river-profiles">here</a>.</p>
+<p>You can read the project documentation <a class="reference external" href="https://zimfv.github.io/river-profiles/">here</a>.</p>
 </section>
 <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h1>
@@ -398,7 +400,7 @@ pip<span class="w"> </span>install<span class="w"> </span>.
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">BGU-River</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">BGU-River: Tools for Describing River Profile Evolution</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#full-documentation-contents">Full Documentation Contents</a></li>
 </ul>
