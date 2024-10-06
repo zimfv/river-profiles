@@ -1,0 +1,857 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Guide and Usage Examples &#8212; BGU-River 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=01f34227"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'guide';</script>
+    <script src="_static/MathJax/es5/tex-mml-chtml.js?v=cadf963e"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bguriver" href="modules.html" />
+    <link rel="prev" title="BGU-River" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">BGU-River 0.1.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Guide and Usage Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules.html">
+    bguriver
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Guide and Usage Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="modules.html">
+    bguriver
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Guide and...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="guide-and-usage-examples">
+<h1>Guide and Usage Examples<a class="headerlink" href="#guide-and-usage-examples" title="Link to this heading">#</a></h1>
+<section id="slopepatches">
+<h2>SlopePatches<a class="headerlink" href="#slopepatches" title="Link to this heading">#</a></h2>
+<p>The <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches" title="bguriver.slope_patches.SlopePatches"><code class="xref py py-class docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches</span></code></a> object is the tool to work with slope patches:
+understanding the parameters of distinct patches and stretch zones, and
+calculating the elevation of the river.</p>
+<p>You can import this class using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bguriver.slope_patches</span> <span class="kn">import</span> <span class="n">SlopePatches</span>
+</pre></div>
+</div>
+<p>To define the SlopePatches we should define the slope exponent <code class="docutils literal notranslate"><span class="pre">n</span></code> as
+<code class="docutils literal notranslate"><span class="pre">float</span></code>, the time moments, when patches start <code class="docutils literal notranslate"><span class="pre">patch_starts</span></code>, and
+the uplift rates on these patches <code class="docutils literal notranslate"><span class="pre">uplift_rates</span></code>, they should be lists
+(or arrays) of the same length.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define the patches starts, the corresponding uplift rates and the exponent on channel slope</span>
+<span class="n">patch_starts</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">]</span>
+<span class="n">uplift_rates</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mf">0.67</span>
+
+<span class="c1"># create SlopePatches object</span>
+<span class="n">slp</span> <span class="o">=</span> <span class="n">SlopePatches</span><span class="p">(</span><span class="n">patch_starts</span><span class="p">,</span> <span class="n">uplift_rates</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This object will have the attributes with same names:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SlopePatches attributes</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slp.patch_starts = </span><span class="si">{</span><span class="n">slp</span><span class="o">.</span><span class="n">patch_starts</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slp.uplift_rates = </span><span class="si">{</span><span class="n">slp</span><span class="o">.</span><span class="n">uplift_rates</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slp.n = </span><span class="si">{</span><span class="n">slp</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">slp.patch_starts = [0.  1.  5.  8.5]</span>
+<span class="go">slp.uplift_rates = [2.1 0.4 1.9 0.6]</span>
+<span class="go">slp.n = 0.67</span>
+</pre></div>
+</div>
+<p>You can get the number of patches using the <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.count" title="bguriver.slope_patches.SlopePatches.count"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.count()</span></code></a>
+method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at the number of patches</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;slp.count() = </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">slp.count() = 4</span>
+</pre></div>
+</div>
+<p>You can find the elevation at the moment <code class="docutils literal notranslate"><span class="pre">tau</span></code> in the point <code class="docutils literal notranslate"><span class="pre">chi</span></code>
+using <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation" title="bguriver.slope_patches.SlopePatches.get_elevation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_elevation()</span></code></a> method.</p>
+<p>You also can define which patch or stretch zone this elevation corespond
+using <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation_index" title="bguriver.slope_patches.SlopePatches.get_elevation_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_elevation_index()</span></code></a> method.This method will
+return the index. Indices less than <code class="docutils literal notranslate"><span class="pre">slp.count()</span></code> corespond the
+patches, and other corespond the stretch zones.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
+
+<span class="c1"># get elevation for tau and chi</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_elevation</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)</span>
+
+<span class="c1"># get elevation index for tau and chi</span>
+<span class="n">ilam</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_elevation_index</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;lam(tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, chi=</span><span class="si">{</span><span class="n">chi</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">lam</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;index(tau=</span><span class="si">{</span><span class="n">tau</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">, chi=</span><span class="si">{</span><span class="n">chi</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">ilam</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">lam(tau=4.00, chi=3.00) = 3.98</span>
+<span class="go">index(tau=4.00, chi=3.00) = 0</span>
+</pre></div>
+</div>
+<p>You can also use these methods with <code class="docutils literal notranslate"><span class="pre">tau</span></code> and <code class="docutils literal notranslate"><span class="pre">chi</span></code> as arrays or
+tensors.</p>
+<p>Here is the example of calculating the elevation over square grid.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># generate 2-dimensional tau and chi</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+<span class="n">tau</span><span class="p">,</span> <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;tau.shape = </span><span class="si">{</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chi.shape = </span><span class="si">{</span><span class="n">chi</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># get elevation for tau and chi</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_elevation</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;lam.shape = </span><span class="si">{</span><span class="n">lam</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the elevation</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Elevation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">tau.shape = (64, 64)</span>
+<span class="go">chi.shape = (64, 64)</span>
+<span class="go">lam.shape = (64, 64)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="Image" src="_images/guide-elevation.png" />
+</figure>
+<p>We can find the patches and stretch zones realisation bordesr using
+<a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_patches_relisation_borders" title="bguriver.slope_patches.SlopePatches.get_patches_relisation_borders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_patches_relisation_borders()</span></code></a> and
+<a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders" title="bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders()</span></code></a> methods.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># find patches realisation borders</span>
+<span class="n">realisation_patches_lefts</span><span class="p">,</span> <span class="n">realisation_patches_rights</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_patches_relisation_borders</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_patches_lefts.shape = </span><span class="si">{</span><span class="n">realisation_patches_lefts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_patches_rights.shape = </span><span class="si">{</span><span class="n">realisation_patches_rights</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># find stretch zones realisation borders</span>
+<span class="n">realisation_stretch_lefts</span><span class="p">,</span> <span class="n">realisation_stretch_rights</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_stretch_zones_relisation_borders</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_stretch_lefts.shape = </span><span class="si">{</span><span class="n">realisation_stretch_lefts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_stretch_rights.shape = </span><span class="si">{</span><span class="n">realisation_stretch_rights</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># represent the realisation borders as a table</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Left&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">realisation_patches_lefts</span><span class="p">,</span> <span class="n">realisation_stretch_lefts</span><span class="p">]),</span>
+              <span class="s1">&#39;Right&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">realisation_patches_rights</span><span class="p">,</span> <span class="n">realisation_stretch_rights</span><span class="p">]),},</span>
+             <span class="n">index</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Patch &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)),</span>
+                                   <span class="n">np</span><span class="o">.</span><span class="n">char</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;Stretch Zone &#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))]))</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">realisation_patches_lefts.shape = (4,)</span>
+<span class="go">realisation_patches_rights.shape = (4,)</span>
+
+<span class="go">realisation_stretch_lefts.shape = (3,)</span>
+<span class="go">realisation_stretch_rights.shape = (3,)</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><strong>Left</strong></p></th>
+<th class="head"><p><strong>Right</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Patch 0</strong></p></td>
+<td><p>4.293444</p></td>
+<td><p>inf</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Patch 1</strong></p></td>
+<td><p>3.156431</p></td>
+<td><p>4.293444</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Patch 2</strong></p></td>
+<td><p>0.000000</p></td>
+<td><p>1.465209</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Patch 3</strong></p></td>
+<td><p>NaN</p></td>
+<td><p>NaN</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stretch Zone 0</strong></p></td>
+<td><p>NaN</p></td>
+<td><p>NaN</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Stretch Zone 1</strong></p></td>
+<td><p>1.465209</p></td>
+<td><p>3.156431</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Stretch Zone 2</strong></p></td>
+<td><p>NaN</p></td>
+<td><p>NaN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>These methods also can be used non-scalar <code class="docutils literal notranslate"><span class="pre">tau</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># generate array of moments tau</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;tau.shape = </span><span class="si">{</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># find patches realisation borders</span>
+<span class="n">realisation_patches_lefts</span><span class="p">,</span> <span class="n">realisation_patches_rights</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_patches_relisation_borders</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_patches_lefts.shape = </span><span class="si">{</span><span class="n">realisation_patches_lefts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_patches_rights.shape = </span><span class="si">{</span><span class="n">realisation_patches_rights</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># find stretch zones realisation borders</span>
+<span class="n">realisation_stretch_lefts</span><span class="p">,</span> <span class="n">realisation_stretch_rights</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_stretch_zones_relisation_borders</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_stretch_lefts.shape = </span><span class="si">{</span><span class="n">realisation_stretch_lefts</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;realisation_stretch_rights.shape = </span><span class="si">{</span><span class="n">realisation_stretch_rights</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># plot the result</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="k">as</span> <span class="nn">cm</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Realisation Borders&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">turbo</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">i</span><span class="o">/</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">realisation_patches_lefts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Patch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> $</span><span class="se">\\</span><span class="s1">chi_L$&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">turbo</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">i</span><span class="o">/</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">realisation_stretch_lefts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Stretch Zone </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> $</span><span class="se">\\</span><span class="s1">chi_L$&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">turbo</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">i</span><span class="o">/</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">realisation_patches_rights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Patch </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> $</span><span class="se">\\</span><span class="s1">chi_R$&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">turbo</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">i</span><span class="o">/</span><span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">realisation_stretch_rights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Stretch Zone </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> $</span><span class="se">\\</span><span class="s1">chi_R$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">tau.shape = (100,)</span>
+
+<span class="go">realisation_patches_lefts.shape = (4, 100)</span>
+<span class="go">realisation_patches_rights.shape = (4, 100)</span>
+
+<span class="go">realisation_stretch_lefts.shape = (3, 100)</span>
+<span class="go">realisation_stretch_rights.shape = (3, 100)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="Image" src="_images/guide-borders.png" />
+</figure>
+<p>The slope patches are needed to describe the solution of the equation
+(8) from the
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a>.</p>
+<p>To get the value of <code class="docutils literal notranslate"><span class="pre">nu</span></code>, defined the <code class="docutils literal notranslate"><span class="pre">SlopePatches</span></code> object, we can
+use <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_nu_value" title="bguriver.slope_patches.SlopePatches.get_nu_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_nu_value()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define tau values</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+
+<span class="c1"># find nu(tau)</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_nu_value</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+
+<span class="c1"># plot nu function</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\nu(\tau)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\nu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="Image" src="_images/guide-nu.png" />
+</figure>
+</section>
+<section id="approximations">
+<h2>Approximations<a class="headerlink" href="#approximations" title="Link to this heading">#</a></h2>
+<p>To approximate the equation (8) from the
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a></p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
+<p>with given function <code class="docutils literal notranslate"><span class="pre">nu</span></code> of 2 parameters, coresponding <span class="math notranslate nohighlight">\(\nu(\tau, \chi)\)</span> and functions of 1 parameter <code class="docutils literal notranslate"><span class="pre">initial</span></code> and <code class="docutils literal notranslate"><span class="pre">border</span></code>, corresponding <span class="math notranslate nohighlight">\(\nu(\tau=0, \chi)\)</span> and <span class="math notranslate nohighlight">\(\nu(\tau, \chi=0)\)</span>, you can use <a class="reference internal" href="bguriver.html#bguriver.approximation.approximate" title="bguriver.approximation.approximate"><code class="xref py py-func docutils literal notranslate"><span class="pre">bguriver.approximation.approximate()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bguriver.approximation</span> <span class="kn">import</span> <span class="n">approximate</span>
+
+<span class="c1"># define the slope eponent</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">n</span>
+
+<span class="c1"># define nu, initial and border functions</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_nu_value</span>
+<span class="n">initial</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">chi</span><span class="p">:</span> <span class="n">chi</span><span class="o">*</span><span class="n">slp</span><span class="o">.</span><span class="n">get_slopes</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># we sopouse, that nu(0) define the initial solution</span>
+<span class="n">border</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">tau</span><span class="p">:</span> <span class="n">tau</span><span class="o">*</span><span class="mi">0</span>
+
+<span class="c1"># define approximation parameters</span>
+<span class="n">dtau</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">ntau</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">dchi</span> <span class="o">=</span> <span class="mf">0.05</span>
+<span class="n">nchi</span> <span class="o">=</span> <span class="mi">150</span>
+
+<span class="c1"># approximate the soulution</span>
+<span class="n">sol</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span> <span class="o">=</span> <span class="n">approximate</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span>
+                            <span class="n">dtau</span><span class="o">=</span><span class="n">dtau</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span>
+                            <span class="n">dchi</span><span class="o">=</span><span class="n">dchi</span><span class="p">,</span> <span class="n">nchi</span><span class="o">=</span><span class="n">nchi</span><span class="p">)</span>
+
+<span class="c1"># print the result shaes</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sol.shape = </span><span class="si">{</span><span class="n">sol</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;tau.shape = </span><span class="si">{</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chi.shape = </span><span class="si">{</span><span class="n">chi</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot the result</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">})</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Approximation&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">sol</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tau$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\chi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\lambda$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sol.shape = (200, 150)</span>
+<span class="go">tau.shape = (200, 150)</span>
+<span class="go">chi.shape = (200, 150)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="Image" src="_images/guide-approximation.png" />
+</figure>
+<p>You can use a <a class="reference external" href="https://tqdm.github.io/">tqdm</a> bar to look at the
+approximation progress.</p>
+<p>If you are going to use this in the script, you should import:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+<p>And if you are going to use this in notebook, you should import:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+</pre></div>
+</div>
+<p>The approximation contains <code class="docutils literal notranslate"><span class="pre">(ntau-1)*(nchi</span> <span class="pre">-</span> <span class="pre">1)</span></code> iterations.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># we can use the bar to loook at the process</span>
+<span class="k">with</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">total</span><span class="o">=</span><span class="p">(</span><span class="n">ntau</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">nchi</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="k">as</span> <span class="n">bar</span><span class="p">:</span>
+    <span class="c1"># approximate the soulution</span>
+    <span class="n">sol</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span> <span class="o">=</span> <span class="n">approximate</span><span class="p">(</span><span class="n">nu</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">border</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span>
+                                <span class="n">dtau</span><span class="o">=</span><span class="n">dtau</span><span class="p">,</span> <span class="n">ntau</span><span class="o">=</span><span class="n">ntau</span><span class="p">,</span>
+                                <span class="n">dchi</span><span class="o">=</span><span class="n">dchi</span><span class="p">,</span> <span class="n">nchi</span><span class="o">=</span><span class="n">nchi</span><span class="p">,</span>
+                                <span class="n">bar</span><span class="o">=</span><span class="n">bar</span><span class="p">)</span>
+
+<span class="c1"># print the result shaes</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sol.shape = </span><span class="si">{</span><span class="n">sol</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;tau.shape = </span><span class="si">{</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chi.shape = </span><span class="si">{</span><span class="n">chi</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default">
+<img alt="Image" src="_images/guide-bar.png" />
+</figure>
+<div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sol.shape = (200, 150)</span>
+<span class="go">tau.shape = (200, 150)</span>
+<span class="go">chi.shape = (200, 150)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="recomendations">
+<h1>Recomendations<a class="headerlink" href="#recomendations" title="Link to this heading">#</a></h1>
+<section id="animations">
+<h2>Animations<a class="headerlink" href="#animations" title="Link to this heading">#</a></h2>
+<p>If you want to generate an animation, you can use an
+<a class="reference external" href="https://pypi.org/project/imageio/">imageio</a>-package.</p>
+<p>The first you should draw the frames:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+
+<span class="c1"># get an analytical elevation same shape as approximation</span>
+<span class="n">lam</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">get_elevation</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)</span>
+
+<span class="c1"># define the number of frames in the animation</span>
+<span class="n">frames</span> <span class="o">=</span> <span class="mi">60</span>
+
+<span class="c1"># define the list containing drawn frames</span>
+<span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># fill that list</span>
+<span class="k">for</span> <span class="n">itau</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">lam</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">frames</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># make the title containing time</span>
+    <span class="n">tau_value</span> <span class="o">=</span> <span class="n">tau</span><span class="p">[</span><span class="n">itau</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">tau = </span><span class="si">{</span><span class="n">tau_value</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">$&#39;</span><span class="p">)</span>
+
+    <span class="c1"># plot the apporximation</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">chi</span><span class="p">[</span><span class="n">itau</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="n">itau</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Approximation&#39;</span><span class="p">)</span>
+
+    <span class="c1"># plot the analytical solution by SlopePatches</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">chi</span><span class="p">[</span><span class="n">itau</span><span class="p">],</span> <span class="n">sol</span><span class="p">[</span><span class="n">itau</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;SlopePatches&#39;</span><span class="p">)</span>
+
+    <span class="c1"># draw an image</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+    <span class="c1"># add the image to images</span>
+    <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">frombytes</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">get_width_height</span><span class="p">(),</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">tostring_rgb</span><span class="p">()))</span>
+
+    <span class="c1"># close and del figure from the memory</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="k">del</span> <span class="n">fig</span>
+</pre></div>
+</div>
+<p>If you want to generate a gif animation, you can use <code class="docutils literal notranslate"><span class="pre">imageio.mimsave</span></code>
+function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">imageio</span> <span class="k">as</span> <span class="nn">io</span>
+
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;some/path/file.gif&#39;</span>
+<span class="n">io</span><span class="o">.</span><span class="n">mimsave</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">loop</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want to generate a mp4 video, you can use <code class="docutils literal notranslate"><span class="pre">imageio.get_writer</span></code>
+object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;some/path/file.mp4&#39;</span>
+<span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">get_writer</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;FFMPEG&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="n">fps</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span> <span class="k">as</span> <span class="n">writer</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">images</span><span class="p">):</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">append_data</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">BGU-River</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="modules.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">bguriver</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Guide and Usage Examples</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slopepatches">SlopePatches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#approximations">Approximations</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#recomendations">Recomendations</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#animations">Animations</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/guide.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Fedor Zimin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

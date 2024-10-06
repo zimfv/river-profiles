@@ -1,0 +1,1290 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bguriver.slope_patches &#8212; BGU-River 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=01f34227"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/bguriver/slope_patches';</script>
+    <script src="../../_static/MathJax/es5/tex-mml-chtml.js?v=cadf963e"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">BGU-River 0.1.0 documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide.html">
+    Guide and Usage Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules.html">
+    bguriver
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide.html">
+    Guide and Usage Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../modules.html">
+    bguriver
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">bguriver.slo...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for bguriver.slope_patches</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">bguriver.math</span> <span class="kn">import</span> <span class="n">step_function</span><span class="p">,</span> <span class="n">step_integral</span><span class="p">,</span> <span class="n">solve_bisect</span>
+<span class="kn">from</span> <span class="nn">bguriver.warning_handler</span> <span class="kn">import</span> <span class="n">get_runtime_warning_act_decorator</span>
+
+<span class="c1"># set ignoring RuntimeWarnings in few methods</span>
+<span class="n">runtime_warning_act</span> <span class="o">=</span> <span class="n">get_runtime_warning_act_decorator</span><span class="p">(</span><span class="n">runtime_warning_action</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SlopePatches">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches">[docs]</a>
+<span class="k">class</span> <span class="nc">SlopePatches</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The slope patches are needed to understand the evolution of river profiles, given by formula</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)</span>
+<span class="sd">    </span>
+<span class="sd">    where the function :math:`\nu` is :math:`\chi`-independent step function:</span>
+<span class="sd">    </span>
+<span class="sd">    .. math::</span>
+<span class="sd">        \nu(\tau, \chi) = \nu(\tau) = </span>
+<span class="sd">        \begin{cases}</span>
+<span class="sd">        \nu_0, \; \tau_0 \le \tau &lt; \tau_1 \\</span>
+<span class="sd">        \nu_1, \; \tau_1 \le \tau &lt; \tau_2 \\</span>
+<span class="sd">        ... \\</span>
+<span class="sd">        \nu_i, \; \tau_{i} \le \tau &lt; \tau_{i+1} \\</span>
+<span class="sd">        ... \\</span>
+<span class="sd">        \nu_N, \; \tau_N \le \tau &lt; \infty \\</span>
+<span class="sd">        \end{cases}</span>
+
+<span class="sd">    we can just say, that :math:`\nu_{N+1} = \infty`.</span>
+
+<span class="sd">    The concept of slope patches is described in the article by Leigh Royden and J. Taylor Perron:</span>
+<span class="sd">    https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031</span>
+
+
+<span class="sd">    Attributes:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    patch_starts - float array length N</span>
+<span class="sd">        The times :math:`\tau_i`, when :math:`i`-th patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        Let N be the number of patches; It&#39;s not used in code itself</span>
+<span class="sd">        </span>
+<span class="sd">    uplift_rates - float array length N</span>
+<span class="sd">        The values :math:`\nu_i`, uplift rate of the :math:`i`-th patch </span>
+<span class="sd">        (correspondes :math:`\tau` between :math:`\tau_i` and :math:`\tau_{i+1}`)</span>
+<span class="sd">        </span>
+<span class="sd">    n - float</span>
+<span class="sd">        The constant :math:`n` - the exponent on channel slope</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">patch_starts</span><span class="p">,</span> <span class="n">uplift_rates</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Atributes:</span>
+<span class="sd">        ----------</span>
+<span class="sd">        patch_starts - float array length N</span>
+<span class="sd">            The times :math:`\tau_i`, when :math:`i`-th patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        uplift_rates - float array length N</span>
+<span class="sd">            The values :math:`\nu_i`, uplift rate of the :math:`i`-th patch </span>
+<span class="sd">            (correspondes :math:`\tau` between :math:`\tau_i` and :math:`\tau_{i+1}`)</span>
+
+<span class="sd">        n - float</span>
+<span class="sd">            The constant :math:`n` - the exponent on channel slope</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">patch_starts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The patch_starts should be not empty.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">patch_starts</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">uplift_rates</span><span class="p">):</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;The arrays patch_starts and uplift_rates should be the same length. But:&#39;</span>
+            <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">len(patch_starts) = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">patch_starts</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s1">len(uplift_rates) = </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">uplift_rates</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">patch_starts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">uplift_rates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+    
+<div class="viewcode-block" id="SlopePatches.count">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.count">[docs]</a>
+    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the number of patches N</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">)</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_slopes">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_slopes">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_slopes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the array of slopes for each patch.</span>
+
+<span class="sd">        Associated with the equation (13) form the article by Leigh Royden and J. Taylor Perron:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \sigma(\chi, \tau) = \frac{\partial \lambda}{\partial \chi} = \nu(\tau)^{1/n}</span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \sigma_i = \nu_i^{1/n}</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        slopes - float array length N </span>
+<span class="sd">            The slopes of the patches</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">slopes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">slopes</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_rights">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_rights">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_rights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the right spatial borders of the patches for time moments tau.  </span>
+
+<span class="sd">        Associated with the equation (B7) form the article by Leigh Royden and J. Taylor Perron</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \chi_{R, i}(\tau) = n\nu_i^{(n - 1)/n}(\tau_i)</span>
+
+
+<span class="sd">        Comment:</span>
+<span class="sd">        --------</span>
+<span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        first_is_infinite : bool, default True</span>
+<span class="sd">            If it&#39;s True, the first patch right border will be at infinite</span>
+
+<span class="sd">            If it&#39;s False, it will be defined proportional to tau</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        res: float array shape (N, tau.shape)</span>
+<span class="sd">            Right borders :math:`\chi_{R, i}` for each patch and each :math:`\tau` moment in tau</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        
+        <span class="n">shape_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">shape_rat</span> <span class="o">=</span> <span class="n">shape_res</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">shape_rat</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">shape_tau</span> <span class="o">=</span> <span class="n">shape_res</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">shape_tau</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="n">tau_use</span> <span class="o">=</span> <span class="n">tau</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape_tau</span><span class="p">)</span>
+        <span class="n">tau_use</span> <span class="o">=</span> <span class="n">tau_use</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape_rat</span><span class="p">)</span>
+        <span class="n">tau_use</span><span class="p">[</span><span class="n">tau_use</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape_rat</span><span class="p">)</span><span class="o">**</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">tau_use</span>
+        <span class="k">if</span> <span class="n">first_is_infinite</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_lengths">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_lengths">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lengths</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the spatial lengths of patch.</span>
+
+<span class="sd">        It&#39;s defined as the product of time lengths of patches and their translation speed:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \Delta_i = \chi_{R, i}(\tau_{i+1}) = n\nu_i^{(n - 1)/n}(\tau_{i+1} - \tau_i)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        res: float array shape (N, *tau.shape)</span>
+<span class="sd">            Lengths of the patches :math:`\Delta_i`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="o">**</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span> 
+        <span class="n">res</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_lefts">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_lefts">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_lefts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the right spatial borders of the patches for :math:`\tau` moments tau.</span>
+
+<span class="sd">        It&#39;s defune as subtraction of patch right (noninfinite) borders and their lengths:</span>
+<span class="sd">        </span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \chi_{L, i}(\tau) = \chi_{R, i}(\tau) - \Delta_i</span>
+
+<span class="sd">        Comment:</span>
+<span class="sd">        --------</span>
+<span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        res: float array shape (N, tau.shape)</span>
+<span class="sd">            Left borders :math:`\chi_{L, i}` for each patch and each :math:`\tau` moment in tau</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        
+        <span class="n">rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lengths</span><span class="p">()</span>
+        
+        <span class="n">shape_res</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rights</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">shape_len</span> <span class="o">=</span> <span class="n">shape_res</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">shape_len</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="n">res</span> <span class="o">=</span> <span class="n">rights</span> <span class="o">-</span> <span class="n">lengths</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape_len</span><span class="p">)</span>
+        <span class="n">res</span><span class="p">[</span><span class="n">res</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_elevations_for_patches">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevations_for_patches">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_elevations_for_patches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filter_outer</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi for patches given by index.</span>
+
+<span class="sd">        Associated with the equation (B4) form the article by Leigh Royden and J. Taylor Perron:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \lambda_i(\tau, \chi) = \chi\sigma_i + \int\limits_{\tau_i}^\tau [\nu(t) - \nu_i]dt</span>
+<span class="sd">        </span>
+<span class="sd">        If index is None</span>
+<span class="sd">        Returns the elevation for each patch for points :math:`(\tau, \chi)`, which does not correspond the patch</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        chi : float or float array</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
+<span class="sd">        </span>
+<span class="sd">        index : int, int array or None</span>
+<span class="sd">            The patches indices</span>
+<span class="sd">            Should be the same shape as tau and chi</span>
+<span class="sd">            If it&#39;s None, then this will be changed to array shape (N, *tau/chi.shape)</span>
+<span class="sd">            where index[i] == i</span>
+<span class="sd">            </span>
+<span class="sd">        filter_outer : bool</span>
+<span class="sd">            Remove the elements out of theoretical patch borders, if it&#39;s True</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        lam : float array shape same as index.shape</span>
+<span class="sd">            The elevation :math:`\lambda_i(\tau, \chi)` </span>
+<span class="sd">            throught the time moments :math:`\tau`, spatial points :math:`\chi` </span>
+<span class="sd">            for the patch :math:`i` from patch_index </span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">chi</span><span class="o">.</span><span class="n">ndim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">chi</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="n">filter_outer</span><span class="p">:</span>
+            <span class="n">lefts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+            <span class="n">rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+                <span class="n">chi</span><span class="p">[(</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">chi</span> <span class="o">&gt;=</span> <span class="n">lefts</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="n">chi</span><span class="p">[(</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">chi</span> <span class="o">&lt;=</span> <span class="n">rights</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="n">lam_prechi</span> <span class="o">=</span> <span class="n">chi</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">get_slopes</span><span class="p">()[</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">lam_pretau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+            <span class="n">stair_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">lam_pretau</span><span class="p">[</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                                   <span class="n">x1</span><span class="o">=</span><span class="n">tau</span><span class="p">[</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">],</span> 
+                                                   <span class="n">borders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">,</span> 
+                                                   <span class="n">values</span><span class="o">=</span><span class="n">stair_values</span><span class="p">)</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">lam_prechi</span> <span class="o">+</span> <span class="n">lam_pretau</span>
+        
+        <span class="k">return</span> <span class="n">lam</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_right_elevations">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_right_elevations">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_right_elevations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns elevations :math:`\lambda_i(\tau, \chi_{R, i})` on the right borders of the patches for time moments :math:`\tau`.</span>
+
+<span class="sd">        Comment:</span>
+<span class="sd">        --------</span>
+<span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        first_is_infinite : bool, default True</span>
+<span class="sd">            If it&#39;s True, the first patch right border will be at infinite</span>
+
+<span class="sd">            If it&#39;s False, it will be defined proportional to the moment tau</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        lam : float array shape same as index.shape</span>
+<span class="sd">            The elevation :math:`\lambda_i(\tau, \chi_{R, i})`</span>
+<span class="sd">            throught the time moments :math:`\tau`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="n">first_is_infinite</span><span class="p">)</span>
+        
+        <span class="n">lam_prechi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">s</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_slopes</span><span class="p">())])</span>
+        <span class="n">lam_pretau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">lam_prechi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+            <span class="n">step_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">lam_pretau</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                          <span class="n">x1</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> 
+                                          <span class="n">borders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">,</span> 
+                                          <span class="n">values</span><span class="o">=</span><span class="n">step_values</span><span class="p">)</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">lam_prechi</span> <span class="o">+</span> <span class="n">lam_pretau</span>
+        <span class="k">return</span> <span class="n">lam</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_left_elevations">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_left_elevations">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_left_elevations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns elevations :math:`\lambda_i(\tau, \chi_{L, i})` on the left borders of the patches for time moments :math:`\tau`.</span>
+<span class="sd">        </span>
+<span class="sd">        Comment:</span>
+<span class="sd">        --------</span>
+<span class="sd">        It&#39;s nan for moments tau less than patch starts</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        lam : float array shape same as index.shape</span>
+<span class="sd">            The elevation :math:`\lambda_i(\tau, \chi_{L, i})` </span>
+<span class="sd">            throught the time moments :math:`\tau`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+        
+        <span class="n">lam_prechi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">chi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">s</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_slopes</span><span class="p">())])</span>
+        <span class="n">lam_pretau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">lam_prechi</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
+            <span class="n">step_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">lam_pretau</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> 
+                                          <span class="n">x1</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> 
+                                          <span class="n">borders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">,</span> 
+                                          <span class="n">values</span><span class="o">=</span><span class="n">step_values</span><span class="p">)</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">lam_prechi</span> <span class="o">+</span> <span class="n">lam_pretau</span>
+        <span class="k">return</span> <span class="n">lam</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_elevations_for_stretch_zones">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevations_for_stretch_zones">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filter_outer</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the elevation for each patch for moments tau in spatial points chi distinct for each patch.</span>
+
+<span class="sd">        Associated with the equation (16b) form the article by Leigh Royden and J. Taylor Perron:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \lambda_i = </span>
+<span class="sd">            \cfrac{n-1}{n}\left(\cfrac{\chi^n}{n(\tau - \tau_{i+1})}\right)^{\cfrac{1}{n-1}} + </span>
+<span class="sd">            \left(\tau - \tau_{i+1}\right)\nu_{i+1} + </span>
+<span class="sd">            \int\limits_{\tau_{i+1}}^\tau (\nu(t) - \nu_{i+1}) dt</span>
+<span class="sd">        </span>
+<span class="sd">        Returns the elevation over connection between :math:`i`-th and :math:`(i+1)`-th slope patches.</span>
+<span class="sd">        This is stretch zones or consuming knick points</span>
+<span class="sd">        </span>
+<span class="sd">        Comment:</span>
+<span class="sd">        --------</span>
+<span class="sd">        It&#39;s nan in the case, if the point :math:`(\tau, \chi)` do not correspond the stretch zone.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        chi : float or float array</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
+<span class="sd">        </span>
+<span class="sd">        index : int or int array</span>
+<span class="sd">            The stretch zones indices</span>
+
+<span class="sd">            Should be the same shape as tau and chi</span>
+
+<span class="sd">            If it&#39;s None, then this will be changed to array shape (N - 1, *tau/chi.shape)</span>
+<span class="sd">            where index[i] == i</span>
+<span class="sd">            </span>
+<span class="sd">        filter_outer : bool</span>
+<span class="sd">            Remove elevations out of theoretical patch borders, if it&#39;s True</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        lam : float array shape tau/chi/inidex.shape</span>
+<span class="sd">            The elevation throught the time moments tau, spatial points chi for the stretch zone from zone_inidex </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">chi</span><span class="o">.</span><span class="n">ndim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">chi</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chi</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># here I returns nans matrix, but maybe its better to return right lams when chi is equal</span>
+            <span class="c1"># lam = np.nans*np.ones(shape); lam[chi1 == chi] = lam1[chi1 == chi]; return lam</span>
+            <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">tau</span><span class="o">*</span><span class="n">chi</span><span class="o">*</span><span class="n">index</span>
+            <span class="k">return</span> <span class="n">lam</span>
+        
+        <span class="k">if</span> <span class="n">filter_outer</span><span class="p">:</span>
+            <span class="n">lefts</span><span class="p">,</span> <span class="n">rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">)[</span><span class="mi">1</span><span class="p">:],</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">cond</span> <span class="o">=</span> <span class="n">lefts</span> <span class="o">&gt;</span> <span class="n">rights</span>
+            <span class="n">lefts</span><span class="p">[</span><span class="n">cond</span><span class="p">],</span> <span class="n">rights</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">rights</span><span class="p">[</span><span class="n">cond</span><span class="p">],</span> <span class="n">lefts</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="n">chi</span><span class="p">[(</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">chi</span> <span class="o">&gt;=</span> <span class="n">lefts</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+                <span class="n">chi</span><span class="p">[(</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">chi</span> <span class="o">&lt;=</span> <span class="n">rights</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="n">tau1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">index</span><span class="p">]</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">chi</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">/</span><span class="p">(</span><span class="n">tau</span> <span class="o">-</span> <span class="n">tau1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+        <span class="n">lam</span> <span class="o">+=</span> <span class="p">(</span><span class="n">tau</span> <span class="o">-</span> <span class="n">tau1</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">index</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">stair_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+            <span class="n">lam</span><span class="p">[</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> 
+                                             <span class="n">x1</span><span class="o">=</span><span class="n">tau</span><span class="p">[</span><span class="n">index</span> <span class="o">==</span> <span class="n">i</span><span class="p">],</span> 
+                                             <span class="n">borders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">,</span> 
+                                             <span class="n">values</span><span class="o">=</span><span class="n">stair_values</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lam</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_elevation">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elevation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the elevation :math:`\lambda(\tau, \chi)` at the point :math:`\chi` at moment :math:`\tau`</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \lambda(\tau, \chi) = </span>
+<span class="sd">            \begin{cases}</span>
+<span class="sd">            \min \lambda_j(\tau, \chi), \; n \ge 1 \\</span>
+<span class="sd">            \max \lambda_j(\tau, \chi), \; n &lt; 1</span>
+<span class="sd">            \end{cases}</span>
+
+<span class="sd">        where :math:`\lambda_j(\tau, \chi)` is from the set of functions, </span>
+<span class="sd">        corresponing the elevation of patches or neighbour patch connections.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        chi : float or float array</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        lam: float array shape  tau/chi.shape</span>
+<span class="sd">            The elevation :math:`\lambda(\tau, \chi)`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_patches</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">),</span> 
+                              <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">lam</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">lam</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">lam</span> <span class="o">=</span> <span class="n">lam</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lam</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">lam</span><span class="p">)]</span> <span class="o">=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">lam</span> <span class="o">=</span> <span class="n">lam</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lam</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_elevation_index">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation_index">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_elevation_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the index of patch or stretch_zone corresponding the real elevation</span>
+<span class="sd">        </span>
+<span class="sd">        .. math::</span>
+<span class="sd">            \text{index}(\tau, \chi) = </span>
+<span class="sd">            \begin{cases}</span>
+<span class="sd">            \text{argmin}\; \lambda_j(\tau, \chi), \; n \ge 1 \\</span>
+<span class="sd">            \text{argmax}\; \lambda_j(\tau, \chi), \; n &lt; 1</span>
+<span class="sd">            \end{cases}</span>
+
+<span class="sd">        where :math:`\lambda_j(\tau, \chi)` is from the set of functions, </span>
+<span class="sd">        corresponing the elevation of patches or neighbour patch connections.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        chi : float or float array</span>
+<span class="sd">            :math:`\chi` - the dimensionless distance argument</span>
+<span class="sd">            </span>
+<span class="sd">            The arguments tau and chi should be the same shape</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        index: int array shape  tau/chi.shape</span>
+<span class="sd">            The indices of patches and stretch zones coresponding the real elevation</span>
+
+<span class="sd">            The index :math:`i` less than `N` coresponds the :math:`i`-th patch</span>
+<span class="sd">            </span>
+<span class="sd">            The index :math:`i` equal or higher than `N` coresponds the :math:`(i - N)`-th stretch zone</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_patches</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">),</span> 
+                              <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">lam</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">lam</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">lam</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">lam</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">lam</span><span class="p">)]</span> <span class="o">=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">lam</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">index</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_intersections_of_patches">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_intersections_of_patches">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_intersections_of_patches</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">filtration</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the spatial position :math:`\chi` of intersections between patches.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        chi : float arrray shape (N, N, *tau.shape)</span>
+<span class="sd">            The matrices of spatial positions :math:`\chi` of intersection for :math:`\tau` moments in tau</span>
+
+<span class="sd">            The element [i, j] corresponds the intersection between i-th and j-th patches</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()],</span> <span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">shape0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">shape2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">shape0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shape2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">permutation</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">chi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">axes</span><span class="o">=</span><span class="n">permutation</span><span class="p">)</span>
+        <span class="n">chi2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">lam0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_left_elevations</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">axes</span><span class="o">=</span><span class="n">permutation</span><span class="p">)</span>
+        <span class="n">lam2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_right_elevations</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">first_is_infinite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">slopes0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slopes</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape0</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">slopes2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_slopes</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        
+        <span class="n">cond</span> <span class="o">=</span> <span class="n">slopes0</span> <span class="o">!=</span> <span class="n">slopes2</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">chi</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">lam0</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">-</span> <span class="n">lam2</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">-</span> <span class="n">chi0</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span><span class="o">*</span><span class="n">slopes0</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">+</span> <span class="n">chi2</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span><span class="o">*</span><span class="n">slopes2</span><span class="p">[</span><span class="n">cond</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">slopes2</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">-</span> <span class="n">slopes0</span><span class="p">[</span><span class="n">cond</span><span class="p">])</span>
+        
+        <span class="k">return</span> <span class="n">chi</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_intersections_of_stretch_zones">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_intersections_of_stretch_zones">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_intersections_of_stretch_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;        </span>
+<span class="sd">        Returns the spatial positions :math:`\chi` of intersections between stretch zones.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        chi : float arrray shape (N - 1, N - 1, *tau.shape)</span>
+<span class="sd">            The matrices of spatial positions :math:`\chi` of intersection for :math:`\tau` moments in tau</span>
+
+<span class="sd">            The element [i, j] corresponds the intersection between i-th and j-th stretch zone</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+        
+        <span class="n">start_matrix_j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">start_matrix_j</span> <span class="o">=</span> <span class="n">start_matrix_j</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> 
+                                                                <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)]))</span>
+        <span class="n">uplift_matrix_j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="n">uplift_matrix_j</span> <span class="o">=</span> <span class="n">uplift_matrix_j</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> 
+                                                                  <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)]))</span>
+        
+        <span class="n">aj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">*</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="n">start_matrix_j</span><span class="p">)</span>
+        <span class="n">aj</span><span class="p">[</span><span class="n">aj</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">aj</span> <span class="o">=</span> <span class="n">aj</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span>
+        <span class="n">ak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">aj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">bj</span> <span class="o">=</span> <span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="n">start_matrix_j</span><span class="p">)</span><span class="o">*</span><span class="n">uplift_matrix_j</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">step_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">bj</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">step_integral</span><span class="p">(</span><span class="n">x0</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> 
+                                      <span class="n">x1</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> 
+                                      <span class="n">borders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">,</span> 
+                                      <span class="n">values</span><span class="o">=</span><span class="n">step_values</span><span class="p">)</span>
+        <span class="n">bk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">bj</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="p">((</span><span class="n">bk</span> <span class="o">-</span> <span class="n">bj</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">aj</span> <span class="o">-</span> <span class="n">ak</span><span class="p">))</span><span class="o">**</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">chi</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_intersections_of_patches_and_stretch_zones">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_intersections_of_patches_and_stretch_zones">[docs]</a>
+    <span class="nd">@runtime_warning_act</span>
+    <span class="k">def</span> <span class="nf">get_intersections_of_patches_and_stretch_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the spatial positions :math:`\chi` of intersections between patches and stretch zones</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        xtol: float</span>
+<span class="sd">            Accuracy for the bisection solver</span>
+
+<span class="sd">        maxiter: int</span>
+<span class="sd">            Maximal number of iterations for the bisection solver</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        chi : float arrray shape (N, N - 1, *tau.shape)</span>
+<span class="sd">            The matrices of spatial positions :math:`\chi` of intersections for :math:`\tau` moments in tau</span>
+
+<span class="sd">            The element [i, j] corresponds the intersection between i-th patch and j-th stretch zone</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">tau_big</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">])</span><span class="o">*</span><span class="n">tau</span>
+        
+        <span class="n">patch_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">())</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        <span class="n">patch_index</span> <span class="o">=</span> <span class="n">patch_index</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau_big</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">zone_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        <span class="n">zone_index</span> <span class="o">=</span> <span class="n">zone_index</span><span class="o">**</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau_big</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        
+        <span class="n">f_full</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">chi</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_patches</span><span class="p">(</span><span class="n">tau_big</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">patch_index</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="n">tau_big</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">zone_index</span><span class="p">)</span>
+        
+        <span class="n">patches_rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau_big</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">patches_lefts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau_big</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">zones_rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau_big</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">zones_lefts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau_big</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        
+        <span class="n">patches_rights</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">patches_rights</span><span class="p">)]</span> <span class="o">=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">patches_lefts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">patches_lefts</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">zones_rights</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">zones_rights</span><span class="p">)]</span> <span class="o">=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">zones_lefts</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">zones_lefts</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="n">chi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">patches_lefts</span><span class="p">,</span> <span class="n">zones_lefts</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">chi1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="n">patches_rights</span><span class="p">,</span> <span class="n">zones_rights</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">chi0</span> <span class="o">&lt;</span> <span class="n">chi1</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f_full</span><span class="p">(</span><span class="n">chi0</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">f_full</span><span class="p">(</span><span class="n">chi1</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        
+        <span class="n">f_cond</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">chi</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_patches</span><span class="p">(</span><span class="n">tau_big</span><span class="p">[</span><span class="n">cond</span><span class="p">],</span> <span class="n">chi</span><span class="p">,</span> <span class="n">patch_index</span><span class="p">[</span><span class="n">cond</span><span class="p">])</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elevations_for_stretch_zones</span><span class="p">(</span><span class="n">tau_big</span><span class="p">[</span><span class="n">cond</span><span class="p">],</span> <span class="n">chi</span><span class="p">,</span> <span class="n">zone_index</span><span class="p">[</span><span class="n">cond</span><span class="p">])</span>
+        <span class="n">chi_cond</span> <span class="o">=</span> <span class="n">solve_bisect</span><span class="p">(</span><span class="n">f_cond</span><span class="p">,</span> <span class="n">chi0</span><span class="p">[</span><span class="n">cond</span><span class="p">],</span> <span class="n">chi1</span><span class="p">[</span><span class="n">cond</span><span class="p">],</span> <span class="n">xtol</span><span class="o">=</span><span class="n">xtol</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="o">*</span><span class="n">tau_big</span>
+        <span class="n">chi</span><span class="p">[</span><span class="n">cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">chi_cond</span>
+        <span class="k">return</span> <span class="n">chi</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_patches_relisation_borders">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_patches_relisation_borders">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_patches_relisation_borders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the borders of patch realisation</span>
+<span class="sd">        </span>
+<span class="sd">        The left border is the maximal intersection of the patch </span>
+<span class="sd">        with another patch or stretch zone after the current, or the left border of patch itself.</span>
+
+<span class="sd">        The right border is the minimal intersection of the patch </span>
+<span class="sd">        with another patch or stretch zone before the current, or the right border of patch itself.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau: float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        xtol: float</span>
+<span class="sd">            Accuracy for the bisection solver</span>
+
+<span class="sd">        maxiter: int</span>
+<span class="sd">            Maximal number of iterations for the bisection solver</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        left_borders : float array shape (N, *tau.shape)</span>
+<span class="sd">            left_borders[i] corresponds the left realisation borders of the :math`i`-th patch</span>
+<span class="sd">        </span>
+<span class="sd">        right_borders : float array shape (N, *tau.shape)</span>
+<span class="sd">            right_borders[i] corresponds the right realisation borders of the :math`i`-th patch</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        
+        
+        <span class="n">lefts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">intersections_pp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_intersections_of_patches</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+        <span class="n">intersections_pz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_intersections_of_patches_and_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> 
+                                                                               <span class="n">xtol</span><span class="o">=</span><span class="n">xtol</span><span class="p">,</span> 
+                                                                               <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">)</span>
+        <span class="c1"># define and sort the points, which are potential patches realisation borders</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">lefts</span><span class="p">,</span> <span class="n">intersections_pp</span><span class="p">,</span> <span class="n">intersections_pz</span><span class="p">,</span> <span class="n">rights</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">points</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># change the infinity values to some big enough but finite</span>
+        <span class="n">points_finite</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">points_finite</span><span class="p">[</span><span class="n">points</span> <span class="o">==</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">points</span><span class="p">[(</span><span class="n">points</span> <span class="o">!=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span><span class="o">&amp;</span><span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">points</span><span class="p">))])</span>
+        
+        <span class="c1"># check if patches correspond the space between points</span>
+        <span class="n">between</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">points_finite</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">points_finite</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">between</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elevation_index</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">between</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">between</span><span class="p">)</span>
+        <span class="n">between</span> <span class="o">=</span> <span class="n">between</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        
+        <span class="c1"># filter the points, by corresponding the correct patches</span>
+        <span class="n">pb_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">),</span>  <span class="n">between</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+                                <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">between</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">pb_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">pb_cond</span><span class="p">)</span>
+        <span class="n">points</span><span class="p">[</span><span class="n">pb_cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="n">borders_left</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">borders_left</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_left</span><span class="p">)]</span> <span class="o">=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">borders_left</span> <span class="o">=</span> <span class="n">borders_left</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">borders_right</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">borders_right</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_right</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">borders_right</span> <span class="o">=</span> <span class="n">borders_right</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">nan_cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">borders_left</span> <span class="o">&gt;</span> <span class="n">borders_right</span><span class="p">)</span><span class="o">|</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_left</span><span class="p">)</span><span class="o">|</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_right</span><span class="p">)</span>
+        <span class="n">borders_left</span><span class="p">[</span><span class="n">nan_cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">borders_right</span><span class="p">[</span><span class="n">nan_cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="k">return</span> <span class="n">borders_left</span><span class="p">,</span> <span class="n">borders_right</span></div>
+
+    
+
+<div class="viewcode-block" id="SlopePatches.get_stretch_zones_relisation_borders">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_stretch_zones_relisation_borders</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span> <span class="n">maxiter</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the borders of stretch zones realisation</span>
+<span class="sd">        </span>
+<span class="sd">        The left border is the maximal intersection of the stretch zone </span>
+<span class="sd">        with another patch or stretch zone after the current, or the left border of patch itself.</span>
+
+<span class="sd">        The right border is the minimal intersection of the stretch zone </span>
+<span class="sd">        with another patch or stretch zone before the current, or the right border of patch itself.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau: float or float array</span>
+<span class="sd">            :math:`\tau` - the dimensionless time argument</span>
+<span class="sd">        </span>
+<span class="sd">        xtol: float</span>
+<span class="sd">            Accuracy for the bisection solver</span>
+
+<span class="sd">        maxiter: int</span>
+<span class="sd">            Maximal number of iterations for the bisection solver</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        left_borders : float array shape (N - 1, *tau.shape)</span>
+<span class="sd">            left_borders[i] corresponds the left realisation borders of the :math`i`-th stretch zone</span>
+<span class="sd">        </span>
+<span class="sd">        right_borders : float array shape (N - 1, *tau.shape)</span>
+<span class="sd">            left_borders[i] corresponds the right realisation borders of the :math`i`-th stretch zone</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        
+        <span class="n">lefts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rights</span><span class="p">(</span><span class="n">tau</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">rights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_lefts</span><span class="p">(</span><span class="n">tau</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="n">intersections_zz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_intersections_of_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">)</span>
+        <span class="n">intersections_pz</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_intersections_of_patches_and_stretch_zones</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> 
+                                                                               <span class="n">xtol</span><span class="o">=</span><span class="n">xtol</span><span class="p">,</span> 
+                                                                               <span class="n">maxiter</span><span class="o">=</span><span class="n">maxiter</span><span class="p">)</span>
+        <span class="n">intersections_pz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">swapaxes</span><span class="p">(</span><span class="n">intersections_pz</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># define and sort the points, which are potential stretch zones realisation borders</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">lefts</span><span class="p">,</span> <span class="n">intersections_pz</span><span class="p">,</span> <span class="n">intersections_zz</span><span class="p">,</span> <span class="n">rights</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">points</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="c1"># check if stretch zones correspond the space between points</span>
+        <span class="n">between</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">points</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">between</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elevation_index</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">between</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">between</span><span class="p">)</span>
+        <span class="n">between</span> <span class="o">=</span> <span class="n">between</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">tau</span><span class="o">.</span><span class="n">ndim</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+        
+        <span class="c1"># filter the points, by corresponding the correct stretch zones</span>
+        <span class="n">zb_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">),</span>  <span class="n">between</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> 
+                                <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">between</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">tau</span><span class="o">.</span><span class="n">shape</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">zb_cond</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">zb_cond</span><span class="p">)</span>
+        <span class="n">points</span><span class="p">[</span><span class="n">zb_cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="n">borders_left</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">borders_left</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_left</span><span class="p">)]</span> <span class="o">=</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">borders_left</span> <span class="o">=</span> <span class="n">borders_left</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">borders_right</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">borders_right</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_right</span><span class="p">)]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+        <span class="n">borders_right</span> <span class="o">=</span> <span class="n">borders_right</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">nan_cond</span> <span class="o">=</span> <span class="p">(</span><span class="n">borders_left</span> <span class="o">&gt;</span> <span class="n">borders_right</span><span class="p">)</span><span class="o">|</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_left</span><span class="p">)</span><span class="o">|</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">borders_right</span><span class="p">)</span>
+        <span class="n">borders_left</span><span class="p">[</span><span class="n">nan_cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        <span class="n">borders_right</span><span class="p">[</span><span class="n">nan_cond</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+        
+        <span class="k">return</span> <span class="n">borders_left</span><span class="p">,</span> <span class="n">borders_right</span></div>
+
+    
+    
+<div class="viewcode-block" id="SlopePatches.get_nu_value">
+<a class="viewcode-back" href="../../bguriver.html#bguriver.slope_patches.SlopePatches.get_nu_value">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_nu_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tau</span><span class="p">,</span> <span class="n">chi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">rate_before</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the uplift rate (nu-value) for each moment :math:`\tau`.</span>
+
+<span class="sd">        Just returns the uplift rate at :math:`\chi=0`, this is the value of the function:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \nu(\tau, \chi=0) = \nu(\tau) = \nu(\tau, \chi)</span>
+
+<span class="sd">        from the equation defining slope patches object:</span>
+
+<span class="sd">        .. math::</span>
+<span class="sd">            \cfrac{\partial\lambda}{\partial\tau} + (\cfrac{\partial\lambda}{\partial\chi})^n = \nu(\tau, \chi)</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        tau : float or float array</span>
+<span class="sd">            The time argument of the uplift rate function</span>
+<span class="sd">        </span>
+<span class="sd">        chi : float or float array</span>
+<span class="sd">            The spatial argument of the uplift rate function</span>
+
+<span class="sd">            The result value does not depend on this argument, </span>
+<span class="sd">            but sometimes this function should take 2 parameters.</span>
+<span class="sd">        </span>
+<span class="sd">        rate_before: float or None</span>
+<span class="sd">            The uplift rate before the first patch starts.</span>
+
+<span class="sd">            If it is None, then set rate_before same as rate of 1st patch (patch index 0).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">        --------</span>
+<span class="sd">        nu : float or float array</span>
+<span class="sd">             The uplift rates for moments tau</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">rate_before</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">rate_before</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">chi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tau</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="n">chi</span><span class="o">.</span><span class="n">ndim</span><span class="p">:</span>
+            <span class="n">use_shape</span> <span class="o">=</span> <span class="n">tau</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">use_shape</span> <span class="o">=</span> <span class="n">chi</span><span class="o">.</span><span class="n">shape</span>
+            
+        <span class="n">nu</span> <span class="o">=</span> <span class="n">step_function</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">borders</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">patch_starts</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rate_before</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uplift_rates</span><span class="p">))</span>
+        <span class="n">nu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">use_shape</span><span class="p">)</span><span class="o">*</span><span class="n">nu</span>
+        <span class="k">return</span> <span class="n">nu</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, Fedor Zimin.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.4.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
