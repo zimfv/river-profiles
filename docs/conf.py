@@ -25,6 +25,7 @@ extensions = ["sphinx.ext.todo",
 			  "sphinx.ext.viewcode", 
 			  "sphinx.ext.autodoc", 
 			  "sphinx.ext.mathjax",
+              "sphinx.ext.githubpages",
 ]
 
 # MathJax 3 configuration

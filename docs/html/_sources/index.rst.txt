@@ -1,21 +1,21 @@
-.. BGU-River documentation master file, created by
-   sphinx-quickstart on Fri Oct  4 23:19:41 2024.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+BGU-River: Tools for Describing River Profile Evolution
+=======================================================
 
-BGU-River
-=========
+This package provides tools for modeling and analyzing the evolution of river longitudinal profiles.
 
-This package provides tools for describing the evolution of river profiles.
+The :mod:`bguriver.slope_patches` module implements the concept of slope patches, as described in the article `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_ by Leigh Royden and J. Taylor Perron.
 
-The :mod:`bguriver.slope_patches` module implements the concept of slope patches, as described in the `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_ by Leigh Royden and J. Taylor Perron.
-
-The :mod:`bguriver.approximation` module contains the difference schemes approximating the euqation (8) from the mentioned article
+The :mod:`bguriver.approximation` module contains numerical schemes for approximating equation (8) from the mentioned article:
 
 .. math::
    \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
 
-You can find the package on `GitHub <https://github.com/zimfv/river-profiles>`_
+This package is developed by Fedor Zimin for `Liran Goren <https://sites.google.com/site/gorenliran/home>`_'s research group at `Ben Gurion University of the Negev <https://www.bgu.ac.il/en>`_.
+
+The project repository can be found `here <https://github.com/zimfv/river-profiles>`_.
+
+You can read the project documentation `here <https://zimfv.github.io/river-profiles/>`_.
+
 
 Installation
 ============
