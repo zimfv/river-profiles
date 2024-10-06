@@ -33,12 +33,3 @@ bguriver.warning\_handler module
    :members:
    :undoc-members:
    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: bguriver
-   :members:
-   :undoc-members:
-   :show-inheritance:
-   :no-index:
