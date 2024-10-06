@@ -4,6 +4,7 @@ import numpy as np
 def lengths_check(borders, values, raise_error=True):
     """
     Returns True, if lengths are correct: borders array should contain 1 element less, than values array
+
     If this is not correct, it will raise error if raise_error or return Flase in other case.
     """
     r = len(values) - len(borders) == 1
@@ -18,22 +19,32 @@ def lengths_check(borders, values, raise_error=True):
 
 
 def step_function(x, borders=[], values=[0]):
-    """
+    r"""
+    Returns the value of a step function :math:`f(x)`:
+
+    .. math::
+        f(x) = 
+        \begin{cases}
+        f_0,\; x < x_0 \\
+        f_i,\; x_{i-1} < x < x_i, \; i = 1, ..., N-1 \\
+        f_N,\; x > x_N
+        \end{cases}
+
     Parameters:
     -----------
     x : float or float array
         The argument of the function
     
     borders : list of floats len N
-        The points, when the function changes the value
+        The points :math:`x_i`, when the function changes the value
     
     values: list of floats len N+1
-        values[0] corresponds to the function value before borders[0]
-        values[i] corresponds to the function value between borders[i-1] and borders[i]
+        The values of the function :math:`f_i`:
         
     Returns:
     --------
     r : float or float array shape x.shape
+        The value of the step function :math:`f(x)`.
     """
     lengths_check(borders, values, raise_error=True)
     x = np.array(x)
@@ -49,25 +60,37 @@ def step_function(x, borders=[], values=[0]):
 
 
 def step_integral(x0, x1, borders=[], values=[0], negative_backward=True):
-    """
+    r"""
+    Returns the integral of a step :math:`\int\limits_{x_0}^{x_1}f(x) dx` function 
+    where :math:`f(x)`:
+
+    .. math::
+        f(x) = 
+        \begin{cases}
+        f_0,\; x < x_0 \\
+        f_i,\; x_{i-1} < x < x_i, \; i = 1, ..., N-1 \\
+        f_N,\; x > x_N
+        \end{cases}
+
     Parameters:
     -----------
     x : float or float array
         The argument of the function
     
     borders : list of floats len N
-        The points, when the function changes the value
+        The points :math:`x_i`, when the function changes the value
     
     values: list of floats len N+1
-        values[0] corresponds to the function value before borders[0]
-        values[i] corresponds to the function value between borders[i-1] and borders[i]
+        The values of the function :math:`f_i`:
         
     negative_backward: bool
-        Set I(x0, x1) = -I(x1, x0) for cases, when x0 > x1 
+        Set :math:`\int\limits_{x_0}^{x_1}f(x) dx = -\int\limits_{x_1}^{x_0}f(x) dx` 
+        for cases, when :math:`x_0 > x_1`. 
         
     Returns:
     --------
     r : float or float array shape x.shape
+        The integral value :math:`\int\limits_{x_0}^{x_1}f(x) dx`.
     """
     lengths_check(borders, values, raise_error=True)
     
@@ -93,15 +116,19 @@ def step_integral(x0, x1, borders=[], values=[0], negative_backward=True):
 
 
 def solve_bisect(f, x0, x1, xtol=1e-8, maxiter=200, iteration=0):
-    """
-    Bisection recursive solve method
+    r"""
+    Bisection recursive solve nonlinear equations method:
     https://en.wikipedia.org/wiki/Bisection_method
     
     Parameters:
     -----------
     f : function, takes float or np.array as argument
     
-    x0, x1: float or np.array same shape, as f-argument should be
+    x0: float or np.array same shape, as f-argument should be
+        The left initial segment borders
+
+    x1: float or np.array same shape, as f-argument should be
+        The right initial segment borders
     
     xtol: float
         The calculation will terminate if the relative error between two consecutive iterates is at most xtol.

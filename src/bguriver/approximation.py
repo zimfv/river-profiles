@@ -6,31 +6,50 @@ import warnings
 
 def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
                           method=sp.optimize.fsolve, use_fprime=True, bar=None):
-    """
-    Returns the 1st order approximation of the equation
-    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
+    r"""
+    Returns the 1st order approximation of the equation:
     
+    .. math::
+        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
+    If :math:`n \ge 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau} + \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi}\right)^{n} - \nu^{j+1}_{k+1} = 0
+
+    and if :math:`n < 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k}}{d\chi} - \left(\nu^{j+1}_{k+1} - \frac{\lambda^{j+1}_{k+1} - \lambda^{j}_{k+1}}{d\tau}\right)^{1/n} = 0
+
+    where :math:`\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)` 
+    and :math:`\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)`
+
     Parameters:
     -----------
     nu: function of 2 arguments
+        The uplift rate function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`
     
     initial: function of 1 argument
-        lambda(chi) for tau = 0
+        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`
         
     border: function of 1 argument
-        lambda(tau), for chi = 0
+        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`
         
     n : float
+        Slope exponent
     
     dtau : float
+        Step over :math:`\tau`
     
     dchi : float
+        Step over :math:`\chi`
     
     ntau : int
-        Number of tau grid lines
+        Number of :math:`\tau` grid lines
     
     nchi : int
-        Number of chi grid lines
+        Number of :math:`\chi` grid lines
     
     method : function
         Method to solve nonlinear equation
@@ -38,20 +57,20 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     use_fprime : bool
         Use an analytical derivative as fprime parameter in method
         
-    bar: tqdm bar or None:
+    bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
         
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
-        Solutions
+        Solutions :math:`\lambda(\tau, \chi)`
     
     taus: np.array shape (ntau, nchi)
-        tau values
+        :math:`\tau` values
         
     chis: np.array shape (ntau, nchi)
-        chi values
+        :math:`\chi` values
     """
     taus = dtau*np.arange(ntau)
     chis = dchi*np.arange(nchi)
@@ -87,31 +106,54 @@ def approximate_by1scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
 
 def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
                           method=sp.optimize.fsolve, use_fprime=True, bar=None):
-    """
-    Returns the 2nd order approximation of the equation
-    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
-    
+    r"""
+    Returns the 2nd order approximation of the equation:
+
+    .. math::
+        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
+    If :math:`n \ge 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau} + 
+        \left(\frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi}\right)^n - 
+        \nu^{j+0.5}_{k+0.5} = 0
+
+    and if :math:`n < 1` the difference scheme is
+
+    .. math::
+        \frac{\lambda^{j+1}_{k+1} - \lambda^{j+1}_{k} + \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\chi} -
+        \left(\nu^{j+0.5}_{k+0.5} - \frac{\lambda^{j+1}_{k+1} + \lambda^{j+1}_{k} - \lambda^{j}_{k+1} - \lambda^{j}_{k}}{2\cdot d\tau}\right)^{1/n} = 0
+
+
+    where :math:`\lambda^j_k = \lambda(j\cdot d\tau, k\cdot d\chi)` 
+    and :math:`\nu^j_k = \nu(j\cdot d\tau, k\cdot d\chi)`
+
     Parameters:
     -----------
     nu: function of 2 arguments
+        The function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`
     
     initial: function of 1 argument
-        lambda(chi) for tau = 0
+        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`
         
     border: function of 1 argument
-        lambda(tau), for chi = 0
+        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`
         
     n : float
+        Slope exponent
     
     dtau : float
+        Step over :math:`\tau`
     
     dchi : float
+        Step over :math:`\chi`
     
     ntau : int
-        Number of tau grid lines
+        Number of :math:`\tau` grid lines
     
     nchi : int
-        Number of chi grid lines
+        Number of :math:`\chi` grid lines
     
     method : function
         Method to solve nonlinear equation
@@ -119,20 +161,20 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
     use_fprime : bool
         Use an analytical derivative as fprime parameter in method
         
-    bar: tqdm bar or None:
+    bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
         
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
-        Solutions
+        Solutions :math:`\lambda(\tau, \chi)`
     
     taus: np.array shape (ntau, nchi)
-        tau values
+        :math:`\tau` values
         
     chis: np.array shape (ntau, nchi)
-        chi values
+        :math:`\chi` values
     """
     taus = dtau*np.arange(ntau)
     chis = dchi*np.arange(nchi)
@@ -174,31 +216,38 @@ def approximate_by2scheme(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau
 def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi=150, 
                 method=sp.optimize.fsolve, use_fprime=True, bar=None, order=2, 
                 runtime_warning_action="ignore"):
-    """
-    Returns the approximation of the equation
-    :math:'\frac{\partial\lambda}{\partial\tau} = \nu(\chi, \tau) - (\frac{\partial\lambda}{\partial\chi})^n'
+    r"""
+    Returns the approximation of the equation:
     
+    .. math::
+        \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
     Parameters:
     -----------
+
     nu: function of 2 arguments
-    
+        The function of :math:`\tau` and :math:`\chi`: :math:`\nu(\tau, \chi)`
+
     initial: function of 1 argument
-        lambda(chi) for tau = 0
+        The uplift rate function of :math:`\chi` at moment :math:`\tau=0`: :math:`\lambda(\tau=0, \chi)`
         
     border: function of 1 argument
-        lambda(tau), for chi = 0
+        The uplift rate function of :math:`\tau` for position :math:`\chi=0`: :math:`\lambda(\tau, \chi=0)`
         
     n : float
+        Slope exponent
     
     dtau : float
+        Step over :math:`\tau`
     
     dchi : float
+        Step over :math:`\chi`
     
     ntau : int
-        Number of tau grid lines
+        Number of :math:`\tau` grid lines
     
     nchi : int
-        Number of chi grid lines
+        Number of :math:`\chi` grid lines
     
     method : function
         Method to solve nonlinear equation
@@ -206,30 +255,31 @@ def approximate(nu, initial, border, n=1.0, dtau=1e-3, dchi=1e-3, ntau=200, nchi
     use_fprime : bool
         Use an analytical derivative as fprime parameter in method
         
-    bar: tqdm bar or None:
+    bar: tqdm.tqdm or None:
         bar to update each iteration.
         Not draw bar if it's None
-        
+
     order : int (1 or 2)
         The order of approximation
         
     runtime_warning_action : str
         What should be done with RuntimeWarning, often throwing by optimizers.
         Possible values:
-        default         # Show all warnings (even those ignored by default)
-        ignore          # Ignore all warnings
-        error           # Convert all warnings to errors
+            
+            - "default" - Show all warnings (even those ignored by default)
+            - "ignore" - Ignore all warnings
+            - "error" - Convert all warnings to errors
 
     Returns:
     --------
     sols: np.array shape (ntau, nchi)
-        Solutions
+        Solutions :math:`\lambda(\tau, \chi)`
     
     taus: np.array shape (ntau, nchi)
-        tau values
+        :math:`\tau` values
         
     chis: np.array shape (ntau, nchi)
-        chi values
+        :math:`\chi` values
     """
     schemes = {1: approximate_by1scheme, 
                2: approximate_by2scheme}
