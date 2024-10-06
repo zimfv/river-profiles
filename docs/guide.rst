@@ -4,7 +4,7 @@ Guide and Usage Examples
 SlopePatches
 ------------
 
-The ``SlopePatches`` object is the tool to work with slope patches:
+The :class:`bguriver.slope_patches.SlopePatches` object is the tool to work with slope patches:
 understanding the parameters of distinct patches and stretch zones, and
 calculating the elevation of the river.
 
@@ -44,7 +44,7 @@ This object will have the attributes with same names:
    slp.uplift_rates = [2.1 0.4 1.9 0.6]
    slp.n = 0.67
 
-You can get the number of patches using the ``SlopePatches.count()``
+You can get the number of patches using the :meth:`bguriver.slope_patches.SlopePatches.count`
 method:
 
 .. code:: python
@@ -58,10 +58,10 @@ method:
    slp.count() = 4
 
 You can find the elevation at the moment ``tau`` in the point ``chi``
-using ``SlopePatches.get_elevation`` method.
+using :meth:`bguriver.slope_patches.SlopePatches.get_elevation` method.
 
 You also can define which patch or stretch zone this elevation corespond
-using ``SlopePatches.get_elevation_index`` method.This method will
+using :meth:`bguriver.slope_patches.SlopePatches.get_elevation_index` method.This method will
 return the index. Indices less than ``slp.count()`` corespond the
 patches, and other corespond the stretch zones.
 
@@ -122,11 +122,9 @@ Here is the example of calculating the elevation over square grid.
 .. figure:: _static/pics/guide-elevation.png
    :alt: Image
 
-   Image
-
 We can find the patches and stretch zones realisation bordesr using
-``SlopePatches.get_patches_relisation_borders`` and
-``SlopePatches.get_stretch_zones_relisation_borders`` methods.
+:meth:`bguriver.slope_patches.SlopePatches.get_patches_relisation_borders` and
+:meth:`bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders` methods.
 
 .. code:: python
 
@@ -229,14 +227,12 @@ These methods also can be used non-scalar ``tau``:
 .. figure:: _static/pics/guide-borders.png
    :alt: Image
 
-   Image
-
 The slope patches are needed to describe the solution of the equation
 (8) from the
 `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`__.
 
 To get the value of ``nu``, defined the ``SlopePatches`` object, we can
-use ``SlopePatches.get_nu_value`` method:
+use :meth:`bguriver.slope_patches.SlopePatches.get_nu_value` method:
 
 .. code:: python
 
@@ -257,19 +253,21 @@ use ``SlopePatches.get_nu_value`` method:
 .. figure:: _static/pics/guide-nu.png
    :alt: Image
 
-   Image
 
-You can see more methods of ``SlopePatches`` in the `Long Guide
-notebook <https://github.com/zimfv/river-profiles/blob/dev/notebooks/Guide%20Long.ipynb>`__.
+..
+   You can see more usage examples of ``SlopePatches`` in the `Long Guide Notebook <https://github.com/zimfv/river-profiles/blob/dev/notebooks/Guide%20Long.ipynb>`_.
+
 
 Approximations
 --------------
 
 To approximate the equation (8) from the
-`article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`__
-with given ``nu``-function and ``initial`` and ``border`` functions, you
-can use the ``approximate`` function from the ``bguriver.approximation``
-module.
+`article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_
+
+.. math::
+   \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
+
+with given function ``nu`` of 2 parameters, coresponding :math:`\nu(\tau, \chi)` and functions of 1 parameter ``initial`` and ``border``, corresponding :math:`\nu(\tau=0, \chi)` and :math:`\nu(\tau, \chi=0)`, you can use :func:`bguriver.approximation.approximate`:
 
 .. code:: python
 
@@ -317,8 +315,6 @@ module.
 .. figure:: _static/pics/guide-approximation.png
    :alt: Image
 
-   Image
-
 You can use a `tqdm <https://tqdm.github.io/>`__ bar to look at the
 approximation progress.
 
@@ -353,8 +349,6 @@ The approximation contains ``(ntau-1)*(nchi - 1)`` iterations.
 
 .. figure:: _static/pics/guide-bar.png
    :alt: Image
-
-   Image
 
 .. code:: output
 

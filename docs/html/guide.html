@@ -38,6 +38,8 @@
     <script src="_static/documentation_options.js?v=01f34227"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'guide';</script>
     <script src="_static/MathJax/es5/tex-mml-chtml.js?v=cadf963e"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -331,7 +333,7 @@ document.write(`
 <h1>Guide and Usage Examples<a class="headerlink" href="#guide-and-usage-examples" title="Link to this heading">#</a></h1>
 <section id="slopepatches">
 <h2>SlopePatches<a class="headerlink" href="#slopepatches" title="Link to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">SlopePatches</span></code> object is the tool to work with slope patches:
+<p>The <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches" title="bguriver.slope_patches.SlopePatches"><code class="xref py py-class docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches</span></code></a> object is the tool to work with slope patches:
 understanding the parameters of distinct patches and stretch zones, and
 calculating the elevation of the river.</p>
 <p>You can import this class using</p>
@@ -363,7 +365,7 @@ the uplift rates on these patches <code class="docutils literal notranslate"><sp
 <span class="go">slp.n = 0.67</span>
 </pre></div>
 </div>
-<p>You can get the number of patches using the <code class="docutils literal notranslate"><span class="pre">SlopePatches.count()</span></code>
+<p>You can get the number of patches using the <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.count" title="bguriver.slope_patches.SlopePatches.count"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.count()</span></code></a>
 method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># look at the number of patches</span>
 <span class="n">N</span> <span class="o">=</span> <span class="n">slp</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
@@ -374,9 +376,9 @@ method:</p>
 </pre></div>
 </div>
 <p>You can find the elevation at the moment <code class="docutils literal notranslate"><span class="pre">tau</span></code> in the point <code class="docutils literal notranslate"><span class="pre">chi</span></code>
-using <code class="docutils literal notranslate"><span class="pre">SlopePatches.get_elevation</span></code> method.</p>
+using <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation" title="bguriver.slope_patches.SlopePatches.get_elevation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_elevation()</span></code></a> method.</p>
 <p>You also can define which patch or stretch zone this elevation corespond
-using <code class="docutils literal notranslate"><span class="pre">SlopePatches.get_elevation_index</span></code> method.This method will
+using <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_elevation_index" title="bguriver.slope_patches.SlopePatches.get_elevation_index"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_elevation_index()</span></code></a> method.This method will
 return the index. Indices less than <code class="docutils literal notranslate"><span class="pre">slp.count()</span></code> corespond the
 patches, and other corespond the stretch zones.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span><span class="p">,</span> <span class="n">chi</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span>
@@ -427,15 +429,12 @@ tensors.</p>
 <span class="go">lam.shape = (64, 64)</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id1">
+<figure class="align-default">
 <img alt="Image" src="_images/guide-elevation.png" />
-<figcaption>
-<p><span class="caption-text">Image</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
 <p>We can find the patches and stretch zones realisation bordesr using
-<code class="docutils literal notranslate"><span class="pre">SlopePatches.get_patches_relisation_borders</span></code> and
-<code class="docutils literal notranslate"><span class="pre">SlopePatches.get_stretch_zones_relisation_borders</span></code> methods.</p>
+<a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_patches_relisation_borders" title="bguriver.slope_patches.SlopePatches.get_patches_relisation_borders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_patches_relisation_borders()</span></code></a> and
+<a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders" title="bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_stretch_zones_relisation_borders()</span></code></a> methods.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tau</span> <span class="o">=</span> <span class="mi">8</span>
 
 <span class="c1"># find patches realisation borders</span>
@@ -556,17 +555,14 @@ tensors.</p>
 <span class="go">realisation_stretch_rights.shape = (3, 100)</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id2">
+<figure class="align-default">
 <img alt="Image" src="_images/guide-borders.png" />
-<figcaption>
-<p><span class="caption-text">Image</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
 <p>The slope patches are needed to describe the solution of the equation
 (8) from the
 <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a>.</p>
 <p>To get the value of <code class="docutils literal notranslate"><span class="pre">nu</span></code>, defined the <code class="docutils literal notranslate"><span class="pre">SlopePatches</span></code> object, we can
-use <code class="docutils literal notranslate"><span class="pre">SlopePatches.get_nu_value</span></code> method:</p>
+use <a class="reference internal" href="bguriver.html#bguriver.slope_patches.SlopePatches.get_nu_value" title="bguriver.slope_patches.SlopePatches.get_nu_value"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bguriver.slope_patches.SlopePatches.get_nu_value()</span></code></a> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define tau values</span>
 <span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
 
@@ -582,22 +578,17 @@ use <code class="docutils literal notranslate"><span class="pre">SlopePatches.ge
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id3">
+<figure class="align-default">
 <img alt="Image" src="_images/guide-nu.png" />
-<figcaption>
-<p><span class="caption-text">Image</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
-<p>You can see more methods of <code class="docutils literal notranslate"><span class="pre">SlopePatches</span></code> in the <a class="reference external" href="https://github.com/zimfv/river-profiles/blob/dev/notebooks/Guide%20Long.ipynb">Long Guide
-notebook</a>.</p>
 </section>
 <section id="approximations">
 <h2>Approximations<a class="headerlink" href="#approximations" title="Link to this heading">#</a></h2>
 <p>To approximate the equation (8) from the
-<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a>
-with given <code class="docutils literal notranslate"><span class="pre">nu</span></code>-function and <code class="docutils literal notranslate"><span class="pre">initial</span></code> and <code class="docutils literal notranslate"><span class="pre">border</span></code> functions, you
-can use the <code class="docutils literal notranslate"><span class="pre">approximate</span></code> function from the <code class="docutils literal notranslate"><span class="pre">bguriver.approximation</span></code>
-module.</p>
+<a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031">article</a></p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)\]</div>
+<p>with given function <code class="docutils literal notranslate"><span class="pre">nu</span></code> of 2 parameters, coresponding <span class="math notranslate nohighlight">\(\nu(\tau, \chi)\)</span> and functions of 1 parameter <code class="docutils literal notranslate"><span class="pre">initial</span></code> and <code class="docutils literal notranslate"><span class="pre">border</span></code>, corresponding <span class="math notranslate nohighlight">\(\nu(\tau=0, \chi)\)</span> and <span class="math notranslate nohighlight">\(\nu(\tau, \chi=0)\)</span>, you can use <a class="reference internal" href="bguriver.html#bguriver.approximation.approximate" title="bguriver.approximation.approximate"><code class="xref py py-func docutils literal notranslate"><span class="pre">bguriver.approximation.approximate()</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bguriver.approximation</span> <span class="kn">import</span> <span class="n">approximate</span>
 
 <span class="c1"># define the slope eponent</span>
@@ -639,11 +630,8 @@ module.</p>
 <span class="go">chi.shape = (200, 150)</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id4">
+<figure class="align-default">
 <img alt="Image" src="_images/guide-approximation.png" />
-<figcaption>
-<p><span class="caption-text">Image</span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
 <p>You can use a <a class="reference external" href="https://tqdm.github.io/">tqdm</a> bar to look at the
 approximation progress.</p>
@@ -670,11 +658,8 @@ approximation progress.</p>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;chi.shape = </span><span class="si">{</span><span class="n">chi</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id5">
+<figure class="align-default">
 <img alt="Image" src="_images/guide-bar.png" />
-<figcaption>
-<p><span class="caption-text">Image</span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
-</figcaption>
 </figure>
 <div class="highlight-output notranslate"><div class="highlight"><pre><span></span><span class="go">sol.shape = (200, 150)</span>
 <span class="go">tau.shape = (200, 150)</span>

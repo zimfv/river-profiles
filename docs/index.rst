@@ -8,13 +8,12 @@ BGU-River
 
 This package provides tools for describing the evolution of river profiles.
 
-The module ``slope_patches`` implements the concept of slope patches, as described in the `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_ by Leigh Royden and J. Taylor Perron.
+The :mod:`bguriver.slope_patches` module implements the concept of slope patches, as described in the `article <https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031>`_ by Leigh Royden and J. Taylor Perron.
 
-The module ``approximation`` contains the difference schemes approximating the euqation (8) from the mentioned article
+The :mod:`bguriver.approximation` module contains the difference schemes approximating the euqation (8) from the mentioned article
 
 .. math::
    \frac{\partial \lambda}{\partial \tau} + \left(\frac{\partial \lambda}{\partial \chi}\right)^n = \nu(\tau, \chi)
-
 
 You can find the package on `GitHub <https://github.com/zimfv/river-profiles>`_
 
