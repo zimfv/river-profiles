@@ -26,7 +26,7 @@ class SlopePatches:
         \nu_N, \; \tau_N \le \tau < \infty \\
         \end{cases}
 
-    we can just say, that :math:`\nu_{N+1} = \infty`.
+    we can just say, that :math:`\tau_{N+1} = \infty`.
 
     The concept of slope patches is described in the article by Leigh Royden and J. Taylor Perron:
     https://agupubs.onlinelibrary.wiley.com/doi/10.1002/jgrf.20031
